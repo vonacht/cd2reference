@@ -71,6 +71,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#add-subtract-multiply-divide-pow-modulo-round-ceil-floor">Add, Subtract, Multiply, Divide, Pow, Modulo, Round, Ceil, Floor</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#and-nor-or">And, Nor, Or</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#bybiome">ByBiome</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#byddstage">ByDDStage</a>
@@ -78,6 +80,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#bydna">ByDNA</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#bymissiontype">ByMissionType</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bytime">ByTime</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#byplayercount">ByPlayerCount</a>
     </li>
@@ -97,6 +101,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#duringdrillevator">DuringDrillevator</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#duringeggambush">DuringEggAmbush</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#duringencounters">DuringEncounters</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#duringextraction">DuringExtraction</a>
@@ -104,6 +110,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#duringgenericswarm">DuringGenericSwarm</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#duringmission">DuringMission</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#duringpecountdown">DuringPECountdown</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#dwarvesammo">DwarvesAmmo</a>
     </li>
@@ -119,7 +127,11 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#dwarvesshield">DwarvesShield</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#elapsedextraction">ElapsedExtraction</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#enemieskilled">EnemiesKilled</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enemycooldown">EnemyCooldown</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#enemycount">EnemyCount</a>
     </li>
@@ -138,6 +150,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#ifonspacerig">IfOnSpaceRig</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#randomchoice">RandomChoice</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#max">Max</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#min">Min</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#randomchoicepermission">RandomChoicePerMission</a>
     </li>
@@ -213,6 +229,8 @@
       }
     }
 </code></pre>
+<h2 id="and-nor-or">And, Nor, Or</h2>
+<p>Boolean operators.</p>
 <h2 id="bybiome">ByBiome</h2>
 <p>Change the value based on the mission biome. If a value isn't set for a biome it will use the 'Default' value. A 'Default' must be set unless a value is specified for biomes. If a biome is not recognized and no default is specified, the value for CrystallineCaverns will be used.</p>
 <table>
@@ -317,6 +335,7 @@ Supported mission types:</p>
     &quot;PE&quot;: 80
  }
 </code></pre>
+<h2 id="bytime">ByTime</h2>
 <h2 id="byplayercount">ByPlayerCount</h2>
 <p>Change the value based on the number of players in-game. A solo game gets the first position in the list; two players get the second spot and so on. The last value in the list is used if there are more players than there are values in the list.</p>
 <p>Example:</p>
@@ -392,6 +411,8 @@ Exammple:</p>
 <p>Becomes true whenever there is one of the following descriptors active on the map: <code>ED_Spider_Boss_Heavy</code> (Hiveguard), <code>ED_Spider_Boss_TwinA</code> (Arbalest), <code>ED_Spider_Boss_TwinB</code> (Lacerator) and <code>ED_Spider_Tank_Boss</code> (classic Dreadnought). </p>
 <h2 id="duringdrillevator">DuringDrillevator</h2>
 <p>Becomes true during the elevator phase in a Deep Scan mission. </p>
+<h2 id="duringeggambush">DuringEggAmbush</h2>
+<p>Returns True during a non-announced wave after pulling an egg in Egg Hunts. </p>
 <h2 id="duringencounters">DuringEncounters</h2>
 <p>Becomes true when an encounter (a special kind of wave that happens when breaching rooms in certain mission types) is happening.</p>
 <h2 id="duringextraction">DuringExtraction</h2>
@@ -411,6 +432,8 @@ Only add stalkers and elite guards to the pool after 240 seconds have elapsed in
     }
 }
 </code></pre>
+<h2 id="duringpecountdown">DuringPECountdown</h2>
+<p>Returns True during the extraction phase of a PE mission. </p>
 <h2 id="dwarvesammo">DwarvesAmmo</h2>
 <p>Average percent ammo left for the team, 1 when all teammates have 100% of their ammo and 0 when all teammates are at 0% ammo. This works the same way as the 4 bars under the dwarves names in the UI.</p>
 <h2 id="dwarvesdown">DwarvesDown</h2>
@@ -425,6 +448,8 @@ Only add stalkers and elite guards to the pool after 240 seconds have elapsed in
 <p>Total number of revives for the team during the mission. This includes IW self-revives.</p>
 <h2 id="dwarvesshield">DwarvesShield</h2>
 <p>Average shields, 1 when all teammates are at full shield 0 when all teammates are at 0 shield. Untested on shield disruption.</p>
+<h2 id="elapsedextraction">ElapsedExtraction</h2>
+<p>Returns the elapsed time in the extraction phase of a mission.</p>
 <h2 id="enemieskilled">EnemiesKilled</h2>
 <p>Count number of Enemies that have died this mission. Optionally, this can get the deaths of a specific enemy descriptor.
 Despawned enemies because of caps are likely counted. If your difficulty despawns significant amounts of enemies, this number might not match expectations.</p>
@@ -440,6 +465,7 @@ Despawned enemies because of caps are likely counted. If your difficulty despawn
     &quot;ED&quot;: &quot;ED_Spider_Grunt&quot;
 }
 </code></pre>
+<h2 id="enemycooldown">EnemyCooldown</h2>
 <h2 id="enemycount">EnemyCount</h2>
 <p>Count the number of enemies currently alive on the map. Optionally, this can get the count of a specific enemy descriptor.
 It's possible for this monitor to drift slightly from the actual count if base game events don't fire, but it should always be correct.</p>
@@ -508,6 +534,10 @@ Valid operators are: ==, &gt;=, &gt;, &lt;=, &lt;</p>
     }
 }
 </code></pre>
+<h2 id="max">Max</h2>
+<p>Returns the maximum of a value.</p>
+<h2 id="min">Min</h2>
+<p>Returns the minimum of a value.</p>
 <h2 id="randomchoicepermission">RandomChoicePerMission</h2>
 <p>Choose one of a set of values for each mission. The choice is fixed to the seed of the mission. Subsequent plays of the same seed will use the same value. This mutator can be used with just <code>Choices</code>. In that case it will uniformly sample from the choices.
 Optionally, a second list <code>Weights</code> provides weights for weighted sampling of the choices.</p>
