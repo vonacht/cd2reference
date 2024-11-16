@@ -132,7 +132,29 @@
                 <h1 id="modules">Modules</h1>
 <p>Modules are the top level hierarchy names for a valid CD2 JSON. The following is an alphabetized list of the current modules.</p>
 <h2 id="caps">Caps</h2>
-<p>Control for the maximum number of enemies in the map.</p>
+<p>Control for the maximum number of enemies in the map, with the following fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MaxActiveCritters</td>
+<td>Int</td>
+</tr>
+<tr>
+<td>MaxActiveEnemies</td>
+<td>Int</td>
+</tr>
+<tr>
+<td>MaxActiveSwarmers</td>
+<td>Int</td>
+</tr>
+</tbody>
+</table>
 <p>Example:</p>
 <pre><code class="language-json">&quot;Caps&quot;: {
     &quot;MaxActiveCritters&quot;: 40,
@@ -562,7 +584,7 @@ Each <code>SpecialEncounter</code> accepts the following fields:</p>
 </tr>
 <tr>
 <td>CanSpawnInDeepDive</td>
-<td>True</td>
+<td>Bool</td>
 </tr>
 </tbody>
 </table>
