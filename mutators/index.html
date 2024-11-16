@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Mutators - CD2 Reference</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/tables.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Mutators";
+        var mkdocs_page_input_path = "mutators.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CD2 Reference
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../basics/">The Basics of CD2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../modules/">Modules</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../enemies/">(Module) Enemies / EnemiesNoSync</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../wavespawners/">(Module) WaveSpawners</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Mutators</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#accumulate">Accumulate</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#add-subtract-multiply-divide-pow-modulo-round-ceil-floor">Add, Subtract, Multiply, Divide, Pow, Modulo, Round, Ceil, Floor</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bybiome">ByBiome</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#byddstage">ByDDStage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bydna">ByDNA</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bymissiontype">ByMissionType</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#byplayercount">ByPlayerCount</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#clamp">Clamp</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#delta">Delta</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#depositedresource">DepositedResource</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#descriptorexists">DescriptorExists</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#drillercount">DrillerCount</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#duringdefend">DuringDefend</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#duringdread">DuringDread</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#duringdrillevator">DuringDrillevator</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#duringencounters">DuringEncounters</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#duringextraction">DuringExtraction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#duringgenericswarm">DuringGenericSwarm</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#duringmission">DuringMission</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dwarvesammo">DwarvesAmmo</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dwarvesdown">DwarvesDown</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dwarvesdowntime">DwarvesDownTime</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dwarvesdowns">DwarvesDowns</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dwarveshealth">DwarvesHealth</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dwarvesrevives">DwarvesRevives</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dwarvesshield">DwarvesShield</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enemieskilled">EnemiesKilled</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enemycount">EnemyCount</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#engineercount">EngineerCount</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#gunnercount">GunnerCount</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#heldresource">HeldResource</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#iwsleft">IWsLeft</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#if">If</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#iffloat">IfFloat</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ifonspacerig">IfOnSpaceRig</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#randomchoice">RandomChoice</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#randomchoicepermission">RandomChoicePerMission</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resupplyusesleft">ResupplyUsesLeft</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resuppliescalled">ResuppliesCalled</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resupplyusesconsumed">ResupplyUsesConsumed</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scoutcount">ScoutCount</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#squarewave">SquareWave</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#timedelta">TimeDelta</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#totalresource">TotalResource</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../grouped_cooldowns/">Tutorials</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CD2 Reference</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Mutators</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="mutators">Mutators</h1>
+<p>Here follows an alphabetized list of mutators for CD2.</p>
+<h2 id="accumulate">Accumulate</h2>
+<p><code>Accumulate</code> can track changes in other mutators by adding to a starting <code>Initial</code> number. In addition, it also supports clamping the accumulated value with <code>Min</code> and <code>Max</code>. If used with a constant value, it can be used to make a simple counter.</p>
+<p>Example: the value of the following snippet starts at 0 and would cap at 10 after roughly 10 seconds.</p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;Accumulate&quot;,
+    &quot;Initial&quot;: 0,
+    &quot;Value&quot;: 1,
+    &quot;Min&quot;: 0,
+    &quot;Max&quot;: 10
+}
+</code></pre>
+<h2 id="add-subtract-multiply-divide-pow-modulo-round-ceil-floor">Add, Subtract, Multiply, Divide, Pow, Modulo, Round, Ceil, Floor</h2>
+<p>Arithmetic mutators that can be used for basic mathematical operations.</p>
+<p>Example: enemy speed as a linear function of resupplies called during the mission.</p>
+<pre><code class="language-json">&quot;SpeedModifier&quot;: {
+      &quot;Mutate&quot;: &quot;Add&quot;,
+      &quot;A&quot;: 1.35,
+      &quot;B&quot;: {
+        &quot;Mutate&quot;: &quot;Multiply&quot;,
+        &quot;A&quot;: {
+          &quot;Mutate&quot;: &quot;ResuppliesCalled&quot;
+        },
+        &quot;B&quot;: 0.1
+      }
+    }
+</code></pre>
+<h2 id="bybiome">ByBiome</h2>
+<p>Change the value based on the mission biome. If a value isn't set for a biome it will use the 'Default' value. A 'Default' must be set unless a value is specified for biomes. If a biome is not recognized and no default is specified, the value for CrystallineCaverns will be used.</p>
+<table>
+<thead>
+<tr>
+<th>Official name</th>
+<th>Alias 1</th>
+<th>Alias 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BIOME_AzureWeald</td>
+<td>AzureWeald</td>
+<td></td>
+</tr>
+<tr>
+<td>BIOME_CrystalCaves</td>
+<td>CrystalCave</td>
+<td>CrystallineCaverns</td>
+</tr>
+<tr>
+<td>BIOME_FungusBogs</td>
+<td>FungusBogs</td>
+<td></td>
+</tr>
+<tr>
+<td>BIOME_HollowBough</td>
+<td>HollowBough</td>
+<td></td>
+</tr>
+<tr>
+<td>BIOME_IceCaves</td>
+<td>IceCaves</td>
+<td>GlacialStrata</td>
+</tr>
+<tr>
+<td>BIOME_MagmaCaves</td>
+<td>MagmaCaves</td>
+<td>MagmaCore</td>
+</tr>
+<tr>
+<td>BIOME_SandblastedCorridors</td>
+<td>SandblastedCorridors</td>
+<td>Sandblasted</td>
+</tr>
+<tr>
+<td>BIOME_RadioactiveZone</td>
+<td>RadioactiveExclusionZone</td>
+<td>REZ</td>
+</tr>
+<tr>
+<td>BIOME_SaltCaves</td>
+<td>SaltCaves</td>
+<td>SaltPits</td>
+</tr>
+</tbody>
+</table>
+<h2 id="byddstage">ByDDStage</h2>
+<p>Change the value based on the Deep Dive stage. If a value isn't set for a stage, it will use the 'Default' value. A 'Default' must be set.</p>
+<p>Example: </p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;ByDDStage&quot;,
+    &quot;Default&quot;: 1.2,
+    &quot;Stage1&quot;: 1.0,
+    &quot;Stage2&quot;: 1.2,
+    &quot;Stage3&quot;: 1.45
+ }
+</code></pre>
+<h2 id="bydna">ByDNA</h2>
+<p>Allows setting a value based on a combination of Mission Type, Length, and Complexity:</p>
+<pre><code class="language-json">{
+  &quot;Mutate&quot;: &quot;ByDNA&quot;,
+  &quot;Default&quot;: 1,
+  &quot;Mining&quot;: 2,
+  &quot;Refinery&quot;: 3,
+  &quot;Refinery,x,2&quot;: 5,
+  &quot;Refinery,2&quot;: 4,
+  &quot;x,x,2&quot;: 8
+}
+</code></pre>
+<p>The condition with the most matches will be prioritized. Mission type is prioritized over length and length over complexity. An “x” matches anything. In the above a (2,2) refinery would have the value 4.</p>
+<h2 id="bymissiontype">ByMissionType</h2>
+<p>Change the value based on mission type. If a value isn't set for a mission type it will use the 'Default' value. A 'Default' must be set unless a value is specified for all mission types.
+Supported mission types:</p>
+<ul>
+<li>DeepScan</li>
+<li>Egg</li>
+<li>Elimination</li>
+<li>Escort</li>
+<li>Mining</li>
+<li>PE </li>
+<li>Refinery</li>
+<li>Sabotage</li>
+<li>Salvage</li>
+</ul>
+<p>Example: </p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;ByMissionType&quot;,
+    &quot;Default&quot;: 60,
+    &quot;Egg&quot;: 70,
+    &quot;PE&quot;: 80
+ }
+</code></pre>
+<h2 id="byplayercount">ByPlayerCount</h2>
+<p>Change the value based on the number of players in-game. A solo game gets the first position in the list; two players get the second spot and so on. The last value in the list is used if there are more players than there are values in the list.</p>
+<p>Example:</p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;ByPlayerCount&quot;,
+    &quot;Values&quot;: [
+        80,
+        120,
+        180,
+        180
+    ]
+}
+</code></pre>
+<h2 id="clamp">Clamp</h2>
+<p>Constrain a float (number) to fall within a range. This range is inclusive. If only a min or only a max is specified, the value will only be clamped in that direction.</p>
+<p>Example:</p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;Clamp&quot;,
+    &quot;Value&quot;: 90,
+    &quot;Min&quot;: 0,
+    &quot;Max&quot;: 100
+}
+</code></pre>
+<h2 id="delta">Delta</h2>
+<p><code>Delta</code> can be used to detect a change in some other variable or mutator, and it is often used with <code>Accumulate</code>.</p>
+<p>Example:
+The following snippet will become momentarily true when a player receives health or shield damage.</p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;IfFloat&quot;,
+    &quot;Value&quot;: {
+      &quot;Mutate&quot;: &quot;Delta&quot;,
+      &quot;Value&quot;: {
+        &quot;Mutate&quot;: &quot;Add&quot;,
+        &quot;A&quot;: {
+          &quot;Mutate&quot;: &quot;DwarvesHealth&quot;
+        },
+        &quot;B&quot;: {
+          &quot;Mutate&quot;: &quot;DwarvesShield&quot;
+        }
+      }
+    },
+    &quot;&lt;&quot;: 0,
+    &quot;Then&quot;: true,
+    &quot;Else&quot;: false
+}
+</code></pre>
+<h2 id="depositedresource">DepositedResource</h2>
+<p>Count of a resource that has been deposited into the team depository. Any resource can be referenced by the name as it appears in the in-game UI.</p>
+<p>Example:</p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;DepositedResource&quot;,
+    &quot;Resource&quot;: &quot;Nitra&quot;
+}
+</code></pre>
+<h2 id="descriptorexists">DescriptorExists</h2>
+<p>This is a boolean value which reflects whether an enemy descriptor is available. This is intended to allow a difficulty to fall back to a different descriptor if the desired descriptor isn't available, e.g. if MEV is not available.
+Exammple:</p>
+<pre><code class="language-json">{
+  &quot;Mutate&quot;: &quot;If&quot;,
+  &quot;Condition&quot;: {
+    &quot;Mutate&quot;: &quot;DescriptorExists&quot;,
+    &quot;ED&quot;: &quot;ED_MEV_Enemy&quot;
+  },
+  &quot;Then&quot;: [&quot;ED_MEV_Enemy&quot;],
+  &quot;Else&quot;: [&quot;ED_Backup&quot;]
+}
+</code></pre>
+<h2 id="drillercount">DrillerCount</h2>
+<p>Number of drillers in the lobby.</p>
+<h2 id="duringdefend">DuringDefend</h2>
+<p>Becomes true when a black box, uplink or cell refuel is active.</p>
+<h2 id="duringdread">DuringDread</h2>
+<p>Becomes true whenever there is one of the following descriptors active on the map: <code>ED_Spider_Boss_Heavy</code> (Hiveguard), <code>ED_Spider_Boss_TwinA</code> (Arbalest), <code>ED_Spider_Boss_TwinB</code> (Lacerator) and <code>ED_Spider_Tank_Boss</code> (classic Dreadnought). </p>
+<h2 id="duringdrillevator">DuringDrillevator</h2>
+<p>Becomes true during the elevator phase in a Deep Scan mission. </p>
+<h2 id="duringencounters">DuringEncounters</h2>
+<p>Becomes true when an encounter (a special kind of wave that happens when breaching rooms in certain mission types) is happening.</p>
+<h2 id="duringextraction">DuringExtraction</h2>
+<p>Becomes true during the extraction phase of the mission, ie, when going back to the drop pod.</p>
+<h2 id="duringgenericswarm">DuringGenericSwarm</h2>
+<p>Becomes true during a swarm announced by Mission Control. </p>
+<h2 id="duringmission">DuringMission</h2>
+<p>This is true during a mission, or true during a specific window of time during a mission if times are specified. If specified, StartingAt determines the elapsed mission time in seconds when this becomes true. If specified, StoppingAfter determines the elapsed mission time in seconds after which this is false.</p>
+<p>Example:
+Only add stalkers and elite guards to the pool after 240 seconds have elapsed in the mission.</p>
+<pre><code class="language-json">&quot;EnemyPool&quot;{
+    &quot;add&quot; {
+        &quot;Mutate&quot;: &quot;If&quot;, 
+        &quot;Condition&quot;: {&quot;Mutate&quot;: &quot;DuringMission&quot;, &quot;StartingAfter&quot;: 240},
+        &quot;Then&quot;: [&quot;ED_Spider_Stalker&quot;, &quot;ED_Spider_Grunt_Guard_Elite&quot;],
+        &quot;Else&quot;: []
+    }
+}
+</code></pre>
+<h2 id="dwarvesammo">DwarvesAmmo</h2>
+<p>Average percent ammo left for the team, 1 when all teammates have 100% of their ammo and 0 when all teammates are at 0% ammo. This works the same way as the 4 bars under the dwarves names in the UI.</p>
+<h2 id="dwarvesdown">DwarvesDown</h2>
+<p>Float count of the dwarves that are currently down, 0 if no dwarves are currently downed, 4 if all 4 dwarves are down.</p>
+<h2 id="dwarvesdowntime">DwarvesDownTime</h2>
+<p>Time in seconds that has elapsed while a dwarf has been down. If multiple dwarves are down, it's the longest time down among the downed dwarves.</p>
+<h2 id="dwarvesdowns">DwarvesDowns</h2>
+<p>Total number of downs for the team during the mission. This might not match the end screen because it will still count downs from disconnected players, and will not over-count downs.</p>
+<h2 id="dwarveshealth">DwarvesHealth</h2>
+<p>Average health, 1 when all teammates are at 100% health and 0 when all teammates are down.</p>
+<h2 id="dwarvesrevives">DwarvesRevives</h2>
+<p>Total number of revives for the team during the mission. This includes IW self-revives.</p>
+<h2 id="dwarvesshield">DwarvesShield</h2>
+<p>Average shields, 1 when all teammates are at full shield 0 when all teammates are at 0 shield. Untested on shield disruption.</p>
+<h2 id="enemieskilled">EnemiesKilled</h2>
+<p>Count number of Enemies that have died this mission. Optionally, this can get the deaths of a specific enemy descriptor.
+Despawned enemies because of caps are likely counted. If your difficulty despawns significant amounts of enemies, this number might not match expectations.</p>
+<p>Examples:</p>
+<p>Count of all enemy kills:</p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;EnemiesKilled&quot;
+}
+</code></pre>
+<p>Count of enemies that have died with a specific descriptor:</p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;EnemiesKilled&quot;,
+    &quot;ED&quot;: &quot;ED_Spider_Grunt&quot;
+}
+</code></pre>
+<h2 id="enemycount">EnemyCount</h2>
+<p>Count the number of enemies currently alive on the map. Optionally, this can get the count of a specific enemy descriptor.
+It's possible for this monitor to drift slightly from the actual count if base game events don't fire, but it should always be correct.</p>
+<p>Examples:
+Count all enemies on the map:</p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;EnemyCount&quot;
+}
+</code></pre>
+<p>Count of enemies with a specific descriptor:</p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;EnemyCount&quot;,
+    &quot;ED&quot;: &quot;ED_Spider_Grunt&quot;
+}
+</code></pre>
+<h2 id="engineercount">EngineerCount</h2>
+<p>Number of engineers in the lobby. </p>
+<h2 id="gunnercount">GunnerCount</h2>
+<p>Number of gunners in the lobby.</p>
+<h2 id="heldresource">HeldResource</h2>
+<p>For a resource, the sum of that resource in players' inventories, not deposited.</p>
+<p>Example:</p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;HeldResource&quot;,
+    &quot;Resource&quot;: &quot;Apoca Bloom&quot;
+}
+</code></pre>
+<h2 id="iwsleft">IWsLeft</h2>
+<p>Float count of the number of IWs the team still has in reserve, 0 when no IWs remain. This will be 0 until dwarves are spawned which happens after the level is setup including encounters and terrain.</p>
+<h2 id="if">If</h2>
+<p>Check a boolean condition, "Condition", and select either "Then" or "Else". The condition is usually another mutator that returns a boolean value.</p>
+<p>Example:
+Remove a fast bulk from the pool during a defense objective.</p>
+<pre><code class="language-json">{
+  &quot;Mutate&quot;: &quot;If&quot;,
+  &quot;Condition&quot;: {&quot;Mutate&quot;: &quot;DuringDefend&quot;},
+  &quot;Then&quot;: [],
+  &quot;Else&quot;: [&quot;ED_Fast_Bulk&quot;]
+}
+</code></pre>
+<h2 id="iffloat">IfFloat</h2>
+<p>Choose one value or another based on a comparison of two float values.
+The two floats are specified by 'Value' and the operator to be used e.g. '&gt;=' if the comparison was to be greater than or equal. If the condition is true the 'Then' value is used, else the 'Else' condition is used.
+Valid operators are: ==, &gt;=, &gt;, &lt;=, &lt;</p>
+<p>Example: as long as the team has called less than 2 resupplies the value is 40. After the team has called their second resupply, the value is 80.</p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;IfFloat&quot;,
+    &quot;Value&quot;: {&quot;Mutate&quot;: &quot;ResuppliesCalled&quot;},
+    &quot;&lt;&quot;: 2,
+    &quot;Then&quot;: 40,
+    &quot;Else&quot;: 80
+}
+</code></pre>
+<h2 id="ifonspacerig">IfOnSpaceRig</h2>
+<p>Returns True on the Space Rig. </p>
+<h2 id="randomchoice">RandomChoice</h2>
+<p>Given an array of choices, choose one at random. It accepts an optional second list with weights for a weighted sampling of the choices.</p>
+<p>Example: add either arbalests or lacerators to the enemy pool with a higher chance for arbalests.</p>
+<pre><code class="language-json">{
+    &quot;EnemyPool&quot;{
+        &quot;add&quot; {
+            &quot;Mutate&quot;: &quot;RandomChoice&quot;, 
+            &quot;Choices&quot;: [&quot;ED_Spider_Boss_TwinA&quot;, &quot;ED_Spider_Boss_TwinB&quot;],
+            &quot;Weights&quot;: [0.6, 0.4]
+        }
+    }
+}
+</code></pre>
+<h2 id="randomchoicepermission">RandomChoicePerMission</h2>
+<p>Choose one of a set of values for each mission. The choice is fixed to the seed of the mission. Subsequent plays of the same seed will use the same value. This mutator can be used with just <code>Choices</code>. In that case it will uniformly sample from the choices.
+Optionally, a second list <code>Weights</code> provides weights for weighted sampling of the choices.</p>
+<p>Example:</p>
+<pre><code class="language-json">{
+  &quot;Mutate&quot;: &quot;RandomChoicePerMission&quot;,
+  &quot;Choices&quot;: [
+    &quot;bedrock&quot;,
+    &quot;hotrock&quot;,
+    &quot;dirt&quot;
+  ]
+}
+</code></pre>
+<p>The following will be false 95 % of the time:</p>
+<pre><code class="language-json">{
+  &quot;Mutate&quot;: &quot;RandomChoicePerMission&quot;,
+  &quot;Choices&quot;: [
+    false,
+    true
+  ],
+  &quot;Weights&quot;: [
+    95,
+    5
+  ]
+}
+</code></pre>
+<h2 id="resupplyusesleft">ResupplyUsesLeft</h2>
+<p>The count among all supply pods of uses left on a resupply. By default, resupplies start with 4 uses.</p>
+<p>Caveat: the counts goes up immediately when a resupply is called, before it lands.</p>
+<h2 id="resuppliescalled">ResuppliesCalled</h2>
+<p>Number of resupplies the team has called during the mission. This should increment almost immediately after a resupply is initiated, before another resupply can be called.</p>
+<h2 id="resupplyusesconsumed">ResupplyUsesConsumed</h2>
+<p>The number of uses that have been consumed from resupplies this mission.</p>
+<h2 id="scoutcount">ScoutCount</h2>
+<p>Number of scouts in the lobby. </p>
+<h2 id="squarewave">SquareWave</h2>
+<p>Alternates between two values with a given period.</p>
+<p>Example:
+Add and remove stalkers on alternating periods of 250 seconds. </p>
+<pre><code class="language-json">{
+    &quot;EnemyPool&quot;: {
+        &quot;clear&quot;: false,
+        &quot;add&quot;: [
+            {
+              &quot;Mutate&quot;: &quot;IfFloat&quot;,
+              &quot;Value&quot;: {
+                &quot;Mutate&quot;: &quot;SquareWave&quot;,
+                &quot;Period&quot;: 250,
+                &quot;High&quot;: 1,
+                &quot;Low&quot;: 0
+              },
+              &quot;&gt;&quot;: 0.5,
+              &quot;Then&quot;: [&quot;ED_Spider_Stalker&quot;],
+              &quot;Else&quot;: []
+            }
+        ],
+        &quot;remove&quot;: [
+            {
+              &quot;Mutate&quot;: &quot;IfFloat&quot;,
+              &quot;Value&quot;: {
+                &quot;Mutate&quot;: &quot;SquareWave&quot;,
+                &quot;Period&quot;: 250,
+                &quot;High&quot;: 1,
+                &quot;Low&quot;: 0
+              },
+              &quot;&gt;&quot;: 0.5,
+              &quot;Then&quot;: [],
+              &quot;Else&quot;: [&quot;ED_Spider_Stalker&quot;]
+            }
+        ],
+    }
+}
+</code></pre>
+<h2 id="timedelta">TimeDelta</h2>
+<p>Change a value over time. Time matches the mission clock in the escape menu in-game, including starting before players receive control of their dwarves.
+The value is determined by <code>InitialValue + RateOfChange * Max(0, Time - StartDelay)</code>.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>InitialValue</code>: Value at time 0 and up until <code>StartDelay</code></li>
+<li><code>StartDelay</code>: Time in seconds to stay at the <code>InitialValue</code> before changing. </li>
+<li><code>RateOfChange</code>: Rate per second to change the value.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;TimeDelta&quot;,
+    &quot;InitialValue&quot;: 3.1,
+    &quot;RateOfChange&quot;: 0.0033,
+    &quot;StartDelay&quot;: 400
+ }
+</code></pre>
+<h2 id="totalresource">TotalResource</h2>
+<p>Sum of a resource held in players inventories and the group depot. Any resource can be referenced by the name as it appears in the in-game UI.</p>
+<p>Example:</p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;TotalResource&quot;,
+    &quot;Resource&quot;: &quot;Morkite&quot;
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../wavespawners/" class="btn btn-neutral float-left" title="(Module) WaveSpawners"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../grouped_cooldowns/" class="btn btn-neutral float-right" title="Tutorials">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../wavespawners/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../grouped_cooldowns/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

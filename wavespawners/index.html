@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>(Module) WaveSpawners - CD2 Reference</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/tables.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "(Module) WaveSpawners";
+        var mkdocs_page_input_path = "wavespawners.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CD2 Reference
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../basics/">The Basics of CD2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../modules/">Modules</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../enemies/">(Module) Enemies / EnemiesNoSync</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">(Module) WaveSpawners</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mutators/">Mutators</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../grouped_cooldowns/">Tutorials</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CD2 Reference</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">(Module) WaveSpawners</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="wave-spawners">Wave Spawners</h1>
+<p>Wave spawners are a feature of CD2 that allow the creation of unnanounced enemy waves with various degrees of flexibility. The following basic example spawns a wave of difficulty 100 composed of only grunts every 90 seconds in 3 locations around the player:</p>
+<pre><code class="language-json">{
+    &quot;WaveSpawners&quot;: 
+        {
+          &quot;Enabled&quot;: true,
+          &quot;Interval&quot;: 90,
+          &quot;Enemies&quot;: [&quot;ED_Spider_Grunt&quot;],
+          &quot;Difficulty&quot;: 100,
+          &quot;Distance&quot;: 10,
+          &quot;Locations&quot;: 3
+        }
+}
+</code></pre>
+<p>The following table shows the valid fields inside a <code>WaveSpawner</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enabled</td>
+<td>Bool</td>
+<td>Whether the wave spawner is active (True) or not (False).</td>
+</tr>
+<tr>
+<td>Interval</td>
+<td>Float</td>
+<td>After the wave is enabled, a time of <code>Interval</code> seconds will pass until the first spawns appear unless <code>SpawnOnEnable</code> (see below) is True. After that the wave will repeat every <code>Interval</code> seconds unless disabled.</td>
+</tr>
+<tr>
+<td>Enemies</td>
+<td>[List]</td>
+<td>A list of the enemy descriptors that will spawn.</td>
+</tr>
+<tr>
+<td>Difficulty</td>
+<td>Float</td>
+<td>Number of points assigned to the wave event, which will be distributed among the enemies in <code>Enemies</code> depending on their <code>DifficultyRating</code> to decide how many will spawn.</td>
+</tr>
+<tr>
+<td>Distance</td>
+<td>Float</td>
+<td>Distance where the enemies will spawn relative to the player.</td>
+</tr>
+<tr>
+<td>Locations</td>
+<td>Int</td>
+<td>Number of spawn points.</td>
+</tr>
+<tr>
+<td>SpawnOnEnable</td>
+<td>Bool</td>
+<td>If True, the wave will start spawning enemies as soon as it is enabled, skipping the initial <code>Interval</code>. Defaults to False.</td>
+</tr>
+<tr>
+<td>UnlockInterval</td>
+<td>Bool</td>
+<td>If true, changing the interval will modify the current timer. If false, the time to next spawn is selected once and locked to that time until rerolled (e.g. when enemies spawn). Defaults to False.</td>
+</tr>
+<tr>
+<td>PauseOnDisable</td>
+<td>Bool</td>
+<td>If true, the timer for the next spawn is paused while the wavespawner is disabled and resumes when it is enabled. If false, the timer is reset when the spawner is re-enabled. Defaults to False.</td>
+</tr>
+</tbody>
+</table>
+<p>All <code>WaveSpawner</code> fields can be mutated. The following snippet shows a popular spawner useful in Elimination missions, which spawns a bulk detonator with descriptor <code>ED_WeakBulk</code>, defined in the <code>Enemies</code> module, whenever there is a dreadnought on the map:</p>
+<pre><code class="language-json">{
+    &quot;WaveSpawners&quot;: [
+        {
+          &quot;Enabled&quot;: {
+            &quot;Mutate&quot;: &quot;IfFloat&quot;,
+            &quot;Value&quot;: {
+              &quot;Mutate&quot;: &quot;EnemyCount&quot;,
+              &quot;ED&quot;: &quot;XED_WeakBulk&quot;
+            },
+            &quot;&lt;&quot;: 1,
+            &quot;Then&quot;: {
+              &quot;Mutate&quot;: &quot;DuringDread&quot;
+            },
+            &quot;Else&quot;: false
+          },
+          &quot;Interval&quot;: 10,
+          &quot;Enemies&quot;: [&quot;XED_WeakBulk&quot;],
+          &quot;Difficulty&quot;: 250,
+          &quot;Distance&quot;: 1750,
+          &quot;Locations&quot;: 1
+        }
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../enemies/" class="btn btn-neutral float-left" title="(Module) Enemies / EnemiesNoSync"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../mutators/" class="btn btn-neutral float-right" title="Mutators">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../enemies/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../mutators/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

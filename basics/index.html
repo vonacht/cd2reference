@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>The Basics of CD2 - CD2 Reference</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/tables.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "The Basics of CD2";
+        var mkdocs_page_input_path = "basics.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CD2 Reference
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">The Basics of CD2</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#the-cd2-gui">The CD2 GUI</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-cd2-files">The CD2 files</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../modules/">Modules</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../enemies/">(Module) Enemies / EnemiesNoSync</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../wavespawners/">(Module) WaveSpawners</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mutators/">Mutators</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../grouped_cooldowns/">Tutorials</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CD2 Reference</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">The Basics of CD2</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="the-basics-of-cd2">The basics of CD2</h1>
+<h2 id="the-cd2-gui">The CD2 GUI</h2>
+<p>CD2 features a simple GUI compatible with both ModHub and UUI:</p>
+<figure>
+  <img alt="CD2modhub" src="../pictures/cd2-modhub.png" />
+  <figcaption>Main CD2 screen in Modhub.</figcaption>
+</figure>
+<p>The files for your difficulties can be pasted and edited in the text box. After clicking <code>Save</code>, the file will be saved based on the name in the <code>Name</code> top level field; if the file already existed, it will be overwritten. Difficulties get saved inside your mod config. You can check all your difficulties by clicking on the drop-down menu.</p>
+<p>The <code>Reset</code> button sets a difficulty as a default upon starting the game.</p>
+<h2 id="the-cd2-files">The CD2 files</h2>
+<ul>
+<li>CD2 files are in the <a href="https://en.wikipedia.org/wiki/JSON">JSON</a> format.</li>
+<li>CD1 files are not compatible with CD2.</li>
+<li>The top level fields of the file are <a href="../modules/">modules</a> with different functionalities.</li>
+<li>If a module or a field is missing from a CD2 file, the value from the <code>BaseHazard</code> for the file is taken. The <code>BaseHazard</code> can be specified inside the <code>DifficultySetting</code> module. If none is specified, the base hazard is Hazard 5. </li>
+<li>A file that is just <code>{}</code> represents vanilla Hazard 5. </li>
+<li>Most fields that admit floats or ints accept also an array of the same type:</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;Caps&quot;: {
+        &quot;MaxActiveEnemies&quot;: [90, 120, 180, 180]
+    }
+}
+</code></pre>
+<p>which means that <code>MaxActiveEnemies</code> scales with the number of players, 1 to 4, with the values specified inside. The arrays can be as large as desired to accomodate for 4+ player lobbies:</p>
+<pre><code class="language-json">{
+    &quot;Caps&quot;: {
+        &quot;MaxActiveEnemies&quot;: [90, 120, 180, 180, 210, 210, 240, 240]
+    }
+}
+</code></pre>
+<p>If the lobby has more players than indices in the array, the last value is used.</p>
+<ul>
+<li>Most fields can change based on gameplay conditions using <a href="../mutators/">mutators</a>. The best way to learn how to use them is to look at already existing difficulties and trying to understand what they do.</li>
+</ul>
+<p>The following is a very simple file for Hazard 5x2, that is, vanilla Hazard 5 with double enemies and a 60 nitra resupply cost:</p>
+<pre><code class="language-json">{
+  &quot;Name&quot;: &quot;Hazard 5x2&quot;,
+  &quot;Caps&quot;: {
+    &quot;MaxActiveSwarmers&quot;: [ 90, 120, 180 ],
+    &quot;MaxActiveEnemies&quot;: [ 90, 120, 180 ]
+  },
+  &quot;Resupply&quot;: {
+    &quot;Cost&quot;: 60
+  },
+  &quot;DifficultySetting&quot;: {
+    &quot;BaseHazard&quot;: &quot;Hazard 5&quot;,
+    &quot;EnemyCountModifier&quot;: [ 1.7, 1.7, 2.5, 3 ]
+  }
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../faq/" class="btn btn-neutral float-left" title="FAQ"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../modules/" class="btn btn-neutral float-right" title="Modules">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../faq/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../modules/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

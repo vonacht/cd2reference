@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>(Module) Enemies / EnemiesNoSync - CD2 Reference</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/tables.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "(Module) Enemies / EnemiesNoSync";
+        var mkdocs_page_input_path = "enemies.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CD2 Reference
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../basics/">The Basics of CD2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../modules/">Modules</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">(Module) Enemies / EnemiesNoSync</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#descriptor-controls">Descriptor controls</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enemy-controls">Enemy controls</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resistances">Resistances</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#movement">Movement</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#caveleech">CaveLeech</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#grabber">Grabber</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#jellybreeder">JellyBreeder</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#temperature">Temperature</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../wavespawners/">(Module) WaveSpawners</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mutators/">Mutators</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../grouped_cooldowns/">Tutorials</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CD2 Reference</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">(Module) Enemies / EnemiesNoSync</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="enemies-enemiesnosync">Enemies / EnemiesNoSync</h1>
+<p>This module contains the enemy descriptors. The difficulty can only contain either the <code>Enemies</code> module or <code>EnemiesNoSync</code>: </p>
+<ul>
+<li><code>Enemies</code> can replicate some enemy characteristics to players, such as materials and scale, but in exchange it forces the clients to use CD2 or they will suffer a disconnect upon mission start. </li>
+<li><code>EnemiesNoSync</code> doesn't do replication to clients. A difficulty with <code>EnemiesNoSync</code> is compatible with all clients, regardless of whether they use CD1, CD2 or nothing at all. </li>
+</ul>
+<h2 id="descriptor-controls">Descriptor controls</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CanBeUsedForConstantPressure</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>CanBeUsedInEncounters</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>Rarity</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>DifficultyRating</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>SpawnAmountModifier</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>SpawnSpread</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>MaxSpawnCount</td>
+<td>Int</td>
+</tr>
+<tr>
+<td>MinSpawnCount</td>
+<td>Int</td>
+</tr>
+<tr>
+<td>UsesSpawnRarityModifiers</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>SpawnRarityModifiers</td>
+<td>*</td>
+</tr>
+<tr>
+<td>UsesVeteranLarge</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>VeteranClasses</td>
+<td>**</td>
+</tr>
+<tr>
+<td>Significance</td>
+<td>String, takes ("Swarmer", "Normal", "Critical", "Critter")</td>
+</tr>
+</tbody>
+</table>
+<h2 id="enemy-controls">Enemy controls</h2>
+<p>Fields inside [[]] are special submodules that can be found in the sections that follow.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alert</td>
+<td>Boolean</td>
+<td>If True, the enemy will spawn aggroed to the player. It is True by default in enemies spawned by a <a href="../wavespawners/">wave spawner</a>.</td>
+</tr>
+<tr>
+<td>CanPlayerStandOn</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>CaveLeech</td>
+<td>[[CaveLeech]]</td>
+<td>See the <code>CaveLeech</code> module below for special Cave Leech controls.</td>
+</tr>
+<tr>
+<td>Courage</td>
+<td>Float</td>
+<td></td>
+</tr>
+<tr>
+<td>DisplayName</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>Elite</td>
+<td>Float</td>
+<td>This field accepts a float number indicating the percentage of Elite enemies that will spawn for that descriptor.</td>
+</tr>
+<tr>
+<td>EnemyHealthScaling</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>Grabber</td>
+<td>[[Grabber]]</td>
+<td>See the <code>Grabber</code> module below for special Grabber controls.</td>
+</tr>
+<tr>
+<td>IsBossFight</td>
+<td>Boolean</td>
+<td>If True, the enemy will have a boss bar in the player UI similar to the vanilla dreadnoughts. The name in the bar will be the descriptor's <code>DisplayName</code>.</td>
+</tr>
+<tr>
+<td>JellyBreeder</td>
+<td>[[JellyBreeder]]</td>
+<td>See the <code>JellyBreeder</code> module below for special breeder controls.</td>
+</tr>
+<tr>
+<td>Heal</td>
+<td>Float</td>
+<td>A positive number <code>N</code> will heal the enemy <code>N</code> hps. A negative number will do <code>N</code> dps to the enemy.</td>
+</tr>
+<tr>
+<td>HealthMultiplier</td>
+<td>Float</td>
+<td></td>
+</tr>
+<tr>
+<td>HealthRaw</td>
+<td>Float</td>
+<td></td>
+</tr>
+<tr>
+<td>Materials</td>
+<td>[[Materials]]</td>
+<td>A list of UE4 materials that will be applied to different parts of the enemy. Each enemy is different with regard to how many materials will it accept and how will they be applied, so trial and error is usually needed to get the expected results.</td>
+</tr>
+<tr>
+<td>MEV</td>
+<td>Special</td>
+<td></td>
+</tr>
+<tr>
+<td>Movement</td>
+<td>[[Movement]]</td>
+<td>See the <code>Movement</code> submodule below.</td>
+</tr>
+<tr>
+<td>NoSpawnWithin</td>
+<td>Float</td>
+<td>Removes enemies that spawn within the specified distance of the player, in cm.</td>
+</tr>
+<tr>
+<td>Resistances</td>
+<td>[[Resistances]]</td>
+<td>See the <code>Resistances</code> submodule below.</td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>Float</td>
+<td></td>
+</tr>
+<tr>
+<td>ShowHealthBar</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>StaggerImmunityWindow</td>
+<td>Float</td>
+<td></td>
+</tr>
+<tr>
+<td>StaggerDurationMultiplier</td>
+<td>Float</td>
+<td></td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>[[Temperature]]</td>
+<td>See the <code>Temperature</code> submodule below.</td>
+</tr>
+<tr>
+<td>TimeDilation</td>
+<td>Float</td>
+<td>Speeds up the enemy's attack and movement. Please note that time-dilating enemies can be a source of desync.</td>
+</tr>
+<tr>
+<td>WeakpointHP</td>
+<td>Float</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="resistances">Resistances</h2>
+<p>Fields for the resistances submodule. These controls can be used to define resistances to all types of damage in the game. <code>DamageMultiplier</code> is the catch-all for all damage types.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InvulnerableToNonDefinedResistances</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>DamageMultiplier</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>FireDamageMultiplier</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>CorrosiveDamageMultiplier</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>ElectricDamageMultiplier</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>ColdDamageMultiplier</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>KineticDamageMultiplier</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>PhysicalDamageMultiplier</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>ExplosionDamageMultiplier</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>InternalDamageMultiplier</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>RadiationDamageMultiplier</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>PoisonDamageMultiplier</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>PiercingDamageMultiplier</td>
+<td>Float</td>
+</tr>
+</tbody>
+</table>
+<h2 id="movement">Movement</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MaxPawnSpeed</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>StrafeSpeed</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>MinSlowdownAngle</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>MaxSlowdownAngle</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>MaxStrafeDistance</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>AlignDirectionSpeed</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>FleeSpeedBoostMultiplier</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>MaxAcceleration</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>MaxBrakingDeceleration</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>PathfinderSize</td>
+<td>Currently Unsupported</td>
+</tr>
+<tr>
+<td>AlignToTargetMinRequiredAngle</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>PathfinderPreference</td>
+<td>Currently Unsupported</td>
+</tr>
+</tbody>
+</table>
+<h2 id="caveleech">CaveLeech</h2>
+<p>Special controls for cave leeches.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BiteDamage</td>
+<td>Float</td>
+<td>10</td>
+</tr>
+<tr>
+<td>BitesPerSecond</td>
+<td>Float</td>
+<td>1</td>
+</tr>
+<tr>
+<td>MaxDistanceXY</td>
+<td>Float</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>GrapDelay</td>
+<td>Float</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>TentacleSpeed</td>
+<td>Float</td>
+<td>600</td>
+</tr>
+<tr>
+<td>TentacleRetractSpeed</td>
+<td>Float</td>
+<td>1100</td>
+</tr>
+<tr>
+<td>TentaclePullSpeed</td>
+<td>Float</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>TentacleDropPlayerSpeed</td>
+<td>Float</td>
+<td>1500</td>
+</tr>
+<tr>
+<td>TentacleDropGroundDistance</td>
+<td>Float</td>
+<td>300</td>
+</tr>
+<tr>
+<td>MaxDropPlayerDuration</td>
+<td>Float</td>
+<td>2</td>
+</tr>
+<tr>
+<td>RevivedGracePeriod</td>
+<td>Float</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<h2 id="grabber">Grabber</h2>
+<p>Special controls for grabbers.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WanderingSpeed</td>
+<td>Float</td>
+<td>250</td>
+</tr>
+<tr>
+<td>WanderingAcceleration</td>
+<td>Float</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>ChaseSpeed</td>
+<td>Float</td>
+<td>750</td>
+</tr>
+<tr>
+<td>ChaseAcceleration</td>
+<td>Float</td>
+<td>4000</td>
+</tr>
+<tr>
+<td>CarrySpeed</td>
+<td>Float</td>
+<td>500</td>
+</tr>
+<tr>
+<td>CarryAcceleration</td>
+<td>Float</td>
+<td>3000</td>
+</tr>
+<tr>
+<td>FleeSpeed</td>
+<td>Float</td>
+<td>800</td>
+</tr>
+<tr>
+<td>FleeAcceleration</td>
+<td>Float</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>ExtraUpForce</td>
+<td>Float</td>
+<td>15</td>
+</tr>
+<tr>
+<td>PreventGrabAfterSpawn</td>
+<td>Float</td>
+<td>3</td>
+</tr>
+<tr>
+<td>GrabTime</td>
+<td>Float</td>
+<td>20</td>
+</tr>
+<tr>
+<td>DamageTimeLimit</td>
+<td>Float</td>
+<td>4</td>
+</tr>
+<tr>
+<td>DamageThreshold</td>
+<td>Float</td>
+<td>25</td>
+</tr>
+<tr>
+<td>RevivedGravePeriod</td>
+<td>Float</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jellybreeder">JellyBreeder</h2>
+<p>Special controls for breeders.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EnemyToSpawn</td>
+<td>ED</td>
+<td></td>
+<td>Can be mutated.</td>
+</tr>
+<tr>
+<td>TimeBetweenBursts</td>
+<td>Float</td>
+<td>20</td>
+<td></td>
+</tr>
+<tr>
+<td>TimeBetweenEggs</td>
+<td>Float</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>CloseToSpawnEggTime</td>
+<td>Float</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>EggBurstSize</td>
+<td>Int</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>MaxJellies</td>
+<td>Int</td>
+<td>25</td>
+<td></td>
+</tr>
+<tr>
+<td>MultiplierOnHighPlayerCount</td>
+<td>Float</td>
+<td>1.5</td>
+<td></td>
+</tr>
+<tr>
+<td>SpawnAmount</td>
+<td>Int</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>EggName</td>
+<td>String</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>EggMaterial</td>
+<td>Material</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>EggHealth</td>
+<td>Float</td>
+<td>125</td>
+<td></td>
+</tr>
+<tr>
+<td>EggSpeed</td>
+<td>Float</td>
+<td>1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>EggTime</td>
+<td>Float</td>
+<td>17</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="language-json">{
+  &quot;Name&quot;: &quot;CD2 Beta 6 Test - Breeder Update&quot;,
+  &quot;Enemies&quot;: {
+    &quot;ED_GruntBreeder&quot;: {
+      &quot;Base&quot;: &quot;ED_JellyBreeder&quot;,
+      &quot;DisplayName&quot;: &quot;Greeder&quot;,
+      &quot;Materials&quot;: [
+        &quot;M_Spider_Grunt_Body_Generic&quot;,
+        &quot;M_Spider_Grunt_Armor_Guard01&quot;,
+        &quot;M_Spider_Grunt_Armor_Generic&quot;,
+        &quot;M_Spider_Grunt_Armor_Guard01&quot;,
+        &quot;M_Jelly_Breeder_Spike&quot;,
+        &quot;M_Spider_Grunt_Armor_SlasherClaws&quot;
+      ],
+      &quot;JellyBreeder&quot;: {
+        &quot;EnemyToSpawn&quot;: &quot;ED_Spider_Grunt&quot;,
+        &quot;SpawnAmount&quot;: 1,
+        &quot;TimeBetweenBursts&quot;: 40,
+        &quot;EggBurstSize&quot;: 18,
+        &quot;TimeBetweenEggs&quot;: 0.5,
+        &quot;EggName&quot;: &quot;Grunt Egg&quot;,
+        &quot;EggMaterial&quot;: &quot;M_Spider_Grunt_Armor_Guard01&quot;,
+        &quot;EggHealth&quot;: 5,
+        &quot;EggTime&quot;: 1
+      }
+    },
+    &quot;ED_StalkerBreeder&quot;: {
+      &quot;Base&quot;: &quot;ED_JellyBreeder&quot;,
+      &quot;DisplayName&quot;: &quot;Stalker Breeder&quot;,
+      &quot;ShowHealthBar&quot;: false,
+      &quot;Materials&quot;: [
+        &quot;M_Spider_Stalker_Camouflage&quot;,
+        &quot;M_Spider_Stalker_Camouflage&quot;,
+        &quot;M_Spider_Stalker_Camouflage&quot;,
+        &quot;M_Spider_Stalker_Camouflage&quot;,
+        &quot;M_Spider_Stalker_Camouflage&quot;,
+        &quot;M_Spider_Stalker_Camouflage&quot;,
+        &quot;M_Spider_Stalker_Camouflage&quot;
+      ],
+      &quot;JellyBreeder&quot;: {
+        &quot;EnemyToSpawn&quot;: &quot;ED_Spider_Stalker&quot;,
+        &quot;SpawnAmount&quot;: 1,
+        &quot;TimeBetweenBursts&quot;: 40,
+        &quot;EggBurstSize&quot;: 1,
+        &quot;TimeBetweenEggs&quot;: 2,
+        &quot;EggName&quot;: &quot;Stalker Egg&quot;,
+        &quot;EggMaterial&quot;: &quot;M_Spider_Stalker_Camouflage&quot;,
+        &quot;EggHealth&quot;: 80,
+        &quot;EggTime&quot;: 40
+      }
+    }
+  }
+}
+</code></pre>
+<h2 id="temperature">Temperature</h2>
+<p>Special temperature controls to change how enemies react to heat and cold.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DieIfFrozen</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>DieIfBurning</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>IsHeatsourceWhenOnFire</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>OnFireHeatRange</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>BurnTemperature</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>DouseFireTemperature</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>FreezeTemperature</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>UnfreezeTemperature</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>WarmingRate</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>CoolingRate</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>TemperatureChangeScale</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>FozenDamageBonusScale</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>MaxColdSlowdown</td>
+<td>Float</td>
+</tr>
+</tbody>
+</table>
+<p>Example: the following snippet use the <code>Temperature</code> module to make dreadnoughts ignitable.</p>
+<pre><code class="language-json">{ 
+    &quot;Enemies&quot;: {
+        &quot;ED_Spider_Boss_Heavy&quot;: {
+          &quot;Resistances&quot;: {&quot;DamageMultiplier&quot;: 1.23, &quot;FireDamageMultiplier&quot;: 1.2},
+          &quot;Temperature&quot;: {&quot;BurnTemperature&quot;: 100, &quot;DouseFireTemperature&quot;: 50}
+        },
+        &quot;ED_Spider_Boss_TwinA&quot;: {
+          &quot;Resistances&quot;: {&quot;DamageMultiplier&quot;: 1.3, &quot;FireDamageMultiplier&quot;: 1.2},
+          &quot;Temperature&quot;: {&quot;BurnTemperature&quot;: 100, &quot;DouseFireTemperature&quot;: 50}
+        },
+        &quot;ED_Spider_Boss_TwinB&quot;: {
+          &quot;Resistances&quot;: {&quot;DamageMultiplier&quot;: 1.23, &quot;FireDamageMultiplier&quot;: 1.2},
+          &quot;Temperature&quot;: {&quot;BurnTemperature&quot;: 100, &quot;DouseFireTemperature&quot;: 50}
+        }
+    }
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../modules/" class="btn btn-neutral float-left" title="Modules"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../wavespawners/" class="btn btn-neutral float-right" title="(Module) WaveSpawners">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../modules/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../wavespawners/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

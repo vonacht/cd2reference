@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Modules - CD2 Reference</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/tables.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Modules";
+        var mkdocs_page_input_path = "modules.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CD2 Reference
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../basics/">The Basics of CD2</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Modules</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#caps">Caps</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#darkness">Darkness</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#description">Description</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#difficultysetting">DifficultySetting</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dwarves">Dwarves</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enemies-enemiesnosync">Enemies / EnemiesNoSync</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#escortmule">EscortMule</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#maxplayers">MaxPlayers</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#name">Name</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nextdifficulty">NextDifficulty</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nitramultiplier">NitraMultiplier</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pools">Pools</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#specialencounters">SpecialEncounters</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resupply">Resupply</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#warnings">Warnings</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#wavespawners">WaveSpawners</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../enemies/">(Module) Enemies / EnemiesNoSync</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../wavespawners/">(Module) WaveSpawners</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mutators/">Mutators</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../grouped_cooldowns/">Tutorials</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CD2 Reference</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Modules</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="modules">Modules</h1>
+<p>Modules are the top level hierarchy names for a valid CD2 JSON. The following is an alphabetized list of the current modules.</p>
+<h2 id="caps">Caps</h2>
+<p>Control for the maximum number of enemies in the map.</p>
+<p>Example:</p>
+<pre><code class="language-json">&quot;Caps&quot;: {
+    &quot;MaxActiveCritters&quot;: 40,
+    &quot;MaxActiveSwarmers&quot;: [90, 120, 180, 180],
+    &quot;MaxActiveEnemies&quot;: [90, 120, 180, 180]
+}
+</code></pre>
+<h2 id="darkness">Darkness</h2>
+<p>The Darkness module offers controls related to lighting and illumination both in the Space Rig and during a mission. It has the following fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlashlightStrength</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>PlayerIllumination</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>FlareMax</td>
+<td>Int</td>
+</tr>
+<tr>
+<td>FlareStrength</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>FlareDuration</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>FlareProductionTime</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>EnvironmentalLight</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>DisableFog</td>
+<td>Bool</td>
+</tr>
+<tr>
+<td>FlareGunStrength</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>FlareGunDuration</td>
+<td>Float</td>
+</tr>
+</tbody>
+</table>
+<h2 id="description">Description</h2>
+<p>A short explanation of the difficulty.</p>
+<p>Example:</p>
+<pre><code class="language-json">{
+    &quot;Description&quot;: &quot;Hazard 6 with double enemies.&quot;
+}
+</code></pre>
+<h2 id="difficultysetting">DifficultySetting</h2>
+<p>Main controls for enemy resistance, swarm and wave intervals and enemy counts.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BaseHazard</td>
+<td>Declares a base vanilla hazard, with values from 1 to 5. When a CD2 JSON doesn't specify a certain field, the value is taken from the BaseHazard specified here.</td>
+</tr>
+<tr>
+<td>ExtraLargeEnemyDamageResistance</td>
+<td></td>
+</tr>
+<tr>
+<td>ExtraLargeEnemyDamageResistanceB</td>
+<td></td>
+</tr>
+<tr>
+<td>ExtraLargeEnemyDamageResistanceC</td>
+<td></td>
+</tr>
+<tr>
+<td>ExtraLargeEnemyDamageResistanceD</td>
+<td></td>
+</tr>
+<tr>
+<td>EnemyDamageResistance</td>
+<td></td>
+</tr>
+<tr>
+<td>SmallEnemyDamageResistance</td>
+<td></td>
+</tr>
+<tr>
+<td>EnemyDamageResistance</td>
+<td></td>
+</tr>
+<tr>
+<td>EncounterDifficulty</td>
+<td></td>
+</tr>
+<tr>
+<td>StationaryDifficulty</td>
+<td></td>
+</tr>
+<tr>
+<td>EnemyCountModifier</td>
+<td></td>
+</tr>
+<tr>
+<td>EnemyWaveInterval</td>
+<td></td>
+</tr>
+<tr>
+<td>EnemyNormalWaveInterval</td>
+<td></td>
+</tr>
+<tr>
+<td>EnemyNormalWaveDifficulty</td>
+<td></td>
+</tr>
+<tr>
+<td>EnemyDiversity</td>
+<td></td>
+</tr>
+<tr>
+<td>StationaryEnemyDiversity</td>
+<td></td>
+</tr>
+<tr>
+<td>VeteranNormal</td>
+<td></td>
+</tr>
+<tr>
+<td>VeteranLarge</td>
+<td></td>
+</tr>
+<tr>
+<td>EnviromentalDamageModifier</td>
+<td></td>
+</tr>
+<tr>
+<td>PointExtractionScalar</td>
+<td></td>
+</tr>
+<tr>
+<td>FriendlyFireModifier</td>
+<td></td>
+</tr>
+<tr>
+<td>WaveStartDelayScale</td>
+<td></td>
+</tr>
+<tr>
+<td>SpeedModifier</td>
+<td></td>
+</tr>
+<tr>
+<td>AttackCooldownModifier</td>
+<td></td>
+</tr>
+<tr>
+<td>ProjectileSpeedModifier</td>
+<td></td>
+</tr>
+<tr>
+<td>HealthRegenerationMax</td>
+<td>Maximum health that the dwarves regenerate naturally to.</td>
+</tr>
+<tr>
+<td>ReviveHealthRatio</td>
+<td>Health points after revive.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dwarves">Dwarves</h2>
+<p>Offers some controls related to the players.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RegenHealthPerSecond</td>
+<td></td>
+</tr>
+<tr>
+<td>RegenDelayAfterDamage</td>
+<td></td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>Player size.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="enemies-enemiesnosync">Enemies / EnemiesNoSync</h2>
+<p>See the <a href="../enemies/">Enemies/EnemiesNoSync</a> section.</p>
+<h2 id="escortmule">EscortMule</h2>
+<p>Controls for the Drilldozer in Escort missions.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Default</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HealPerTickNormal</td>
+<td>Float</td>
+<td>13</td>
+<td>Currently unsupported.</td>
+</tr>
+<tr>
+<td>HealPerTickUnderAttack</td>
+<td>Float</td>
+<td>4.5</td>
+<td>Currently unsupported.</td>
+</tr>
+<tr>
+<td>MaxAttackersOmoranFight</td>
+<td>Float</td>
+<td>6</td>
+<td>Currently unsupported.</td>
+</tr>
+<tr>
+<td>MaxHealth</td>
+<td>Float</td>
+<td>520</td>
+<td>Currently unsupported.</td>
+</tr>
+<tr>
+<td>FriendlyFireModifier</td>
+<td>Float</td>
+<td>0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>NeutralDamageModifier</td>
+<td>Float</td>
+<td>0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>BigHitDamageModifier</td>
+<td>Float</td>
+<td>0.5</td>
+<td></td>
+</tr>
+<tr>
+<td>BigHitDamageReductionThreshold</td>
+<td>Float</td>
+<td>6</td>
+<td></td>
+</tr>
+<tr>
+<td>PST_PoisonResistance</td>
+<td>Float</td>
+<td>0.25</td>
+<td>Currently unsupported.</td>
+</tr>
+<tr>
+<td>PST_RadiationResistance</td>
+<td>Float</td>
+<td>0.5</td>
+<td>Currently unsupported.</td>
+</tr>
+<tr>
+<td>PST_ExplosionResistance</td>
+<td>Float</td>
+<td>0.5</td>
+<td>Currently unsupported.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="maxplayers">MaxPlayers</h2>
+<p>A field accepting an int specifying the maximum number of players allowed in the lobby. </p>
+<pre><code class="language-json">{
+    `MaxPlayers`: 16
+}
+</code></pre>
+<h2 id="name">Name</h2>
+<p>The name of the difficulty. </p>
+<p>Example:</p>
+<pre><code class="language-json">{
+    &quot;Name&quot;: &quot;Hazard 6x2 40 nitra&quot;
+}
+</code></pre>
+<h2 id="nextdifficulty">NextDifficulty</h2>
+<p><code>NextDifficulty</code> allows CD2 to automatically pick another difficulty at two specific moments:</p>
+<ol>
+<li>When launching a mission from the space rig. </li>
+<li>When a mission is finished.</li>
+</ol>
+<p>There are many different uses for this field but a typical application is, using the <code>RandomChoice</code> mutator, choosing a difficulty at random when launching a mission:</p>
+<pre><code class="language-json">{ 
+ &quot;Name&quot;: &quot;Difficulty Roulette&quot;, 
+ &quot;NextDifficulty&quot;: {
+  &quot;Mutate&quot;: &quot;RandomChoice&quot;,
+  &quot;Choices&quot;: [&quot;6x2&quot;, &quot;6x2-ultra&quot;, &quot;7x2&quot;, &quot;DIIa8&quot;, &quot;ND&quot;]
+ }
+}
+</code></pre>
+<p>Where it is understood that all the names in the <code>Choices</code> field are other difficulties existing in your CD2 list. The same snippet can be used to change the difficulty at random in deep dive stages. </p>
+<p>If you don't want the difficulty to change when launching a mission from the Space Rig, the <code>IfOnSpaceRig</code> mutator can be used as follows: </p>
+<pre><code class="language-json">{
+  &quot;NextDifficulty&quot;: {
+    &quot;Mutate&quot;: &quot;IfOnSpaceRig&quot;,
+    &quot;Then&quot;: &quot;&quot;,
+    &quot;Else&quot;: &quot;My Next Difficulty&quot;
+  }
+}
+</code></pre>
+<h2 id="nitramultiplier">NitraMultiplier</h2>
+<p>A special module that accepts a float and controls the amount of nitra generated in the map. It has a default of 1. The following snippet would generate twice the amount of nitra in a certain mission:</p>
+<pre><code class="language-json">{
+    &quot;NitraMultiplier&quot;: 2
+}
+</code></pre>
+<h2 id="pools">Pools</h2>
+<p>Pools is where enemies can be added or removed from the different pools in the game. For more information, <a href="https://docs.google.com/document/d/1g13t4J77OL-R5R72WK9vxErqGPINazwweAvTdi9aOVQ/edit?usp=sharing">this document</a> is a detailed explanation about the pools system and how are they used when deciding which enemies are present in a mission. The accepted fields in <code>Pools</code> are:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MinPoolSize</td>
+<td>Int</td>
+</tr>
+<tr>
+<td>DisruptiveEnemyPoolCount</td>
+<td>Int (min, max)</td>
+</tr>
+<tr>
+<td>StationaryEnemycount</td>
+<td>Int (min, max)</td>
+</tr>
+<tr>
+<td>CommonEnemies</td>
+<td>*</td>
+</tr>
+<tr>
+<td>SpecialEnemies</td>
+<td>*</td>
+</tr>
+<tr>
+<td>DisruptiveEnemies</td>
+<td>*</td>
+</tr>
+<tr>
+<td>StationaryPool</td>
+<td>*</td>
+</tr>
+<tr>
+<td>EnemyPool</td>
+<td>*</td>
+</tr>
+</tbody>
+</table>
+<p>The fields marked with <code>*</code> accept the <code>Add</code> (list), <code>Remove</code> (list) and <code>Clear</code> (bool) fields for adding and removing enemies at will. The pools can be freely manipulated with <a href="../mutators/">mutators</a> during the mission, opening the possibility of adding and removing enemies based on gameplay conditions.</p>
+<p>Example:</p>
+<pre><code class="language-json">{
+    &quot;Pools&quot;: {
+    &quot;MinPoolSize&quot;: 30,
+    &quot;DisruptiveEnemyPoolCount&quot;: {
+      &quot;min&quot;: 8,
+      &quot;max&quot;: 8
+    },
+    &quot;StationaryEnemyCount&quot;: {
+      &quot;Min&quot;: 6,
+      &quot;Max&quot;: 6
+    },
+    &quot;CommonEnemies&quot;: {
+      &quot;Add&quot;: [
+        &quot;ED_JellyBreeder_Swarm&quot;,
+        &quot;ED_PatrolBot&quot;,
+        &quot;ED_Sentinel&quot;,
+        &quot;ED_Bomber_Explosive&quot;
+      ]
+    },
+    &quot;StationaryPool&quot;: {
+      &quot;Add&quot;: [&quot;ED_ShootingPlant_NukeSingle&quot;],
+      &quot;Remove&quot;: []
+    }
+  }
+}
+</code></pre>
+<h2 id="specialencounters">SpecialEncounters</h2>
+<p>This module controls the chance of some random events such as the Korlok, Bet-C, etc. Please note that this module is not 100 % functional as some of the encounters depend on the seasons system which CD2 cannot control for now. 
+Each <code>SpecialEncounter</code> accepts the following fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BaseChance</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>Enemy</td>
+<td>Descriptor</td>
+</tr>
+<tr>
+<td>CanSpawnInDeepDive</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<p>The vanilla <code>SpecialEncounters</code> would look like:</p>
+<pre><code class="language-json">{
+    &quot;SpecialEncounters&quot;: [
+    {
+      &quot;Enemy&quot;: &quot;ED_InfectedMule&quot;,
+      &quot;BaseChance&quot;: 0.05,
+      &quot;CanSpawnInDeepDive&quot;: true
+    },
+    {
+      &quot;Enemy&quot;: &quot;ED_Spider_ExploderTank_King&quot;,
+      &quot;BaseChance&quot;: 0.03,
+      &quot;CanSpawnInDeepDive&quot;: false
+    },
+    {
+      &quot;Enemy&quot;: &quot;ED_HydraWeed&quot;,
+      &quot;BaseChance&quot;: 0.05,
+      &quot;CanSpawnInDeepDive&quot;: false
+    },
+    {
+      &quot;Enemy&quot;: &quot;ED_Terminator&quot;,
+      &quot;BaseChance&quot;: 0.03,
+      &quot;CanSpawnInDeepDive&quot;: true
+    }
+  ]
+}
+</code></pre>
+<p>Example: set all special encounters to zero.</p>
+<pre><code class="language-json">{
+    &quot;SpecialEncounters&quot;: []
+}
+</code></pre>
+<p><code>SpecialEncounters</code> can accept any enemy descriptor in its <code>Enemy</code> field and it can be used to make sure there's exactly 1 such enemy for the whole mission. As an example, some difficulties have exactly 1 Vartok Scalebramble per mission:</p>
+<pre><code class="language-json">{
+    &quot;SpecialEncounters&quot;: [
+        {
+          &quot;BaseChance&quot;: 1.0,
+          &quot;CanSpawnInDeepDive&quot;: true,
+          &quot;Enemy&quot;: &quot;ED_TentaclePlant&quot;
+        }
+      ]
+}
+</code></pre>
+<h2 id="resupply">Resupply</h2>
+<p>This module contains information about the resupply cost. It accepts a single <code>float</code> field <code>Cost</code> that can be <a href="../mutators/">mutated</a>.</p>
+<p>Example: a fixed resupply cost of 40 nitra.</p>
+<pre><code class="language-json">{
+    &quot;Resupply&quot;: {
+        &quot;Cost&quot;: 40
+    }
+}
+</code></pre>
+<p>Example: the first resupply is free, 40 nitra for all others.</p>
+<pre><code class="language-json">{
+    &quot;Resupply&quot;: {
+      &quot;Cost&quot;: {
+        &quot;Mutate&quot;: &quot;IfFloat&quot;,
+        &quot;Value&quot;: {
+          &quot;Mutate&quot;: &quot;ResuppliesCalled&quot;
+        },
+        &quot;==&quot;: 0,
+        &quot;Then&quot;: 0,
+        &quot;Else&quot;: 40
+      }
+    }
+}
+</code></pre>
+<p>Example: the cost is 45, but after the 6th resupply it drops to 40. </p>
+<pre><code class="language-json">{ 
+  &quot;Resupply&quot;: {
+    &quot;Cost&quot;: {
+      &quot;Mutate&quot;: &quot;IfFloat&quot;,
+      &quot;Value&quot;: {
+        &quot;Mutate&quot;: &quot;ResuppliesCalled&quot;
+      },
+      &quot;&gt;&quot;: 6,
+      &quot;Then&quot;: 40,
+      &quot;Else&quot;: 45
+    }
+  }
+}
+</code></pre>
+<h2 id="warnings">Warnings</h2>
+<p>The <code>Warnings</code> module can be used to ban mission anomalies. It accepts a single <code>Banned</code> field which is one or more from the following table:</p>
+<table>
+<thead>
+<tr>
+<th>CD2 name</th>
+<th>In-game name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"MMUT_BloodSugar"</td>
+<td>Blood Sugar</td>
+</tr>
+<tr>
+<td>"MMUT_ExplosiveEnemies"</td>
+<td>Volatile Guts</td>
+</tr>
+<tr>
+<td>"MMUT_ExterminationContract"</td>
+<td>Golden Bugs</td>
+</tr>
+<tr>
+<td>"MMUT_GoldRush"</td>
+<td>Gold Rush</td>
+</tr>
+<tr>
+<td>"MMUT_LowGravity"</td>
+<td>Low Gravity</td>
+</tr>
+<tr>
+<td>"MMUT_OxygenRich"</td>
+<td>Rich Atmosphere</td>
+</tr>
+<tr>
+<td>"MMUT_RichInMinerals"</td>
+<td>Mineral Mania</td>
+</tr>
+<tr>
+<td>"MMUT_SecretSecondary"</td>
+<td>Secret Secondary</td>
+</tr>
+<tr>
+<td>"MMUT_Weakspot"</td>
+<td>Critical Weakness</td>
+</tr>
+<tr>
+<td>"MMUT_XXXP"</td>
+<td>Double XP</td>
+</tr>
+<tr>
+<td>"WRN_BulletHell"</td>
+<td>Duck and Cover</td>
+</tr>
+<tr>
+<td>"WRN_CaveLeechDen"</td>
+<td>Cave Leech Cluster</td>
+</tr>
+<tr>
+<td>"WRN_ExploderInfestation"</td>
+<td>Exploder Infestation</td>
+</tr>
+<tr>
+<td>"WRN_Ghost"</td>
+<td>Haunted Cave</td>
+</tr>
+<tr>
+<td>"WRN_HeroEnemies"</td>
+<td>Elite Enemies</td>
+</tr>
+<tr>
+<td>"WRN_InfestedEnemies"</td>
+<td>Parasites</td>
+</tr>
+<tr>
+<td>"WRN_LethalEnemies"</td>
+<td>Lethal Enemies</td>
+</tr>
+<tr>
+<td>"WRN_MacteraCave"</td>
+<td>Mactera Plague</td>
+</tr>
+<tr>
+<td>"WRN_NoOxygen"</td>
+<td>Low O2</td>
+</tr>
+<tr>
+<td>"WRN_NoShields"</td>
+<td>Shield Disruption</td>
+</tr>
+<tr>
+<td>"WRN_Plague"</td>
+<td>Lithophage Outbreak</td>
+</tr>
+<tr>
+<td>"WRN_RegenerativeEnemies"</td>
+<td>Regenerative Enemies</td>
+</tr>
+<tr>
+<td>"WRN_RivalIncursion"</td>
+<td>Rival Presence</td>
+</tr>
+<tr>
+<td>"WRN_RockInfestation"</td>
+<td>Ebonite Outbreak</td>
+</tr>
+<tr>
+<td>"WRN_Swarmagedon</td>
+<td>Swarmageddon</td>
+</tr>
+</tbody>
+</table>
+<p>Example: ban Swarmageddon and Low O2 from a difficulty.</p>
+<pre><code class="language-json">{
+    &quot;Warnings&quot;: {
+        &quot;Banned&quot;: [
+            &quot;WRN_Swarmagedon&quot;,
+            &quot;WRN_NoOxygen&quot;
+        ]
+    }
+}
+</code></pre>
+<h2 id="wavespawners">WaveSpawners</h2>
+<p>See the <a href="../wavespawners/">WaveSpawners</a> section. </p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../basics/" class="btn btn-neutral float-left" title="The Basics of CD2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../enemies/" class="btn btn-neutral float-right" title="(Module) Enemies / EnemiesNoSync">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../basics/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../enemies/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
