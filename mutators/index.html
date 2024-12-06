@@ -71,7 +71,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#add-subtract-multiply-divide-pow-modulo-round-ceil-floor">Add, Subtract, Multiply, Divide, Pow, Modulo, Round, Ceil, Floor</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#and-nor-or">And, Nor, Or</a>
+    <li class="toctree-l2"><a class="reference internal" href="#and-or-not">And, Or, Not</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#bybiome">ByBiome</a>
     </li>
@@ -79,11 +79,15 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#bydna">ByDNA</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#byescortphase">ByEscortPhase</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#bymissiontype">ByMissionType</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#bytime">ByTime</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#byplayercount">ByPlayerCount</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#byrefineryphase">ByRefineryPhase</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#clamp">Clamp</a>
     </li>
@@ -233,8 +237,8 @@
       }
     }
 </code></pre>
-<h2 id="and-nor-or">And, Nor, Or</h2>
-<p>Boolean operators.</p>
+<h2 id="and-or-not">And, Or, Not</h2>
+<p>Basic boolean operators.</p>
 <h2 id="bybiome">ByBiome</h2>
 <p>Change the value based on the mission biome. If a value isn't set for a biome it will use the 'Default' value. A 'Default' must be set unless a value is specified for biomes. If a biome is not recognized and no default is specified, the value for CrystallineCaverns will be used.</p>
 <table>
@@ -317,6 +321,22 @@
 }
 </code></pre>
 <p>The condition with the most matches will be prioritized. Mission type is prioritized over length and length over complexity. An “x” matches anything. In the above a (2,2) refinery would have the value 4.</p>
+<h2 id="byescortphase">ByEscortPhase</h2>
+<p>Used to detect the different stages of an Escort mission:</p>
+<pre><code class="language-json">{
+  &quot;Mutate&quot;: &quot;ByEscortPhase&quot;,
+  &quot;Default&quot;: 0,
+  &quot;InGarage&quot;: 0.1,
+  &quot;Stationary&quot;: 2,
+  &quot;Moving&quot;: 30,
+  &quot;WaitingForFuel&quot;: 400,
+  &quot;FinalEventA&quot;: 5,
+  &quot;FinalEventB&quot;: 0.6,
+  &quot;FinalEventC&quot;: 70,
+  &quot;FinalEventD&quot;: 8,
+  &quot;Finished&quot;: 900
+}
+</code></pre>
 <h2 id="bymissiontype">ByMissionType</h2>
 <p>Change the value based on mission type. If a value isn't set for a mission type it will use the 'Default' value. A 'Default' must be set unless a value is specified for all mission types.
 Supported mission types:</p>
@@ -351,6 +371,20 @@ Supported mission types:</p>
         180,
         180
     ]
+}
+</code></pre>
+<h2 id="byrefineryphase">ByRefineryPhase</h2>
+<p>Used to detect the different stages of a Refinery mission.</p>
+<pre><code class="language-json"> {
+  &quot;Mutate&quot;: &quot;ByRefineryPhase&quot;,
+  &quot;Default&quot;: 0,
+  &quot;Landing&quot;: 1,
+  &quot;ConnectingPipes&quot;: 2,
+  &quot;PipesConnected&quot;: 3,
+  &quot;Refining&quot;: 4,
+  &quot;RefiningStalled&quot;: 5,
+  &quot;RefiningComplete&quot;: 6,
+  &quot;RocketLaunched&quot;: 7
 }
 </code></pre>
 <h2 id="clamp">Clamp</h2>
