@@ -153,11 +153,11 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#ifonspacerig">IfOnSpaceRig</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#randomchoice">RandomChoice</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#max">Max</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#min">Min</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#randomchoice">RandomChoice</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#randomchoicepermission">RandomChoicePerMission</a>
     </li>
@@ -430,7 +430,7 @@ The following snippet will become momentarily true when a player receives health
 </code></pre>
 <h2 id="descriptorexists">DescriptorExists</h2>
 <p>This is a boolean value which reflects whether an enemy descriptor is available. This is intended to allow a difficulty to fall back to a different descriptor if the desired descriptor isn't available, e.g. if MEV is not available.
-Exammple:</p>
+Example:</p>
 <pre><code class="language-json">{
   &quot;Mutate&quot;: &quot;If&quot;,
   &quot;Condition&quot;: {
@@ -452,7 +452,28 @@ Exammple:</p>
 <h2 id="duringeggambush">DuringEggAmbush</h2>
 <p>Returns True during a non-announced wave after pulling an egg in Egg Hunts. </p>
 <h2 id="duringencounters">DuringEncounters</h2>
-<p>Becomes true when an encounter (a special kind of wave that happens when breaching rooms in certain mission types) is happening.</p>
+<p>Becomes true when Encounters are being placed in the map, that is, during mission generation. One of its uses it to change descriptor properties depending on whether they are part of an encounter or not:</p>
+<pre><code class="language-json">{
+    &quot;Enemies&quot;: {
+        &quot;ED_Spider_Exploder&quot;: {
+             &quot;Base&quot;: &quot;ED_Spider_Exploder&quot;,
+             &quot;CanBeUsedForConstantPressure&quot;: true,
+             &quot;CanBeUsedInEncounters&quot;: true,
+             &quot;DifficultyRating&quot;: 10,
+             &quot;Rarity&quot;: {
+               &quot;Mutate&quot;: &quot;If&quot;,
+               &quot;Condition&quot;: {
+                 &quot;Mutate&quot;: &quot;DuringEncounters&quot;
+               },
+               &quot;Then&quot;: 0.1,
+               &quot;Else&quot;: 5.5
+             }
+        }
+    }
+}
+</code></pre>
+<p>The snippet will force exploders in almost all encounters by giving them a very low rarity during those.
+Clearing the <code>EnemyPool</code> when <code>DuringEncounters</code> is true will remove encounters from the mission.</p>
 <h2 id="duringextraction">DuringExtraction</h2>
 <p>Becomes true during the extraction phase of the mission, ie, when going back to the drop pod.</p>
 <h2 id="duringgenericswarm">DuringGenericSwarm</h2>
@@ -559,6 +580,10 @@ Valid operators are: ==, &gt;=, &gt;, &lt;=, &lt;</p>
 </code></pre>
 <h2 id="ifonspacerig">IfOnSpaceRig</h2>
 <p>Returns True on the Space Rig. </p>
+<h2 id="max">Max</h2>
+<p>Returns the maximum of a value.</p>
+<h2 id="min">Min</h2>
+<p>Returns the minimum of a value.</p>
 <h2 id="randomchoice">RandomChoice</h2>
 <p>Given an array of choices, choose one at random. It accepts an optional second list with weights for a weighted sampling of the choices.</p>
 <p>Example: add either arbalests or lacerators to the enemy pool with a higher chance for arbalests.</p>
@@ -572,10 +597,6 @@ Valid operators are: ==, &gt;=, &gt;, &lt;=, &lt;</p>
     }
 }
 </code></pre>
-<h2 id="max">Max</h2>
-<p>Returns the maximum of a value.</p>
-<h2 id="min">Min</h2>
-<p>Returns the minimum of a value.</p>
 <h2 id="randomchoicepermission">RandomChoicePerMission</h2>
 <p>Choose one of a set of values for each mission. The choice is fixed to the seed of the mission. Subsequent plays of the same seed will use the same value. This mutator can be used with just <code>Choices</code>. In that case it will uniformly sample from the choices.
 Optionally, a second list <code>Weights</code> provides weights for weighted sampling of the choices.</p>
