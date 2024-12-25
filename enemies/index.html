@@ -62,6 +62,12 @@
     <li class="toctree-l2"><a class="reference internal" href="#descriptor-controls">Descriptor controls</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#enemy-controls">Enemy controls</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#elite-variants-for-all-enemies">Elite variants for all enemies</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#veteran-control">Veteran control</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#resistances">Resistances</a>
     </li>
@@ -73,6 +79,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#jellybreeder">JellyBreeder</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#spawner">Spawner</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#temperature">Temperature</a>
     </li>
     </ul>
@@ -83,7 +91,15 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../projectiles/">Projectiles</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../mutators/">Mutators</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mev-dea/">MEV and DEA</a>
                 </li>
               </ul>
               <ul>
@@ -141,19 +157,11 @@
 <td>Boolean</td>
 </tr>
 <tr>
-<td>Rarity</td>
-<td>Float</td>
+<td>CustomVeterans</td>
+<td>See <code>Veteran control</code> below.</td>
 </tr>
 <tr>
 <td>DifficultyRating</td>
-<td>Float</td>
-</tr>
-<tr>
-<td>SpawnAmountModifier</td>
-<td>Float</td>
-</tr>
-<tr>
-<td>SpawnSpread</td>
 <td>Float</td>
 </tr>
 <tr>
@@ -165,12 +173,28 @@
 <td>Int</td>
 </tr>
 <tr>
-<td>UsesSpawnRarityModifiers</td>
-<td>Boolean</td>
+<td>Rarity</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>Significance</td>
+<td>String, takes ("Swarmer", "Normal", "Critical", "Critter")</td>
+</tr>
+<tr>
+<td>SpawnAmountModifier</td>
+<td>Float</td>
 </tr>
 <tr>
 <td>SpawnRarityModifiers</td>
 <td>*</td>
+</tr>
+<tr>
+<td>SpawnSpread</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>UsesSpawnRarityModifiers</td>
+<td>Boolean</td>
 </tr>
 <tr>
 <td>UsesVeteranLarge</td>
@@ -179,10 +203,6 @@
 <tr>
 <td>VeteranClasses</td>
 <td>**</td>
-</tr>
-<tr>
-<td>Significance</td>
-<td>String, takes ("Swarmer", "Normal", "Critical", "Critter")</td>
 </tr>
 </tbody>
 </table>
@@ -224,13 +244,18 @@
 </tr>
 <tr>
 <td>Elite</td>
-<td>Float</td>
+<td>Float | Bool</td>
 <td>This field accepts a float number indicating the percentage of Elite enemies that will spawn for that descriptor.</td>
 </tr>
 <tr>
 <td>EnemyHealthScaling</td>
 <td>String</td>
 <td></td>
+</tr>
+<tr>
+<td>ForceEliteBase</td>
+<td>ED</td>
+<td>See <code>Elite variants for all enemies</code> below.</td>
 </tr>
 <tr>
 <td>Grabber</td>
@@ -283,6 +308,11 @@
 <td>Removes enemies that spawn within the specified distance of the player, in cm.</td>
 </tr>
 <tr>
+<td>Projectile</td>
+<td>[[Projectile]]</td>
+<td>See <a href="../projectiles/">Projectiles</a>.</td>
+</tr>
+<tr>
 <td>Resistances</td>
 <td>[[Resistances]]</td>
 <td>See the <code>Resistances</code> submodule below.</td>
@@ -291,6 +321,11 @@
 <td>Scale</td>
 <td>Float</td>
 <td></td>
+</tr>
+<tr>
+<td>Spawner</td>
+<td>[[Spawner]]</td>
+<td>See <code>Spawners</code> below.</td>
 </tr>
 <tr>
 <td>ShowHealthBar</td>
@@ -324,6 +359,71 @@
 </tr>
 </tbody>
 </table>
+<h3 id="elite-variants-for-all-enemies">Elite variants for all enemies</h3>
+<p>Setting <code>Elite</code> to true or to some float number will only work directly for those enemies that have a vanilla elite variant: guards, grabbers, praetorians, bulks, menaces and trijaws. For the rest of the enemies, an elite base must be specified by setting <code>ForceEliteBase</code> to some existing ED that has an elite variant. As an example, the following snippet creates an elite septic spreader, which won't work without the <code>ForceEliteBase</code>:</p>
+<pre><code class="language-json">&quot;ED_Elite_Septic_Spreader&quot;: {
+    &quot;Base&quot;: &quot;ED_Spider_Lobber&quot;,
+    &quot;Elite&quot;: true,
+    &quot;ForceEliteBase&quot;: &quot;ED_Grabber&quot;
+}
+</code></pre>
+<p>The type of elite specified as base can modify the characteristics of your custom elite descriptor, feel free to experiment. </p>
+<h3 id="veteran-control">Veteran control</h3>
+<p>Veterans allow some enemies to promote to other enemies. In vanilla the veteran classes are hardcoded (for example, oppressors are praetorians that got promoted with a probability given by the <code>VeteranLarge</code> setting in <a href="docs/modules.md">DifficultySetting</a>). CD2 improves the system by allowing the player to create their own custom veteran classes. There are currently two ways to interact with the veteran system:</p>
+<ul>
+<li><code>VeteranClasses</code> accepts a list of descriptors that the base descriptor can promote to. <code>VeteranClasses</code> uses <code>VeteranNormal</code> probablities unless <code>UsesVeteranLarge</code> is set to true. The following snippet shows an example:</li>
+</ul>
+<pre><code class="language-json">&quot;DifficultySetting&quot;: {
+    &quot;VeteranNormal&quot;: {
+        [
+        &quot;Weight&quot;: 1,
+        &quot;Min&quot;: 0.2, 
+        &quot;Max&quot;: 0.2
+        ]
+    }
+},
+&quot;Enemies&quot;: {
+    &quot;ED_Spider_Grunt&quot;: {
+        &quot;VeteranClasses&quot;: [
+            &quot;ED_Spider_Shooter&quot;,
+            &quot;ED_Spider_Spitter&quot;
+        ]
+    }
+}
+</code></pre>
+<p>With these settings, Grunts will promote to acid and web spitters with a 20 % chance each time they spawn. One disadvantage of this approach is that <code>VeternalNormal</code> and <code>VeteranLarge</code> are global.</p>
+<ul>
+<li>The second way is <code>CustomVeterans</code>, which bypasses the <code>VeternalNormal</code> and <code>VeteranLarge</code> settings and lets the user specify the probability directly. The following snippet whould work exactly as the one before, but now the probabilities are contained to the grunt descriptor instead of being global:</li>
+</ul>
+<pre><code class="language-json">&quot;ED_Spider_Grunt&quot;: {
+     &quot;CustomVeterans&quot;: {
+        &quot;ED_Spider_Grunt&quot;: 0.8,
+        &quot;ED_Spider_Shooter&quot;: 0.2,
+        &quot;ED_Spider_Spitter&quot;: 0.2
+      }
+    }
+</code></pre>
+<p><code>CustomVeterans</code> also allows specifying a mutator to decide which enemies to spawn, which can give more control. One useful use case is to limit the amount of veterans of a certain type:</p>
+<pre><code class="language-json">&quot;ED_Spider_Grunt&quot;: {
+      &quot;CustomVeterans&quot;: {
+        &quot;Mutate&quot;: &quot;RandomChoice&quot;,
+        &quot;Choices&quot;: [ &quot;ED_Spider_Buffer&quot;, &quot;ED_Spider_Grunt&quot;, &quot;ED_Spider_Grunt_Guard&quot;, &quot;ED_Spider_Grunt_Attacker&quot; ],
+        &quot;Weights&quot;: [
+          {
+            &quot;Mutate&quot;: &quot;IfFloat&quot;,
+            &quot;Value&quot;: { &quot;Mutate&quot;: &quot;EnemyCount&quot;, &quot;ED&quot;: &quot;ED_Spider_Buffer&quot; },
+            &quot;&lt;&quot;: 5,
+            &quot;Then&quot;: 30,
+            &quot;Else&quot;: 0
+          },
+          1,
+          1,
+          1
+        ]
+      }
+    },
+</code></pre>
+<p>This snippet gives a very high chance of wardens to spawn until there are 5 of them in the map, at which point the probability to get more warden promotions will drop to 0.</p>
 <h2 id="resistances">Resistances</h2>
 <p>Fields for the resistances submodule. These controls can be used to define resistances to all types of damage in the game. <code>DamageMultiplier</code> is the catch-all for all damage types.</p>
 <table>
@@ -745,6 +845,77 @@
   }
 }
 </code></pre>
+<h2 id="spawner">Spawner</h2>
+<p><code>Spawner</code> is a special submodule that allows any enemy to periodically spawn other enemies with different flexilibity options. It contains the following fields:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OnSpawnDelay</td>
+<td>Seconds until the first spawn</td>
+<td>2</td>
+</tr>
+<tr>
+<td>OnSpawnCount</td>
+<td>Initial number of enemies to spawn</td>
+<td>0</td>
+</tr>
+<tr>
+<td>OnDeathCount</td>
+<td>Number of enemies to spawn on death</td>
+<td>0</td>
+</tr>
+<tr>
+<td>IntervalSpawnCount</td>
+<td>Number of enemies to spawn periodically</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Interval</td>
+<td>Time between interval spawns. Min 0.1 seconds</td>
+<td>2</td>
+</tr>
+<tr>
+<td>ED</td>
+<td>The descriptor to spawn</td>
+<td></td>
+</tr>
+<tr>
+<td>MaxSpawns</td>
+<td>Max alive enemies to be spawned by this spawner. Not compatible with EDs with CustomVeteran</td>
+<td>200</td>
+</tr>
+<tr>
+<td>OnDeathKillSpawns</td>
+<td>If true, kill all spawned enemies when the host enemy dies</td>
+<td>False</td>
+</tr>
+<tr>
+<td>OnlySpawnOnAlert</td>
+<td>Will only spawn once the enemy is alerted</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<p>The following snippet shows a stingtail descriptor with a swarmer module attached. The spawner will spawn 2 swarmers every second until 10 are alive and they will all die when the stingtail is killed:</p>
+<pre><code class="language-json">&quot;ED_Spider_Stinger&quot;: {
+    &quot;Spawner&quot;: {
+        &quot;ED&quot;: &quot;ED_Spider_Spawn&quot;,
+        &quot;IntervalSpawnCount&quot;: 2,
+        &quot;Interval&quot;: 1,
+        &quot;OnDeathCount&quot;: 0,
+        &quot;MaxSpawns&quot;: 10,
+        &quot;OnDeathKillSpawns&quot;: true
+    }
+}
+</code></pre>
+<p>All fields inside the <code>Spawner</code> can be mutated.</p>
 <h2 id="temperature">Temperature</h2>
 <p>Special temperature controls to change how enemies react to heat and cold.</p>
 <table>

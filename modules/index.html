@@ -99,7 +99,15 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../projectiles/">Projectiles</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../mutators/">Mutators</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mev-dea/">MEV and DEA</a>
                 </li>
               </ul>
               <ul>
@@ -496,7 +504,7 @@
 }
 </code></pre>
 <h2 id="pools">Pools</h2>
-<p>Pools is where enemies can be added or removed from the different pools in the game. For more information, <a href="https://docs.google.com/document/d/1g13t4J77OL-R5R72WK9vxErqGPINazwweAvTdi9aOVQ/edit?usp=sharing">this document</a> is a detailed explanation about the pools system and how are they used when deciding which enemies are present in a mission. The accepted fields in <code>Pools</code> are:</p>
+<p><code>Pools</code> is where enemies can be added or removed from the different pools in the game. For more information, <a href="https://docs.google.com/document/d/1g13t4J77OL-R5R72WK9vxErqGPINazwweAvTdi9aOVQ/edit?usp=sharing">this document</a> is a detailed explanation about the pools system and how are they used when deciding which enemies are present in a mission. The accepted fields in <code>Pools</code> are:</p>
 <table>
 <thead>
 <tr>
@@ -539,7 +547,7 @@
 </tr>
 </tbody>
 </table>
-<p>The fields marked with <code>*</code> accept the <code>Add</code> (list), <code>Remove</code> (list) and <code>Clear</code> (bool) fields for adding and removing enemies at will. The pools can be freely manipulated with <a href="../mutators/">mutators</a> during the mission, opening the possibility of adding and removing enemies based on gameplay conditions.</p>
+<p>The fields marked with <code>*</code> accept the <code>Add</code> (list), <code>Remove</code> (list) and <code>Clear</code> (bool) fields for adding and removing enemies at will. The <code>EnemyPool</code> can be freely manipulated with <a href="../mutators/">mutators</a> during the mission, opening the possibility of adding and removing enemies based on gameplay conditions. It is not recommended to mutate the other pools. </p>
 <p>Example:</p>
 <pre><code class="language-json">{
     &quot;Pools&quot;: {

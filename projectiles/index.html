@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Projectiles - CD2 Reference</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/tables.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Projectiles";
+        var mkdocs_page_input_path = "projectiles.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> CD2 Reference
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../basics/">The Basics of CD2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../modules/">Modules</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../enemies/">(Module) Enemies / EnemiesNoSync</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../wavespawners/">(Module) WaveSpawners</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Projectiles</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#list-of-game-projectiles">List of game projectiles</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#list-of-mev-projectiles">List of MEV projectiles</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#list-of-dea-projectiles">List of DEA projectiles</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mutators/">Mutators</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mev-dea/">MEV and DEA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../grouped_cooldowns/">Tutorials</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resources/">Resources</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">CD2 Reference</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Projectiles</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="projectiles">Projectiles</h1>
+<p><code>Projectile</code> is an optional field in enemy descriptors. It allows changing the projectiles of ranged enemies to any other projectile in the game. As an example, the following snippet produces a septic that throws driller's snowball:</p>
+<pre><code class="language-json">&quot;ED_Ice_Septic&quot;: {
+  &quot;Base&quot;: &quot;ED_Spider_Lobber&quot;,
+  &quot;Projectile&quot;: &quot;PRJ_Crye_SnowBall_C&quot;,
+}
+</code></pre>
+<figure>
+  <img alt="CD2modhub" src="../pictures/ice-spreader.gif" />
+</figure>
+<ul>
+<li>This feature doesn't require <code>Enemies</code> and can use <code>EnemiesNoSync</code> instead so clients without CD2 can still see the changed projectiles.</li>
+<li>The name of the projectile can omit the "_C" at the end. </li>
+<li>CD2 scans the game files for the projectiles so modders can add new ones themselves. Below the following list there is a section with the projectiles added by MEV and DEA, two common mods that add new enemies to the game. </li>
+<li>The <code>Projectile</code> field can be mutated. </li>
+</ul>
+<h2 id="list-of-game-projectiles">List of game projectiles</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"BP_Bosco_FoamGlob_C"</td>
+</tr>
+<tr>
+<td>"BP_Bosco_Rocket_Frag_C"</td>
+</tr>
+<tr>
+<td>"BP_Bosco_Rocket_Ice_C"</td>
+</tr>
+<tr>
+<td>"BP_BoscoAbillityProjectile_C"</td>
+</tr>
+<tr>
+<td>"BP_CameraDrone_FlareProjectile_C"</td>
+</tr>
+<tr>
+<td>"BP_ClusterFragment_MicroMissileLauncher_C"</td>
+</tr>
+<tr>
+<td>"BP_FoamRocket_C"</td>
+</tr>
+<tr>
+<td>"BP_MicroRocket_Base_C"</td>
+</tr>
+<tr>
+<td>"BP_MicroRocket_HE_C"</td>
+</tr>
+<tr>
+<td>"PRJ_AcidDrop_C"</td>
+</tr>
+<tr>
+<td>"PRJ_AcidDrop_Ice_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Base_Spider_Lobber_Projectile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_BaseBigGooProjectile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_BaseGooProjectile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_BaseNormalGooProjectile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_BigGoo_Buckshot_C"</td>
+</tr>
+<tr>
+<td>"PRJ_BigGooProjectile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_BigGooProjectile_Trail_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Bomber_Fire_C"</td>
+</tr>
+<tr>
+<td>"PRJ_BomberGoo_C"</td>
+</tr>
+<tr>
+<td>"PRJ_BomberIce_C"</td>
+</tr>
+<tr>
+<td>"PRJ_BombSpitter_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Boss_Twin_Stomp_C"</td>
+</tr>
+<tr>
+<td>"PRJ_BreederEgg_C"</td>
+</tr>
+<tr>
+<td>"PRJ_CactusSpike_C"</td>
+</tr>
+<tr>
+<td>"PRJ_CaretakerBarrier_C"</td>
+</tr>
+<tr>
+<td>"PRJ_ChargedBlasterShot_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Crawler_DeathProjectile2_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Crossbow_ChemicalExplosionProjecitle_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Crossbow_FireProjectile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Crossbow_IceProjectile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Crossbow_PheromoneProjectile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Crossbow_Projectile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Crossbow_TaserProjectile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Crye_SnowBall_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Cryocannon_C"</td>
+</tr>
+<tr>
+<td>"PRJ_DrippingPlant_C"</td>
+</tr>
+<tr>
+<td>"PRJ_ExploderTankClusterBomb_C"</td>
+</tr>
+<tr>
+<td>"PRJ_ExplosiveBombDrop_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Facility_Barrier_Base_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Facility_Laser_Base_C"</td>
+</tr>
+<tr>
+<td>"PRJ_FacilityTentacleProjectile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_FacilityturretLaser_Burst_C"</td>
+</tr>
+<tr>
+<td>"PRJ_FacilityTurretLaser_Sniper_C"</td>
+</tr>
+<tr>
+<td>"PRJ_FlameWall_C"</td>
+</tr>
+<tr>
+<td>"PRJ_FlareGun_Projectile01_C"</td>
+</tr>
+<tr>
+<td>"PRJ_FlyingSmartRock_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Foam_C"</td>
+</tr>
+<tr>
+<td>"PRJ_FriendlyInfectedMuleGrenade_C"</td>
+</tr>
+<tr>
+<td>"PRJ_GooProjectile_Fragment_Base_C"</td>
+</tr>
+<tr>
+<td>"PRJ_GooProjectile_Fragment_GooBomoberSpecial_C"</td>
+</tr>
+<tr>
+<td>"PRJ_GooProjectile_Fragment_Normal_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Grenade_HackeShredder_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Grenade_StickySmall_C"</td>
+</tr>
+<tr>
+<td>"PRJ_GrenadeAxe_C"</td>
+</tr>
+<tr>
+<td>"PRJ_GrenadeLauncher_C"</td>
+</tr>
+<tr>
+<td>"PRJ_GuntowerLineProjectile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_HomingDrone_C"</td>
+</tr>
+<tr>
+<td>"PRJ_HydraWeed_Shooter_C"</td>
+</tr>
+<tr>
+<td>"PRJ_HydraWeedSpawn_C"</td>
+</tr>
+<tr>
+<td>"PRJ_HydraWeedSpawn_HealingPod_C"</td>
+</tr>
+<tr>
+<td>"PRJ_InfectedMuleGrenade_C"</td>
+</tr>
+<tr>
+<td>"PRJ_LargeStabbyThorn_C"</td>
+</tr>
+<tr>
+<td>"PRJ_LineCutter2_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Mactera_Shooter_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Mactera_Shooter_Elite_C"</td>
+</tr>
+<tr>
+<td>"PRJ_MicroMissile_Buck_C"</td>
+</tr>
+<tr>
+<td>"PRJ_MicroMissile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_MicroMissile_Cluster_C"</td>
+</tr>
+<tr>
+<td>"PRJ_MicroMissile_Dumbfire_C"</td>
+</tr>
+<tr>
+<td>"PRJ_MicroMissile_Mine_Head_C"</td>
+</tr>
+<tr>
+<td>"PRJ_MicroMissile_PlasmaBurster_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Mortar_Autocannon_C"</td>
+</tr>
+<tr>
+<td>"PRJ_NormalBlasterShot_C"</td>
+</tr>
+<tr>
+<td>"PRJ_NormalGooProjectile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_OmmoranEnergySprite_C"</td>
+</tr>
+<tr>
+<td>"PRJ_PatrolBotLaser_Flying_C"</td>
+</tr>
+<tr>
+<td>"PRJ_PatrolBotLaser_Flying_Hacked_C"</td>
+</tr>
+<tr>
+<td>"PRJ_PatrolBotLaser_Hacked_C"</td>
+</tr>
+<tr>
+<td>"PRJ_PatrolBotLaser_New_C"</td>
+</tr>
+<tr>
+<td>"PRJ_PatrolBotRocket_C"</td>
+</tr>
+<tr>
+<td>"PRJ_PlasmaCarbineShot_Big_C"</td>
+</tr>
+<tr>
+<td>"PRJ_PlasmaCarbineShot_C"</td>
+</tr>
+<tr>
+<td>"PRJ_PlatformMaker_C"</td>
+</tr>
+<tr>
+<td>"PRJ_PowerupSphere_C"</td>
+</tr>
+<tr>
+<td>"PRJ_ProjectileBarf_C"</td>
+</tr>
+<tr>
+<td>"PRJ_RedThorn_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Rockpox_Breede_VomitedLarva_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Rockpox_Breeder_WormVomit_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Rockpox_PlagueGlob_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Rockpox_PlagueGlob_PlagueShark_C"</td>
+</tr>
+<tr>
+<td>"PRJ_RockpoxBomber_PlagueDrop_C"</td>
+</tr>
+<tr>
+<td>"PRJ_SentryOvercharge_Projectile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_ShootingPlant_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_Boss_Heavy_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_Boss_Heavy_FireballBallistics_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_Boss_Twin_Mine_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_Boss_Twin_Multifireball_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_Lobber_Projectile_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_Lobber_Projectile_Fragment_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_RapidShooter_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_Shooter_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_Shooter_Ground_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_Shooter_Queen_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_Shooter_Rockpox_Plague_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_Spitter_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_Tank_Boss_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_Tank_Boss_Eggshot_C"</td>
+</tr>
+<tr>
+<td>"PRJ_StaticBomber_C"</td>
+</tr>
+<tr>
+<td>"PRJ_TentaclePlant_New_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Terminator_Barrier_C"</td>
+</tr>
+<tr>
+<td>"PRJ_TripleShooter_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Turret_Barrier_C"</td>
+</tr>
+<tr>
+<td>"PRJ_WoodlouseAttack_C"</td>
+</tr>
+</tbody>
+</table>
+<h2 id="list-of-mev-projectiles">List of MEV projectiles</h2>
+<p>To make use of these you will need to have MEV installed.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"PRJ_ExploderTankClusterBomb_Quacke_C"</td>
+</tr>
+<tr>
+<td>"PRJ_FacilityTurretLaser_Sniper_Slow_C"</td>
+</tr>
+<tr>
+<td>"PRJ_GrenadeLauncher_Hyper_C"</td>
+</tr>
+<tr>
+<td>"PRJ_HydraWeed_Shooter_STE_C"</td>
+</tr>
+<tr>
+<td>"PRJ_HydraWeed_Shooter_STE_web_C"</td>
+</tr>
+<tr>
+<td>"PRJ_HydraWeed_Shooter_Sound_C"</td>
+</tr>
+<tr>
+<td>"PRJ_HydraWeed_Shooter_Sound_Web_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Hyper2_C"</td>
+</tr>
+<tr>
+<td>"PRJ_PatrolBotRocket_fast_C"</td>
+</tr>
+<tr>
+<td>"PRJ_PatrolBotRocket_slow_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Roll2_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Roll_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spawn_Enemy_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_RapidShooter_Turbo_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_RapidShooter_electric_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_RapidShooter_fire_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_RapidShooter_ice_C"</td>
+</tr>
+<tr>
+<td>"PRJ_Spider_RapidShooter_poison_C"</td>
+</tr>
+<tr>
+<td>"PRJ_SpitballerNukeEX_C"</td>
+</tr>
+<tr>
+<td>"PRJ_SpitballerNuke_C"</td>
+</tr>
+<tr>
+<td>"PRJ_TripleShooter_electric_C"</td>
+</tr>
+<tr>
+<td>"PRJ_TripleShooter_fire_C"</td>
+</tr>
+<tr>
+<td>"PRJ_TripleShooter_ice_C"</td>
+</tr>
+<tr>
+<td>"PRJ_TripleShooter_poison_C"</td>
+</tr>
+<tr>
+<td>"PRJ_WoodlouseAttack_electric_C"</td>
+</tr>
+<tr>
+<td>"PRJ_WoodlouseAttack_fire_C"</td>
+</tr>
+<tr>
+<td>"PRJ_WoodlouseAttack_ice_C"</td>
+</tr>
+<tr>
+<td>"PRJ_WoodlouseAttack_poison_C"</td>
+</tr>
+</tbody>
+</table>
+<h2 id="list-of-dea-projectiles">List of DEA projectiles</h2>
+<p>To make use of these you will need to have DEA installed. Comments by mod author @donnie_danko.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PRJ_Spider_Spitter_Cyan</td>
+<td></td>
+</tr>
+<tr>
+<td>PRJ_Spider_Spitter_White</td>
+<td></td>
+</tr>
+<tr>
+<td>PRJ_Spider_Spitter_Pink</td>
+<td>STE_MarkedForDeath_Spitter</td>
+</tr>
+<tr>
+<td>PRJ_Spider_Spitter_Stagger</td>
+<td></td>
+</tr>
+<tr>
+<td>PRJ_Fanatic_Fireball</td>
+<td>All variants</td>
+</tr>
+<tr>
+<td>PRJ_Ice_Shooter</td>
+<td></td>
+</tr>
+<tr>
+<td>PRJ_RJ_Lobber</td>
+<td></td>
+</tr>
+<tr>
+<td>PRJ_Sniper_Turret_Slow</td>
+<td></td>
+</tr>
+<tr>
+<td>PRJ_Nukebomber_Bomb</td>
+<td></td>
+</tr>
+<tr>
+<td>PRJ_Nukebomber_Shot</td>
+<td></td>
+</tr>
+<tr>
+<td>PRJ_AcidBomber_Drop</td>
+<td></td>
+</tr>
+<tr>
+<td>PRJ_AcidBomber_Shot</td>
+<td></td>
+</tr>
+<tr>
+<td>PRJ_Spawninator_One_Meatball</td>
+<td></td>
+</tr>
+<tr>
+<td>PRJ_Spawninator_Two_Meatball</td>
+<td></td>
+</tr>
+<tr>
+<td>PRJ_Spawnshot</td>
+<td>Used by _Slobber and _Shooter_Spawner</td>
+</tr>
+<tr>
+<td>PRJ_Spawnshot_Dense</td>
+<td>Used by _SlobberEX, _Shooter_SpawnerEX, and ShootingPlant_Spawner</td>
+</tr>
+<tr>
+<td>PRJ_SpawnshotEX</td>
+<td>Used by Fauxnought and ShootingPlant_SpawnerEX</td>
+</tr>
+<tr>
+<td>PRJ_Exploder_SpawnShot</td>
+<td>Used by Bomber_Exploder</td>
+</tr>
+<tr>
+<td>PRJ_Exploder_SpawnShot_Baller</td>
+<td>Used by ShootingPlant_Spawner_Boomer</td>
+</tr>
+<tr>
+<td>PRJ_PheroShot and PRJ_SpawnDrop</td>
+<td>Used by Parabomber</td>
+</tr>
+<tr>
+<td>PRJ_Mactera_Breach</td>
+<td>Used by Mactera_Brendle and Mactera_Brooter</td>
+</tr>
+<tr>
+<td>PRJ_Spider_Tank_Boss</td>
+<td>Used by Shooter_Fire</td>
+</tr>
+<tr>
+<td>PRJ_Spider_Shooter_Ground</td>
+<td>Grooter and wall variant</td>
+</tr>
+<tr>
+<td>PRJ_Spider_Shooter</td>
+<td>Ceiling grooter</td>
+</tr>
+<tr>
+<td>PRJ_Spider_Spitter</td>
+<td>Gritters</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../wavespawners/" class="btn btn-neutral float-left" title="(Module) WaveSpawners"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../mutators/" class="btn btn-neutral float-right" title="Mutators">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../wavespawners/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../mutators/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
