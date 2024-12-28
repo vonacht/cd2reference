@@ -115,6 +115,7 @@
 <ul>
 <li><a href="https://docs.google.com/document/d/131FqOl0FnwiAslvvDSYkV35oBQXYx2kH0oZYwEpjoBI/edit?tab=t.0">A Quick and Dirty Guide to Custom Difficulty for Deep Rock Galactic</a>, a CD1 guide explaining most of the fields inside CD2's <code>DifficultySettings</code>.</li>
 <li><a href="https://gist.github.com/trumank/5913a58e7f0f38fbc0b2d9e5cf5f51d7">Vanilla descriptors</a> and default values for Hazard 5.</li>
+<li><a href="../media/Materials-1.pdf">Materials Guide</a> by @TheBrain on how to test new enemy materials in Sandbox Utilities.</li>
 </ul>
 <h2 id="enemy-descriptors">Enemy Descriptors</h2>
 <p>Original list <a href="https://github.com/trumank/drg-custom-difficulties/blob/master/DATA.md">here</a>, updated here for S5.</p>
@@ -131,10 +132,6 @@
 <td>Barrage Infector</td>
 </tr>
 <tr>
-<td>ED_Bomber</td>
-<td>Mactera Goo Bomber</td>
-</tr>
-<tr>
 <td>ED_Bomber_Explosive</td>
 <td>Mactera Fire Bomber</td>
 </tr>
@@ -147,12 +144,20 @@
 <td>Rockpox infected Mactera Goo Bomber</td>
 </tr>
 <tr>
+<td>ED_Bomber</td>
+<td>Mactera Goo Bomber</td>
+</tr>
+<tr>
 <td>ED_Butterfly</td>
 <td>Hexawing Gniffer</td>
 </tr>
 <tr>
 <td>ED_CaveLeech</td>
 <td>Cave Leech</td>
+</tr>
+<tr>
+<td>ED_Crawler</td>
+<td>Crawler</td>
 </tr>
 <tr>
 <td>ED_EggSpider</td>
@@ -203,20 +208,20 @@
 <td>Broken</td>
 </tr>
 <tr>
-<td>ED_Jelly_Spawn</td>
-<td>Naedocyte swarmer from Breeder</td>
-</tr>
-<tr>
-<td>ED_Jelly_Swarmer</td>
-<td>Naedocyte swarmer</td>
+<td>ED_JellyBreeder_RockpoxPlague</td>
+<td>Rockpox infected Naedocyte Breeder</td>
 </tr>
 <tr>
 <td>ED_JellyBreeder</td>
 <td>Naedocyte Breeder</td>
 </tr>
 <tr>
-<td>ED_JellyBreeder_RockpoxPlague</td>
-<td>Rockpox infected Naedocyte Breeder</td>
+<td>ED_Jelly_Spawn</td>
+<td>Naedocyte swarmer from Breeder</td>
+</tr>
+<tr>
+<td>ED_Jelly_Swarmer</td>
+<td>Naedocyte swarmer</td>
 </tr>
 <tr>
 <td>ED_Mactera_Shooter_Amber</td>
@@ -239,12 +244,12 @@
 <td>Yuletide Elf</td>
 </tr>
 <tr>
-<td>ED_PatrolBot</td>
-<td>Patrol Bot</td>
-</tr>
-<tr>
 <td>ED_PatrolBot_Caretaker</td>
 <td>Patrol bots spawned by Caretaker (cannot be hacked)</td>
+</tr>
+<tr>
+<td>ED_PatrolBot</td>
+<td>Patrol Bot</td>
 </tr>
 <tr>
 <td>ED_PlagueLarva</td>
@@ -269,6 +274,10 @@
 <tr>
 <td>ED_Shredder</td>
 <td>Rival Shredder</td>
+</tr>
+<tr>
+<td>ED_SpiderSpawner</td>
+<td>Brood Nexus</td>
 </tr>
 <tr>
 <td>ED_Spider_Alarm</td>
@@ -299,8 +308,16 @@
 <td>Melee only Glyphid Praetorian</td>
 </tr>
 <tr>
-<td>ED_Spider_Exploder</td>
-<td>Glyphid Exploder</td>
+<td>ED_Spider_ExploderTankGhost</td>
+<td>Ghost from haunted cave warning</td>
+</tr>
+<tr>
+<td>ED_Spider_ExploderTank_King</td>
+<td>Crassus Detonator</td>
+</tr>
+<tr>
+<td>ED_Spider_ExploderTank</td>
+<td>Bulk Detonator</td>
 </tr>
 <tr>
 <td>ED_Spider_Exploder_Rockpox_Plague</td>
@@ -311,20 +328,12 @@
 <td>Glyphid Exploder</td>
 </tr>
 <tr>
-<td>ED_Spider_ExploderTank</td>
-<td>Bulk Detonator</td>
+<td>ED_Spider_Exploder</td>
+<td>Glyphid Exploder</td>
 </tr>
 <tr>
-<td>ED_Spider_ExploderTank_King</td>
-<td>Crassus Detonator</td>
-</tr>
-<tr>
-<td>ED_Spider_ExploderTankGhost</td>
-<td>Ghost from haunted cave warning</td>
-</tr>
-<tr>
-<td>ED_Spider_Grunt</td>
-<td>Base grunt (including veteran grunts)</td>
+<td>ED_Spider_GruntTutorial</td>
+<td>Tutorial Difficulty Grunt</td>
 </tr>
 <tr>
 <td>ED_Spider_Grunt_Attacker</td>
@@ -343,16 +352,16 @@
 <td>Radioactive Exclusion Zone override for the Glyphid Grunt</td>
 </tr>
 <tr>
-<td>ED_Spider_Grunt_Rock</td>
-<td>Ebonite Glyphid Grunt</td>
-</tr>
-<tr>
 <td>ED_Spider_Grunt_RockpoxPlague</td>
 <td>Rockpox infected grunt</td>
 </tr>
 <tr>
-<td>ED_Spider_GruntTutorial</td>
-<td>Tutorial Difficulty Grunt</td>
+<td>ED_Spider_Grunt_Rock</td>
+<td>Ebonite Glyphid Grunt</td>
+</tr>
+<tr>
+<td>ED_Spider_Grunt</td>
+<td>Base grunt (including veteran grunts)</td>
 </tr>
 <tr>
 <td>ED_Spider_Hoarder</td>
@@ -371,8 +380,8 @@
 <td>Oppressor</td>
 </tr>
 <tr>
-<td>ED_Spider_Shooter</td>
-<td>Acid Spitter</td>
+<td>ED_Spider_ShooterQueen</td>
+<td>Acid Spitter Queen (will more than likely crash your game)</td>
 </tr>
 <tr>
 <td>ED_Spider_Shooter_Ground</td>
@@ -383,8 +392,8 @@
 <td>Rockpox infected Acid Spitter</td>
 </tr>
 <tr>
-<td>ED_Spider_ShooterQueen</td>
-<td>Acid Spitter Queen (will more than likely crash your game)</td>
+<td>ED_Spider_Shooter</td>
+<td>Acid Spitter</td>
 </tr>
 <tr>
 <td>ED_Spider_Spawn</td>
@@ -403,10 +412,6 @@
 <td>Glyphid Stingtail</td>
 </tr>
 <tr>
-<td>ED_Spider_Swarmer</td>
-<td>Glyphid Swarmer</td>
-</tr>
-<tr>
 <td>ED_Spider_Swarmer_Ice</td>
 <td>Ice Glyphid Swarmer</td>
 </tr>
@@ -419,8 +424,8 @@
 <td>Glyphid Dreadnaught Pheromone Swarmer</td>
 </tr>
 <tr>
-<td>ED_Spider_Tank</td>
-<td>Praetorian</td>
+<td>ED_Spider_Swarmer</td>
+<td>Glyphid Swarmer</td>
 </tr>
 <tr>
 <td>ED_Spider_Tank_Amber</td>
@@ -443,16 +448,16 @@
 <td>Radioactive Exclusion Zone override for the Glyphid Praetorian</td>
 </tr>
 <tr>
-<td>ED_Spider_Tank_Rock</td>
-<td>Ebonite Glyphid Praetorian</td>
-</tr>
-<tr>
 <td>ED_Spider_Tank_RockpoxPlague</td>
 <td>Rockpox infected Glyphid Praetorian</td>
 </tr>
 <tr>
-<td>ED_SpiderSpawner</td>
-<td>Brood Nexus</td>
+<td>ED_Spider_Tank_Rock</td>
+<td>Ebonite Glyphid Praetorian</td>
+</tr>
+<tr>
+<td>ED_Spider_Tank</td>
+<td>Praetorian</td>
 </tr>
 <tr>
 <td>ED_Tentacle_Plant</td>
@@ -471,12 +476,12 @@
 <td>Rockpox Corruptor</td>
 </tr>
 <tr>
-<td>ED_Woodlouse</td>
-<td>Q'ronar Shellback</td>
-</tr>
-<tr>
 <td>ED_Woodlouse_Youngling</td>
 <td>Q'ronar Youngling</td>
+</tr>
+<tr>
+<td>ED_Woodlouse</td>
+<td>Q'ronar Shellback</td>
 </tr>
 </tbody>
 </table>

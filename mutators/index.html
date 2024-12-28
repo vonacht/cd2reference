@@ -368,6 +368,22 @@ Supported mission types:</p>
  }
 </code></pre>
 <h2 id="bytime">ByTime</h2>
+<p>Change a value over time. Time matches the mission clock in the escape menu in-game, including starting before players receive control of their dwarves.
+The value is determined by <code>InitialValue + RateOfChange * Max(0, Time - StartDelay)</code>.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>InitialValue</code> - Value at time 0 and up until StartDelay</li>
+<li><code>StartDelay</code> - Time in seconds to stay at the InitialValue before changing.</li>
+<li><code>RateOfChange</code> - Rate per second to change the value.</li>
+</ul>
+<p>Example: </p>
+<pre><code class="language-json">{
+    &quot;Mutate&quot;: &quot;ByTime&quot;,
+    &quot;InitialValue&quot;: 3.1,
+    &quot;RateOfChange&quot;: 0.0033,
+    &quot;StartDelay&quot;: 400
+}
+</code></pre>
 <h2 id="byplayercount">ByPlayerCount</h2>
 <p>Change the value based on the number of players in-game. A solo game gets the first position in the list; two players get the second spot and so on. The last value in the list is used if there are more players than there are values in the list.</p>
 <p>Example:</p>

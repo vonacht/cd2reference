@@ -174,6 +174,7 @@
     &quot;MaxActiveEnemies&quot;: [90, 120, 180, 180]
 }
 </code></pre>
+<p>When the number of enemies in the map reach their cap, new enemies will be prevented from spawning and some existing enemies will despawn. The exact mechanics behind this behaviour are not completely understood. </p>
 <h2 id="darkness">Darkness</h2>
 <p>The Darkness module offers controls related to lighting and illumination both in the Space Rig and during a mission. It has the following fields:</p>
 <table>
@@ -234,7 +235,7 @@
 }
 </code></pre>
 <h2 id="difficultysetting">DifficultySetting</h2>
-<p>Main controls for enemy resistance, swarm and wave intervals and enemy counts.</p>
+<p>Main controls for enemy resistance, swarm and wave intervals and enemy counts. Please check <a href="https://docs.google.com/document/d/131FqOl0FnwiAslvvDSYkV35oBQXYx2kH0oZYwEpjoBI/edit?tab=t.0">A Quick and Dirty Guide to Custom Difficulty for Deep Rock Galactic</a>, a CD1 guide explaining most of the fields inside this module.</p>
 <table>
 <thead>
 <tr>
@@ -245,7 +246,7 @@
 <tbody>
 <tr>
 <td>BaseHazard</td>
-<td>Declares a base vanilla hazard, with values from 1 to 5. When a CD2 JSON doesn't specify a certain field, the value is taken from the BaseHazard specified here.</td>
+<td>Declares a base vanilla hazard, with values from 1 to 5. When a CD2 JSON doesn't specify a certain field, the value is taken from the <code>BaseHazard</code> specified here.</td>
 </tr>
 <tr>
 <td>ExtraLargeEnemyDamageResistance</td>
@@ -462,12 +463,12 @@
 <h2 id="maxplayers">MaxPlayers</h2>
 <p>A field accepting an int specifying the maximum number of players allowed in the lobby. </p>
 <pre><code class="language-json">{
-    `MaxPlayers`: 16
+    &quot;MaxPlayers&quot;: 16
 }
 </code></pre>
 <h2 id="name">Name</h2>
-<p>The name of the difficulty. </p>
-<p>Example:</p>
+<p>The name of the difficulty. This field is necessary to be able to save the file in the in-game CD2 dropdown.
+Example:</p>
 <pre><code class="language-json">{
     &quot;Name&quot;: &quot;Hazard 6x2 40 nitra&quot;
 }
@@ -547,7 +548,7 @@
 </tr>
 </tbody>
 </table>
-<p>The fields marked with <code>*</code> accept the <code>Add</code> (list), <code>Remove</code> (list) and <code>Clear</code> (bool) fields for adding and removing enemies at will. The <code>EnemyPool</code> can be freely manipulated with <a href="../mutators/">mutators</a> during the mission, opening the possibility of adding and removing enemies based on gameplay conditions. It is not recommended to mutate the other pools. </p>
+<p>The fields marked with <code>*</code> accept the <code>Add</code> (list), <code>Remove</code> (list) and <code>Clear</code> (bool) fields for adding and removing enemies at will. The <code>EnemyPool</code> can be freely manipulated with <a href="../mutators/">mutators</a> during the mission, opening the possibility of adding and removing enemies based on gameplay conditions. <strong>It is not recommended to mutate the other pools.</strong> </p>
 <p>Example:</p>
 <pre><code class="language-json">{
     &quot;Pools&quot;: {
@@ -651,7 +652,7 @@ Each <code>SpecialEncounter</code> accepts the following fields:</p>
     }
 }
 </code></pre>
-<p>Example: the first resupply is free, 40 nitra for all others.</p>
+<p>The <code>StartingNitra</code> field from CD1 does not exist in CD2: the same functionality is done with mutators. Example: the first resupply is free, 40 nitra for all others.</p>
 <pre><code class="language-json">{
     &quot;Resupply&quot;: {
       &quot;Cost&quot;: {
