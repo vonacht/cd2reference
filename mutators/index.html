@@ -265,7 +265,7 @@
 </tr>
 <tr>
 <td>BIOME_CrystalCaves</td>
-<td>CrystalCave</td>
+<td>CrystalCaves</td>
 <td>CrystallineCaverns</td>
 </tr>
 <tr>
@@ -509,7 +509,7 @@ Only add stalkers and elite guards to the pool after 240 seconds have elapsed in
 <pre><code class="language-json">&quot;EnemyPool&quot;{
     &quot;add&quot; {
         &quot;Mutate&quot;: &quot;If&quot;, 
-        &quot;Condition&quot;: {&quot;Mutate&quot;: &quot;DuringMission&quot;, &quot;StartingAfter&quot;: 240},
+        &quot;Condition&quot;: {&quot;Mutate&quot;: &quot;DuringMission&quot;, &quot;StartingAt&quot;: 240},
         &quot;Then&quot;: [&quot;ED_Spider_Stalker&quot;, &quot;ED_Spider_Grunt_Guard_Elite&quot;],
         &quot;Else&quot;: []
     }
