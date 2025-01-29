@@ -93,6 +93,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#byrefineryphase">ByRefineryPhase</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bysabophase">BySaboPhase</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#clamp">Clamp</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#delta">Delta</a>
@@ -409,6 +411,23 @@ The value is determined by <code>InitialValue + RateOfChange * Max(0, Time - Sta
   &quot;RefiningStalled&quot;: 5,
   &quot;RefiningComplete&quot;: 6,
   &quot;RocketLaunched&quot;: 7
+}
+</code></pre>
+<h2 id="bysabophase">BySaboPhase</h2>
+<p>Used to detect the different stages of a Sabotage mission.</p>
+<pre><code class="language-json">{
+  &quot;Mutate&quot;: &quot;BySaboPhase&quot;,
+  &quot;Default&quot;: &quot;Default Value&quot;,
+  &quot;Hacking&quot;: &quot;Hacking Value&quot;,
+  &quot;BetweenHacks&quot;: &quot;BetweenHacks Value&quot;,
+  &quot;HackingFinished&quot;: &quot;HackingFinished Value&quot;,
+  &quot;Phase1Vent&quot;: &quot;Phase1VentValue&quot;,
+  &quot;Phase1Eye&quot;: &quot;Value for Phase1Eye&quot;,
+  &quot;Phase2Vent&quot;: &quot;Value for Phase2Vent&quot;,
+  &quot;Phase2Eye&quot;: &quot;Value for Phase2Eye&quot;,
+  &quot;Phase3Vent&quot;: &quot;Phase3Vent Value&quot;,
+  &quot;Phase3Eye&quot;: &quot;Value to use during Phase3Eye&quot;,
+  &quot;Finished&quot;: &quot;Value for Finished&quot;
 }
 </code></pre>
 <h2 id="clamp">Clamp</h2>

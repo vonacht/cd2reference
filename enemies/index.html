@@ -63,6 +63,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#enemy-controls">Enemy controls</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#direct-special-control">Direct special control</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#elite-variants-for-all-enemies">Elite variants for all enemies</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#veteran-control">Veteran control</a>
@@ -240,6 +242,11 @@
 <td></td>
 </tr>
 <tr>
+<td>Direct</td>
+<td>[Int, Float, Bool, Pcol]</td>
+<td>Special control that can expose enemy properties (see example below).</td>
+</tr>
+<tr>
 <td>DisplayName</td>
 <td>String</td>
 <td></td>
@@ -355,12 +362,49 @@
 <td>Speeds up the enemy's attack and movement. Please note that time-dilating enemies can be a source of desync.</td>
 </tr>
 <tr>
+<td>UsesBiomeVariants</td>
+<td>Boolean</td>
+<td>Enables/disables the biome variants of enemies (eg. Frost Praetorian in Glacial Strata).</td>
+</tr>
+<tr>
 <td>WeakpointHP</td>
 <td>Float</td>
 <td></td>
 </tr>
 </tbody>
 </table>
+<h3 id="direct-special-control"><code>Direct</code> special control</h3>
+<p><code>Direct</code> allows to directly change enemy properties as defined in UE4. For example:</p>
+<pre><code class="language-json">&quot;ED_Spider_ExploderTank&quot;: {
+    &quot;Direct&quot;: {
+        &quot;Int:NumClusterBombs&quot;: 200 
+    }
+}
+</code></pre>
+<pre><code class="language-json">&quot;ED_Spider_Exploder&quot;: {
+  &quot;Movement&quot;: {
+    &quot;MaxPawnSpeed&quot;: 5,
+    &quot;MaxAcceleration&quot;: 5,
+    &quot;MaxBrakingDeceleration&quot;: 10,
+    &quot;AlignDirectionSpeed&quot;: 10,
+    &quot;AlignToTargetMinRequiredAngle&quot;: 1,
+    &quot;StrafeSpeed&quot;: 5
+  },
+  &quot;Direct&quot;: {
+    &quot;PCol:Mesh&quot;: true
+  },
+  &quot;CanPlayerStandOn&quot;: true,
+  &quot;Alert&quot;: true
+}
+</code></pre>
+<pre><code class="language-json">&quot;ED_JellyBreeder&quot;: {
+  &quot;Direct&quot;: {
+    &quot;Bool:Capsule.bHiddenInGame&quot;: false,
+    &quot;PCol:Capsule&quot;: true
+  },
+  &quot;CanPlayerStandOn&quot;: true
+}
+</code></pre>
 <h3 id="elite-variants-for-all-enemies">Elite variants for all enemies</h3>
 <p>Setting <code>Elite</code> to true or to some float number will only work directly for those enemies that have a vanilla elite variant: guards, grabbers, praetorians, bulks, menaces and trijaws. For the rest of the enemies, an elite base must be specified by setting <code>ForceEliteBase</code> to some existing ED that has an elite variant. As an example, the following snippet creates an elite septic spreader, which won't work without the <code>ForceEliteBase</code>:</p>
 <pre><code class="language-json">&quot;ED_Elite_Septic_Spreader&quot;: {
