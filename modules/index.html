@@ -79,6 +79,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#pools">Pools</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#salvage">Salvage</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#specialencounters">SpecialEncounters</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#resupply">Resupply</a>
@@ -576,6 +578,175 @@ Example:</p>
   }
 }
 </code></pre>
+<h2 id="salvage">Salvage</h2>
+<p>A special module offering customization options for Salvage missions. It contains three submodules: <code>MiniMules</code>, <code>Uplink</code> and <code>Refuel</code> with the following fields:</p>
+<table>
+<thead>
+<tr>
+<th>Submodule</th>
+<th>Field</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MiniMules</td>
+<td>ScanUsable</td>
+<td>Usable</td>
+<td></td>
+<td>Settings for e holding to scan for legs</td>
+</tr>
+<tr>
+<td>MiniMules</td>
+<td>RepairUsable</td>
+<td>Usable</td>
+<td></td>
+<td>Settings for e holding to repair the minimule</td>
+</tr>
+<tr>
+<td>MiniMules</td>
+<td>LegsRequired</td>
+<td>Int</td>
+<td>3</td>
+<td>Number of legs that must be attached before allowing repair</td>
+</tr>
+<tr>
+<td>MiniMules</td>
+<td>LegsPerMule</td>
+<td>Int</td>
+<td>4</td>
+<td>Number of legs to spawn per minimule</td>
+</tr>
+<tr>
+<td>MiniMules</td>
+<td>LegDistance</td>
+<td>Float</td>
+<td>1500</td>
+<td>Untested, should be distance legs spawn from the minimules</td>
+</tr>
+<tr>
+<td>MiniMules</td>
+<td>Count</td>
+<td>Int</td>
+<td>2</td>
+<td>Number of minimules to spawn (or 1.5x on long Salvage)</td>
+</tr>
+<tr>
+<td>---------</td>
+<td>----------------------</td>
+<td>------</td>
+<td>-------</td>
+<td>--------------------------------------------------------------------------------</td>
+</tr>
+<tr>
+<td>Uplink</td>
+<td>RepairUsable</td>
+<td>Usable</td>
+<td></td>
+<td>Settings for holding e to activate the uplink</td>
+</tr>
+<tr>
+<td>Uplink</td>
+<td>Scale</td>
+<td>Float</td>
+<td>1</td>
+<td>Size of the triangulation zone</td>
+</tr>
+<tr>
+<td>Uplink</td>
+<td>Duration</td>
+<td>Float</td>
+<td>80</td>
+<td>Defense duration in seconds</td>
+</tr>
+<tr>
+<td>Uplink</td>
+<td>ExtraDefenderBonus</td>
+<td>Float</td>
+<td>0.25</td>
+<td></td>
+</tr>
+<tr>
+<td>Uplink</td>
+<td>DisableLeaveShout</td>
+<td>Bool</td>
+<td>false</td>
+<td>Disables mission control messages when there are no players in the defense area.</td>
+</tr>
+<tr>
+<td>Uplink</td>
+<td>LeavePenaltyMultiplier</td>
+<td>Float</td>
+<td>1</td>
+<td>1 means vanilla penalty (2x the speed progress normally increases)</td>
+</tr>
+<tr>
+<td>---------</td>
+<td>----------------------</td>
+<td>------</td>
+<td>-------</td>
+<td>--------------------------------------------------------------------------------</td>
+</tr>
+<tr>
+<td>Refuel</td>
+<td>RepairUsable</td>
+<td>Usable</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Refuel</td>
+<td>Scale</td>
+<td>Float</td>
+<td>1</td>
+<td>Size of the triangulation zone</td>
+</tr>
+<tr>
+<td>Refuel</td>
+<td>Duration</td>
+<td>Float</td>
+<td>100</td>
+<td>Defense duration in seconds</td>
+</tr>
+<tr>
+<td>Refuel</td>
+<td>ExtraDefenderBonus</td>
+<td>Float</td>
+<td>0.25</td>
+<td></td>
+</tr>
+<tr>
+<td>Refuel</td>
+<td>DisableLeaveShout</td>
+<td>Bool</td>
+<td>false</td>
+<td></td>
+</tr>
+<tr>
+<td>Refuel</td>
+<td>LeavePenaltyMultiplier</td>
+<td>Float</td>
+<td>1</td>
+<td>0 means no lost progress if leaving the defense area</td>
+</tr>
+</tbody>
+</table>
+<p>Example: a salvage where each mule spawns 20 legs and requires 15 to be repaired, and the area of the uplink bubble is 1.5x the normal.</p>
+<pre><code class="language-json">{
+    &quot;Salvage&quot;: {
+       &quot;MiniMules&quot;: {
+            &quot;LegsPerMule&quot;: 20,
+            &quot;LegsRequired&quot;: 15
+        },
+        &quot;Uplink&quot;: {
+            &quot;Scale&quot;: 1.5
+        }
+    }
+}
+</code></pre>
+<p>Please see the <code>BySalvagePhase</code> <a href="../mutators/">mutator</a> for values that need to change during different phases of the mission. </p>
 <h2 id="specialencounters">SpecialEncounters</h2>
 <p>This module controls the chance of some random events such as the Korlok, Bet-C, etc. Please note that this module is not 100 % functional as some of the encounters depend on the seasons system which CD2 cannot control for now. 
 Each <code>SpecialEncounter</code> accepts the following fields:</p>
@@ -652,7 +823,16 @@ Each <code>SpecialEncounter</code> accepts the following fields:</p>
     }
 }
 </code></pre>
-<p>The <code>StartingNitra</code> field from CD1 does not exist in CD2: the same functionality is done with mutators. Example: the first resupply is free, 40 nitra for all others.</p>
+<p>The <code>StartingNitra</code> field from CD1 does not exist in CD2: the same functionality is done with mutators. Example: the first resupply is free, 40 nitra for all others:</p>
+<pre><code class="language-json">{
+    &quot;Resupply&quot;: {
+        &quot;Cost&quot;: {
+            &quot;Mutate&quot;: &quot;ByResuppliesCalled&quot;,
+            &quot;Values&quot;: [0, 40]
+        }
+    }
+}
+</code></pre>
 <pre><code class="language-json">{
     &quot;Resupply&quot;: {
       &quot;Cost&quot;: {
@@ -667,6 +847,7 @@ Each <code>SpecialEncounter</code> accepts the following fields:</p>
     }
 }
 </code></pre>
+<p>While both snippets do the same thing, <code>ByResuppliesCalled</code> is usually more compact when specifying a different cost for the first few supplies.</p>
 <p>Example: the cost is 45, but after the 6th resupply it drops to 40. </p>
 <pre><code class="language-json">{ 
   &quot;Resupply&quot;: {

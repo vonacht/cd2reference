@@ -93,9 +93,15 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#byrefineryphase">ByRefineryPhase</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#byresuppliescalled">ByResuppliesCalled</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#bysabophase">BySaboPhase</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bysalvagephase">BySalvagePhase</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#clamp">Clamp</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#defenseprogress">DefenseProgress</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#delta">Delta</a>
     </li>
@@ -413,6 +419,19 @@ The value is determined by <code>InitialValue + RateOfChange * Max(0, Time - Sta
   &quot;RocketLaunched&quot;: 7
 }
 </code></pre>
+<h2 id="byresuppliescalled">ByResuppliesCalled</h2>
+<p>Allows specifying an array with indexes 0, 1, 2, etc, where the values at each index become valid when the number of resupplies corresponding to said index have been called.
+The most typical use is specifying a varying number of resupply costs. For example:</p>
+<pre><code class="language-json">{
+    &quot;Resupply&quot;: {
+        &quot;Cost&quot;: {
+            &quot;Mutate&quot;: &quot;ByResuppliesCalled&quot;,
+            &quot;Values&quot;: [40, 50, 60]
+        }
+    }
+}
+</code></pre>
+<p>will set up the first resupply to be 40 nitra, the second to be 50 nitra and 60 for all subsequent supplies.</p>
 <h2 id="bysabophase">BySaboPhase</h2>
 <p>Used to detect the different stages of a Sabotage mission.</p>
 <pre><code class="language-json">{
@@ -430,6 +449,19 @@ The value is determined by <code>InitialValue + RateOfChange * Max(0, Time - Sta
   &quot;Finished&quot;: &quot;Value for Finished&quot;
 }
 </code></pre>
+<h2 id="bysalvagephase">BySalvagePhase</h2>
+<p>Used to detect the different stages of a Salvage mission. The mutator uses the <code>Default</code> value for any mission that is not Salvage. </p>
+<pre><code class="language-json">{
+      &quot;Mutate&quot;:    &quot;BySalvagePhase&quot;,
+      &quot;Default&quot;:   &quot;Default Value&quot;,
+      &quot;Mules&quot;:     &quot;Value until all mules repaired&quot;,
+      &quot;PreUplink&quot;: &quot;Value while mules finished but uplink not started&quot;,
+      &quot;Uplink&quot;:    &quot;Value during the uplink event&quot;,
+      &quot;PreRefuel&quot;: &quot;Value between defense events&quot;,
+      &quot;Refuel&quot;:    &quot;Value during the refuel event&quot;,
+      &quot;Finished&quot;:  &quot;Value for the remainder of the mission&quot;
+}
+</code></pre>
 <h2 id="clamp">Clamp</h2>
 <p>Constrain a float (number) to fall within a range. This range is inclusive. If only a min or only a max is specified, the value will only be clamped in that direction.</p>
 <p>Example:</p>
@@ -440,6 +472,8 @@ The value is determined by <code>InitialValue + RateOfChange * Max(0, Time - Sta
     &quot;Max&quot;: 100
 }
 </code></pre>
+<h2 id="defenseprogress">DefenseProgress</h2>
+<p>This mutator tracks the progress of a defense event such as a black box, refuel or uplink. It returns a float between [0, 1] starting at 0.3.</p>
 <h2 id="delta">Delta</h2>
 <p><code>Delta</code> can be used to detect a change in some other variable or mutator, and it is often used with <code>Accumulate</code>.</p>
 <p>Example:
