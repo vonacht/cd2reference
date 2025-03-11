@@ -139,6 +139,11 @@
 <td>Whether the wave spawner is active (True) or not (False).</td>
 </tr>
 <tr>
+<td>Name</td>
+<td>String</td>
+<td>A description. Doesn't have any effect.</td>
+</tr>
+<tr>
 <td>Interval</td>
 <td>Float</td>
 <td>After the wave is enabled, a time of <code>Interval</code> seconds will pass until the first spawns appear unless <code>SpawnOnEnable</code> (see below) is True. After that the wave will repeat every <code>Interval</code> seconds unless disabled.</td>
@@ -184,6 +189,7 @@
 <pre><code class="language-json">{
     &quot;WaveSpawners&quot;: [
         {
+          &quot;Name&quot;: &quot;Bulk helper wave during dreads&quot;,
           &quot;Enabled&quot;: {
             &quot;Mutate&quot;: &quot;IfFloat&quot;,
             &quot;Value&quot;: {

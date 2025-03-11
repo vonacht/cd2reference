@@ -178,54 +178,76 @@
 </code></pre>
 <p>When the number of enemies in the map reach their cap, new enemies will be prevented from spawning and some existing enemies will despawn. The exact mechanics behind this behaviour are not completely understood. </p>
 <h2 id="darkness">Darkness</h2>
-<p>The Darkness module offers controls related to lighting and illumination both in the Space Rig and during a mission. It has the following fields:</p>
+<p>The Darkness module offers controls related to lighting and illumination both in the Space Rig and during a mission. It has the following fields (descriptions provided by @noskill):</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Type</th>
+<th>Default</th>
+<th>Comment</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>FlashlightStrength</td>
 <td>Float</td>
+<td>1?</td>
+<td>Headlight light strength, affects both radius and strength of the light.</td>
 </tr>
 <tr>
 <td>PlayerIllumination</td>
 <td>Float</td>
+<td>1?</td>
+<td>Light strength in a radius around the player. Only affects strength and not radius.</td>
 </tr>
 <tr>
 <td>FlareMax</td>
 <td>Int</td>
+<td>4</td>
+<td>Maximum number of flares that the player can keep.</td>
 </tr>
 <tr>
 <td>FlareStrength</td>
 <td>Float</td>
+<td>1?</td>
+<td>Strength of the flares, affects both radius and strength. Seems no have no effect above 3.</td>
 </tr>
 <tr>
 <td>FlareDuration</td>
 <td>Float</td>
+<td>30</td>
+<td>Duration of the player flares.</td>
 </tr>
 <tr>
 <td>FlareProductionTime</td>
 <td>Float</td>
+<td>12</td>
+<td>Recharge time of the player's flares. It has been noted that changing this setting while in-game could cause flares to get stuck and not recharge.</td>
 </tr>
 <tr>
 <td>EnvironmentalLight</td>
 <td>Float</td>
+<td>1?</td>
+<td>Environmental (cave) light. Affects both radius and strength.</td>
 </tr>
 <tr>
 <td>DisableFog</td>
 <td>Bool</td>
+<td>False</td>
+<td>Removes "fog", making the caves look darker. It seems that after disabling it in-mission it can't be enabled again.</td>
 </tr>
 <tr>
 <td>FlareGunStrength</td>
 <td>Float</td>
+<td>1?</td>
+<td>Strength of Scout's flare gun flares.</td>
 </tr>
 <tr>
 <td>FlareGunDuration</td>
 <td>Float</td>
+<td>Depends on flare gun stats</td>
+<td>Duration of Scout's flare gun flares.</td>
 </tr>
 </tbody>
 </table>
@@ -632,6 +654,13 @@ Example:</p>
 <td>Int</td>
 <td>2</td>
 <td>Number of minimules to spawn (or 1.5x on long Salvage)</td>
+</tr>
+<tr>
+<td>MiniMules</td>
+<td>NitraToGive</td>
+<td>Int</td>
+<td>50</td>
+<td>Nitra given by the mules after repairing them</td>
 </tr>
 <tr>
 <td>---------</td>

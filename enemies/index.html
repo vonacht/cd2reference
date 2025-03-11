@@ -227,6 +227,16 @@
 <td>If True, the enemy will spawn aggroed to the player. It is True by default in enemies spawned by a <a href="../wavespawners/">wave spawner</a>.</td>
 </tr>
 <tr>
+<td>AttackDamageMultiplier</td>
+<td>Float</td>
+<td>Multiplies an enemy's melee and projectile damage. Can be used with EnemiesNoSync.</td>
+</tr>
+<tr>
+<td>Base</td>
+<td>ED</td>
+<td>The enemy will have the specified ED as base. Check the table in <a href="../resources/">Resources</a> for the vanilla descriptors.</td>
+</tr>
+<tr>
 <td>CanPlayerStandOn</td>
 <td>Boolean</td>
 <td></td>
@@ -322,6 +332,31 @@
 <td>See <a href="../projectiles/">Projectiles</a>.</td>
 </tr>
 <tr>
+<td>PST_CritBonusDamage</td>
+<td>Int</td>
+<td>Multiplies the normal damage in case of a Critical Hit (see <code>PST_CritBonusDamage</code> below). Default of 1.2 (20 % bonus).</td>
+</tr>
+<tr>
+<td>PST_CritChance</td>
+<td>Int</td>
+<td>Chance of both bugs dealing Critical Damage to players or the other way around (no way to have only one direction). Defaults to 0 (0 % chance).</td>
+</tr>
+<tr>
+<td>PST_DamageFromPlayers</td>
+<td>Int</td>
+<td>Multiplies all damage sources considered to be from players (including things like temperature shock damage). Defaults to 1.</td>
+</tr>
+<tr>
+<td>PST_ExplodeOnDeath</td>
+<td>Int</td>
+<td>When the enemy dies it explodes as if it was a Volatile Bugs mission.</td>
+</tr>
+<tr>
+<td>PST_MovementSpeed</td>
+<td>Int</td>
+<td>Modifies enemy speed. This is a legacy pawn stat. See the <code>Movement</code> module below for a more customizable module new in CD2.</td>
+</tr>
+<tr>
 <td>Resistances</td>
 <td>[[Resistances]]</td>
 <td>See the <code>Resistances</code> submodule below.</td>
@@ -374,7 +409,8 @@
 </tbody>
 </table>
 <h3 id="direct-special-control"><code>Direct</code> special control</h3>
-<p><code>Direct</code> allows to directly change enemy properties as defined in UE4. For example:</p>
+<p><code>Direct</code> allows to directly change enemy properties as defined in UE4. Many properties that are not directly exposed
+by CD2 can be changed with <code>Direct</code>. For example:</p>
 <pre><code class="language-json">&quot;ED_Spider_ExploderTank&quot;: {
     &quot;Direct&quot;: {
         &quot;Int:NumClusterBombs&quot;: 200 

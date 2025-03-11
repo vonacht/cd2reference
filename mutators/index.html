@@ -87,6 +87,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#bymissiontype">ByMissionType</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bysecondary">BySecondary</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#bytime">ByTime</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#byplayercount">ByPlayerCount</a>
@@ -128,6 +130,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#duringmission">DuringMission</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#duringpecountdown">DuringPECountdown</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dwarfcount">DwarfCount</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#dwarvesammo">DwarvesAmmo</a>
     </li>
@@ -375,6 +379,77 @@ Supported mission types:</p>
     &quot;PE&quot;: 80
  }
 </code></pre>
+<h2 id="bysecondary">BySecondary</h2>
+<p>Can be used to detect secondary objectives both on normal missions and on deep dives. The objectives have the following names:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OBJ_2nd_Mine_Dystrum</td>
+</tr>
+<tr>
+<td>OBJ_2nd_Mine_Hollomite</td>
+</tr>
+<tr>
+<td>OBJ_2nd_KillFleas</td>
+</tr>
+<tr>
+<td>OBJ_2nd_Find_Gunkseed</td>
+</tr>
+<tr>
+<td>OBJ_2nd_Find_Fossil</td>
+</tr>
+<tr>
+<td>OBJ_2nd_Find_Ebonut</td>
+</tr>
+<tr>
+<td>OBJ_2nd_Find_BooloCap</td>
+</tr>
+<tr>
+<td>OBJ_2nd_Find_ApocaBloom</td>
+</tr>
+<tr>
+<td>OBJ_2nd_DestroyEggs</td>
+</tr>
+<tr>
+<td>OBJ_2nd_DestroyBhaBarnacles</td>
+</tr>
+<tr>
+<td>OBJ_DD_RepairMinimules</td>
+</tr>
+<tr>
+<td>OBJ_DD_Defense</td>
+</tr>
+<tr>
+<td>OBJ_DD_DeepScan</td>
+</tr>
+<tr>
+<td>OBJ_DD_Morkite</td>
+</tr>
+<tr>
+<td>OBJ_DD_Elimination_Eggs</td>
+</tr>
+<tr>
+<td>OBJ_DD_AlienEggs</td>
+</tr>
+<tr>
+<td>OBJ_DD_MorkiteWell</td>
+</tr>
+</tbody>
+</table>
+<p>Example: change the Nitra multiplier depending on the secondary objective in deep dives (20 % more nitra on dreadnought and black box objectives).</p>
+<pre><code class="language-json">{
+    &quot;NitraMultiplier&quot;: {
+        &quot;Mutate&quot;: &quot;BySecondary&quot;,
+        &quot;OBJ_DD_Elimination_Eggs&quot;: 1.2,
+        &quot;OBJ_DD_Defense&quot;: 1.2 
+    }
+}
+</code></pre>
 <h2 id="bytime">ByTime</h2>
 <p>Change a value over time. Time matches the mission clock in the escape menu in-game, including starting before players receive control of their dwarves.
 The value is determined by <code>InitialValue + RateOfChange * Max(0, Time - StartDelay)</code>.</p>
@@ -570,6 +645,8 @@ Only add stalkers and elite guards to the pool after 240 seconds have elapsed in
 </code></pre>
 <h2 id="duringpecountdown">DuringPECountdown</h2>
 <p>Returns True during the extraction phase of a PE mission. </p>
+<h2 id="dwarfcount">DwarfCount</h2>
+<p>Returns the number of players in the mission. </p>
 <h2 id="dwarvesammo">DwarvesAmmo</h2>
 <p>Average percent ammo left for the team, 1 when all teammates have 100% of their ammo and 0 when all teammates are at 0% ammo. This works the same way as the 4 bars under the dwarves names in the UI.</p>
 <h2 id="dwarvesdown">DwarvesDown</h2>
