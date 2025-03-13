@@ -74,6 +74,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#name">Name</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#nextdifficulty">NextDifficulty</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#different-difficulties-in-every-stage-of-a-deep-dive">Different difficulties in every stage of a Deep Dive</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#nitramultiplier">NitraMultiplier</a>
     </li>
@@ -193,7 +197,7 @@
 <td>FlashlightStrength</td>
 <td>Float</td>
 <td>1?</td>
-<td>Headlight light strength, affects both radius and strength of the light.</td>
+<td>Headlight light strength, affects both range and strength of the light.</td>
 </tr>
 <tr>
 <td>PlayerIllumination</td>
@@ -259,7 +263,7 @@
 }
 </code></pre>
 <h2 id="difficultysetting">DifficultySetting</h2>
-<p>Main controls for enemy resistance, swarm and wave intervals and enemy counts. Please check <a href="https://docs.google.com/document/d/131FqOl0FnwiAslvvDSYkV35oBQXYx2kH0oZYwEpjoBI/edit?tab=t.0">A Quick and Dirty Guide to Custom Difficulty for Deep Rock Galactic</a>, a CD1 guide explaining most of the fields inside this module.</p>
+<p>Main controls for enemy resistance, swarm and wave intervals and enemy counts. The descriptions here are very summarized, please check <a href="https://docs.google.com/document/d/131FqOl0FnwiAslvvDSYkV35oBQXYx2kH0oZYwEpjoBI/edit?tab=t.0">A Quick and Dirty Guide to Custom Difficulty for Deep Rock Galactic</a>, a CD1 guide explaining most of the fields inside this module foe details. To see the values of these fields for the vanilla Hazards and some others, please check the <a href="https://docs.google.com/spreadsheets/u/0/d/15L6sCaM5WdfuI65X54qDhD5sRDCGpb1Q4fkVkRhbBU4/htmlview">DRG Hazard Scaling</a> file.</p>
 <table>
 <thead>
 <tr>
@@ -274,71 +278,67 @@
 </tr>
 <tr>
 <td>ExtraLargeEnemyDamageResistance</td>
-<td></td>
+<td>Affects the damage resistance of the three dreadnought variants.</td>
 </tr>
 <tr>
 <td>ExtraLargeEnemyDamageResistanceB</td>
-<td></td>
+<td>Affects the damage resistance of the Korlok Tyrant Weed.</td>
 </tr>
 <tr>
 <td>ExtraLargeEnemyDamageResistanceC</td>
-<td></td>
+<td>Affects the damage resistance of the OMEN Tower.</td>
 </tr>
 <tr>
 <td>ExtraLargeEnemyDamageResistanceD</td>
-<td></td>
+<td>Affects the damage resistance of Elite enemies.</td>
 </tr>
 <tr>
 <td>EnemyDamageResistance</td>
-<td></td>
+<td>Damage resistance of most larger enemies in the game: praetorians, oppressors, menaces, goo bombers, bulk detonators, etc.</td>
 </tr>
 <tr>
 <td>SmallEnemyDamageResistance</td>
-<td></td>
-</tr>
-<tr>
-<td>EnemyDamageResistance</td>
-<td></td>
+<td>Damage resistance of everything not covered by the other resistance fields: grunts, mactera, swarmers, etc.</td>
 </tr>
 <tr>
 <td>EncounterDifficulty</td>
-<td></td>
+<td>Difficulty of the encounters, waves that appear when the players come within a certain distance of an unexplored cave.</td>
 </tr>
 <tr>
 <td>StationaryDifficulty</td>
-<td></td>
+<td>How many stationary enemies will spawn.</td>
 </tr>
 <tr>
 <td>EnemyCountModifier</td>
-<td></td>
+<td>A global multiplier on the number of enemies that will spawn in waves, swarms, constant pressure, extraction, among others.</td>
 </tr>
 <tr>
 <td>EnemyWaveInterval</td>
-<td></td>
+<td>Interval in seconds between swarms (announced).</td>
 </tr>
 <tr>
 <td>EnemyNormalWaveInterval</td>
-<td></td>
+<td>Interval in seconds between normal (non-announced) waves.</td>
 </tr>
 <tr>
 <td>EnemyNormalWaveDifficulty</td>
-<td></td>
+<td>How many enemies will spawn in a normal wave.</td>
 </tr>
 <tr>
 <td>EnemyDiversity</td>
-<td></td>
+<td>Determines how many enemies will spawn in a given spawn event, given an <code>EnemyPool</code>.</td>
 </tr>
 <tr>
 <td>StationaryEnemyDiversity</td>
-<td></td>
+<td>Enemy diversity roll for stationary enemies (everything in the <code>StationaryPool</code>).</td>
 </tr>
 <tr>
 <td>VeteranNormal</td>
-<td></td>
+<td>Percentage of Grunt and Mactera veterans promoting from the non-veteran variants.</td>
 </tr>
 <tr>
 <td>VeteranLarge</td>
-<td></td>
+<td>Percentage of Oppressors promoting to veterans from Praetorians.</td>
 </tr>
 <tr>
 <td>EnviromentalDamageModifier</td>
@@ -346,27 +346,27 @@
 </tr>
 <tr>
 <td>PointExtractionScalar</td>
-<td></td>
+<td>Interval between swarms in Point Extraction, taking effect after the first swarm. The value is capped at 1 and the formula seems to be Interval = 165/ PointExtractionScalar.</td>
 </tr>
 <tr>
 <td>FriendlyFireModifier</td>
-<td></td>
+<td>How much friendly fire players deal to each other.</td>
 </tr>
 <tr>
 <td>WaveStartDelayScale</td>
-<td></td>
+<td>Adds (or subtracts) a delay for the first swarm in a mission. The delay in seconds will be 150 · WaveStartDelayScale. The default is zero; if negative (eg. -1), a swarm will spawn directly at mission start.</td>
 </tr>
 <tr>
 <td>SpeedModifier</td>
-<td></td>
+<td>Global modifier affecting the speed of ground enemies. Mactera are unaffected.</td>
 </tr>
 <tr>
 <td>AttackCooldownModifier</td>
-<td></td>
+<td>Global modifier affecting the speed of enemy attack animations.</td>
 </tr>
 <tr>
 <td>ProjectileSpeedModifier</td>
-<td></td>
+<td>Global modifier affecting the speed of all projectiles.</td>
 </tr>
 <tr>
 <td>HealthRegenerationMax</td>
@@ -522,6 +522,29 @@ Example:</p>
   }
 }
 </code></pre>
+<h3 id="different-difficulties-in-every-stage-of-a-deep-dive">Different difficulties in every stage of a Deep Dive</h3>
+<p>This is a common application of <code>NextDifficulty</code> allowing to mimic the increasing difficulty of the vanilla Deep Dive with whatever set of three difficulties you choose. The way to set it up is as follows: let's say that we want to play Hazard 5x2 on Stage 1, Hazard 6x2 on Stage 2 and ND on Stage 3. We will need the three files saved in Custom Difficulty, and then we would add the following to each:</p>
+<pre><code class="language-json">{
+    &quot;Name&quot;: &quot;Hazard 5x2&quot;,
+    ...
+    &quot;NextDifficulty&quot;: &quot;Hazard 6x2&quot;,
+    ...
+}
+</code></pre>
+<pre><code class="language-json">{
+    &quot;Name&quot;: &quot;Hazard 6x2&quot;,
+    ...
+    &quot;NextDifficulty&quot;: &quot;ND&quot;,
+    ...
+}
+</code></pre>
+<p>The ND file, being the one played in stage 3, doesn't need any modifications. In addition to editing the files for stage 1 and 2, you will need a "starter" file:</p>
+<pre><code class="language-json">{
+    &quot;Name&quot;: &quot;Dive Starter&quot;,
+    &quot;NextDifficulty&quot;: &quot;Hazard 5&quot;
+}
+</code></pre>
+<p>This Dive Starter will be the file you will select while on the Space Rig before starting the dive, and it should point to the difficulty you want to play on the first stage.</p>
 <h2 id="nitramultiplier">NitraMultiplier</h2>
 <p>A special module that accepts a float and controls the amount of nitra generated in the map. It has a default of 1. The following snippet would generate twice the amount of nitra in a certain mission:</p>
 <pre><code class="language-json">{
