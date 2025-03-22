@@ -588,61 +588,75 @@ If you wish to leave a slot with the default material, both <code>""</code> and 
 </tbody>
 </table>
 <h2 id="movement">Movement</h2>
+<p>The following values are all multipliers with defaults of 1. The following descriptions are provided by @emctwo. </p>
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>MaxPawnSpeed</td>
 <td>Float</td>
+<td>Multiplies the maximum speed of the enemy.</td>
 </tr>
 <tr>
 <td>StrafeSpeed</td>
 <td>Float</td>
+<td>Multiplies enemy speed when strafing (enemy movement changes to strafe when they are close to a player).</td>
 </tr>
 <tr>
 <td>MinSlowdownAngle</td>
 <td>Float</td>
+<td>When enemies turn they tend to slow down; this field multiplies the minimum angle for the speed change.</td>
 </tr>
 <tr>
 <td>MaxSlowdownAngle</td>
 <td>Float</td>
+<td>When enemies turn they tend to slow down; this field multiplies the maximum angle for the speed change.</td>
 </tr>
 <tr>
 <td>MaxStrafeDistance</td>
 <td>Float</td>
+<td>The distance to a player where the enemy starts to strafe.</td>
 </tr>
 <tr>
 <td>AlignDirectionSpeed</td>
 <td>Float</td>
+<td>Multiplies how quickly the enemy turns.</td>
 </tr>
 <tr>
 <td>FleeSpeedBoostMultiplier</td>
 <td>Float</td>
+<td>Multiplies enemy speed when feared.</td>
 </tr>
 <tr>
 <td>MaxAcceleration</td>
 <td>Float</td>
+<td>Multiplies how quickly the enemy can change speed.</td>
 </tr>
 <tr>
 <td>MaxBrakingDeceleration</td>
 <td>Float</td>
+<td>Affects how quickly the enemy slows down, which mostly changes how far away from the player they start to slow down.</td>
 </tr>
 <tr>
 <td>PathfinderSize</td>
 <td>Currently Unsupported</td>
+<td></td>
 </tr>
 <tr>
 <td>AlignToTargetMinRequiredAngle</td>
 <td>Float</td>
+<td>The minimal angle required between the enemy's forward direction and the player position to start turning.</td>
 </tr>
 <tr>
 <td>PathfinderPreference</td>
 <td>Currently Unsupported</td>
+<td></td>
 </tr>
 </tbody>
 </table>
