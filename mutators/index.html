@@ -173,6 +173,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#min">Min</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#random">Random</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#randomchoice">RandomChoice</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#randomchoicepermission">RandomChoicePerMission</a>
@@ -770,6 +772,18 @@ Valid operators are: ==, &gt;=, &gt;, &lt;=, &lt;</p>
 <p>Returns the maximum of a value.</p>
 <h2 id="min">Min</h2>
 <p>Returns the minimum of a value.</p>
+<h2 id="random">Random</h2>
+<p>Continuously samples a float number between <code>Min</code> and <code>Max</code>, uniformly.</p>
+<pre><code class="language-json">{
+    &quot;Resupply&quot;: {
+        &quot;Cost&quot;: {
+            &quot;Mutate&quot;: &quot;Random&quot;,
+            &quot;Min&quot;: 40, 
+            &quot;Max&quot;: 60
+        }
+    }
+}
+</code></pre>
 <h2 id="randomchoice">RandomChoice</h2>
 <p>Given an array of choices, choose one at random. It accepts an optional second list with weights for a weighted sampling of the choices.</p>
 <p>Example: add either arbalests or lacerators to the enemy pool with a higher chance for arbalests.</p>
