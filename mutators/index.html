@@ -684,6 +684,33 @@ Despawned enemies because of caps are likely counted. If your difficulty despawn
 }
 </code></pre>
 <h2 id="enemycooldown">EnemyCooldown</h2>
+<p>This mutator tracks a timer that is true after an enemy descriptor has spawned.</p>
+<pre><code class="language-json">{
+    &quot;ED_Example&quot;: {
+        &quot;Rarity&quot;: {
+            &quot;Mutate&quot;: &quot;EnemyCooldown&quot;,
+            &quot;ED&quot;: &quot;ED_Opp1&quot;,
+            &quot;CooldownTime&quot;: 60,
+            &quot;ValueDuringCooldown&quot;: 1000,
+            &quot;DefaultValue&quot;: 1
+          }
+    }
+}
+</code></pre>
+<p>In the example, the mutator will be true for 60 seconds (the value of <code>CooldownTime</code>) after <code>ED_Example</code> has spawned. During this time, the value for the <code>Rarity</code> will be the value specified in <code>ValueDuringCooldown</code> and <code>DefaultValue</code> otherwise. The <code>ED</code> field can accept an array of enemies:</p>
+<pre><code class="language-json">{
+    &quot;ED_Example&quot;: {
+        &quot;Rarity&quot;: {
+            &quot;Mutate&quot;: &quot;EnemyCooldown&quot;,
+            &quot;ED&quot;: [&quot;ED_Opp1&quot;, &quot;ED_Opp2&quot;, &quot;ED_Opp3&quot;],
+            &quot;CooldownTime&quot;: 60,
+            &quot;ValueDuringCooldown&quot;: 1000,
+            &quot;DefaultValue&quot;: 1
+          }
+    }
+}
+</code></pre>
+<p>which will start the timer whenever one of the enemies inside the array spawns. </p>
 <h2 id="enemycount">EnemyCount</h2>
 <p>Count the number of enemies currently alive on the map. Optionally, this can get the count of a specific enemy descriptor.
 It's possible for this monitor to drift slightly from the actual count if base game events don't fire, but it should always be correct.</p>
