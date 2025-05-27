@@ -63,6 +63,10 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#enemy-controls">Enemy controls</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#heal-advanced-mode">Heal advanced mode</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#outline-special-control">Outline special control</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#direct-special-control">Direct special control</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#elite-variants-for-all-enemies">Elite variants for all enemies</a>
@@ -294,7 +298,7 @@
 <tr>
 <td>Heal</td>
 <td>Float</td>
-<td>A positive number <code>N</code> will heal the enemy <code>N</code> hps. A negative number will do <code>N</code> dps to the enemy.</td>
+<td>A positive number <code>N</code> will heal the enemy <code>N</code> hps. A negative number will do <code>N</code> dps to the enemy. This control has an advanced mode specified below.</td>
 </tr>
 <tr>
 <td>HealthMultiplier</td>
@@ -325,6 +329,11 @@
 <td>NoSpawnWithin</td>
 <td>Float</td>
 <td>Removes enemies that spawn within the specified distance of the player, in cm.</td>
+</tr>
+<tr>
+<td>Outline</td>
+<td>[[Outline]]</td>
+<td>Allows setting a permanent outline (as if someone had pinged) to an enemy. See below in the outline section for the options.</td>
 </tr>
 <tr>
 <td>Projectile</td>
@@ -408,6 +417,15 @@
 </tr>
 </tbody>
 </table>
+<h3 id="heal-advanced-mode"><code>Heal</code> advanced mode</h3>
+<p><code>Heal</code> can accept the following advanced settings:</p>
+<ul>
+<li><code>InitialRate</code>: sets the initial healing if positive or bleed if negative. </li>
+<li><code>FinalRate</code>: sets the value that will be used after <code>SwitchAfter</code> time has passed.</li>
+<li><code>SwitchAfter</code>: the time at which the <code>FinalRate</code> will be used. Starts counting on enemy spawn. </li>
+</ul>
+<h3 id="outline-special-control"><code>Outline</code> special control</h3>
+<p>This module allows to give a permanent outline to an enemy, as if someone had pinged it. It is usually used to mark dangerous enemies like breeders or ranged threats so you can see them through walls. It accepts two fields: <code>Enable</code>, which accepts a boolean, and <code>Type</code>, which accepts one of the following: <code>Enemy</code> (red outline, default), <code>Friendly</code>, <code>Neutral</code> and <code>Item</code>.  </p>
 <h3 id="direct-special-control"><code>Direct</code> special control</h3>
 <p><code>Direct</code> allows to directly change enemy properties as defined in UE4. Many properties that are not directly exposed
 by CD2 can be changed with <code>Direct</code>. For example:</p>

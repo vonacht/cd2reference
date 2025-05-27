@@ -193,6 +193,28 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#totalresource">TotalResource</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#trigger-mutators">Trigger mutators</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#triggeronce">TriggerOnce</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#triggerntimes">TriggerNTimes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#triggersometimes">TriggerSometimes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#triggercooldown">TriggerCooldown</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#triggerfixedduration">TriggerFixedDuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#triggersustain">TriggerSustain</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#triggerdelay">TriggerDelay</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#triggeronchange">TriggerOnChange</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#trigger-examples">Trigger examples</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -685,6 +707,14 @@ Despawned enemies because of caps are likely counted. If your difficulty despawn
     &quot;ED&quot;: &quot;ED_Spider_Grunt&quot;
 }
 </code></pre>
+<p>Since CD2 v15, it is possible to specify a list of ED's and avoid having to nest addition mutators:</p>
+<pre><code class="language-json">{
+    {
+      &quot;Mutate&quot;: &quot;EnemiesKilled&quot;,
+      &quot;EDs&quot;: [ &quot;A&quot;, &quot;B&quot;, &quot;C&quot; ]
+    }
+},
+</code></pre>
 <h2 id="enemycooldown">EnemyCooldown</h2>
 <p>This mutator tracks a timer that is true after an enemy descriptor has spawned.</p>
 <pre><code class="language-json">{
@@ -727,6 +757,14 @@ Count all enemies on the map:</p>
     &quot;Mutate&quot;: &quot;EnemyCount&quot;,
     &quot;ED&quot;: &quot;ED_Spider_Grunt&quot;
 }
+</code></pre>
+<p>Since CD2 v15, it is possible to specify a list of ED's and avoid having to nest addition mutators:</p>
+<pre><code class="language-json">{
+    {
+      &quot;Mutate&quot;: &quot;EnemyCount&quot;,
+      &quot;EDs&quot;: [ &quot;A&quot;, &quot;B&quot;, &quot;C&quot; ]
+    }
+},
 </code></pre>
 <h2 id="engineercount">EngineerCount</h2>
 <p>Number of engineers in the lobby. </p>
@@ -895,6 +933,92 @@ The value is determined by <code>InitialValue + RateOfChange * Max(0, Time - Sta
     &quot;Resource&quot;: &quot;Morkite&quot;
 }
 </code></pre>
+<h2 id="trigger-mutators">Trigger mutators</h2>
+<p>These are a special group of mutators that can be used on boolean values, typically (but not limited to) on the <code>Enabled</code> field of a wavespawner. Please see some examples below. The fields of each trigger are specified <code>like this</code>. There are currently the following triggers:</p>
+<h3 id="triggeronce">TriggerOnce</h3>
+<p>Triggers only on the first False -&gt; True <code>In</code> transition, then never again. Used if something has to happen exactly once per mission. It can optionally have a <code>Reset</code> field which resets its ability to trigger.</p>
+<h3 id="triggerntimes">TriggerNTimes</h3>
+<p>Allows up to <code>N</code> False -&gt; True <code>In</code> transitions, then blocks any further attempts. Same idea as <code>TriggerOnce</code> but for multiple events. </p>
+<h3 id="triggersometimes">TriggerSometimes</h3>
+<p>Triggers only a percentage of times <code>P</code> when <code>In</code> goes from False -&gt; True. As a simple example, this could be used to spawn a wave when a player goes down but only with a probability <code>P</code> of that happening. </p>
+<h3 id="triggercooldown">TriggerCooldown</h3>
+<p>After the boolean <code>In</code> goes from True -&gt; False, it can't go True again for <code>N</code> seconds.</p>
+<h3 id="triggerfixedduration">TriggerFixedDuration</h3>
+<p>Stays True for <code>N</code> seconds before switching back to False, regardless of what happens to its boolean input. It can be configured to <code>Reset: true</code> if the input transitions from False -&gt; True during the fixed window. </p>
+<h3 id="triggersustain">TriggerSustain</h3>
+<p>Extends a current True <code>In</code> state by <code>N</code> additional seconds.</p>
+<h3 id="triggerdelay">TriggerDelay</h3>
+<p>Delays the transition of the <code>In</code> boolean by <code>N</code> seconds.</p>
+<h3 id="triggeronchange">TriggerOnChange</h3>
+<p>It accepts a float input <code>In</code>. The trigger becomes momentarily true if the input float value changes. It accepts the special values <code>RiseOnly</code> and <code>FallOnly</code> to fire only on an increase or a decrease of the input value, respectively. </p>
+<h3 id="trigger-examples">Trigger examples</h3>
+<p>The following is an example on how to use triggers. It spawns a small wave of exploders 15 seconds after calling a resupply, but only 30 % of the time: </p>
+<pre><code class="language-json">  &quot;WaveSpawners&quot;: [
+    {
+      &quot;Enabled&quot;: {
+        &quot;Mutate&quot;: &quot;TriggerSometimes&quot;,
+        &quot;P&quot;: 0.3,
+        &quot;In&quot;: {
+          &quot;Mutate&quot;: &quot;TriggerDelay&quot;,
+          &quot;N&quot;: 15,
+          &quot;In&quot;: {
+            &quot;Mutate&quot;: &quot;TriggerOnChange&quot;,
+            &quot;In&quot;: {
+              &quot;Mutate&quot;: &quot;ResuppliesCalled&quot;
+            }
+          }
+        }
+      },
+      &quot;Enemies&quot;: [
+        &quot;ED_Spider_Exploder&quot;
+      ],
+      &quot;Difficulty&quot;: 300,
+      &quot;Interval&quot;: 20,
+      &quot;Distance&quot;: 50,
+      &quot;Locations&quot;: 3,
+      &quot;SpawnOnEnable&quot;: true
+    }
+  ]
+</code></pre>
+<p>Following the order of the mutators:</p>
+<ul>
+<li><code>TriggerOnChange</code> detects a change in <code>ResuppliesCalled</code> and becomes momentarily True.</li>
+<li><code>TriggerDelay</code> adds a delay of 15 seconds to the <code>TriggerOnChange</code> transition.</li>
+<li>Finally, <code>TriggerSometimes</code> lets the True transition pass but only 30 % of the time.</li>
+</ul>
+<p>A similar example, but now the waves of exploders is sustained for 20 seconds:</p>
+<pre><code class="language-json">  &quot;WaveSpawners&quot;: [
+    {
+      &quot;Enabled&quot;: {
+          &quot;Mutate&quot;: &quot;TriggerFixedDuration&quot;,
+          &quot;N&quot;: 20,
+          &quot;In&quot;: {
+            &quot;Mutate&quot;: &quot;TriggerSometimes&quot;,
+            &quot;P&quot;: 0.3,
+            &quot;In&quot;: {
+              &quot;Mutate&quot;: &quot;TriggerDelay&quot;,
+              &quot;N&quot;: 15,
+              &quot;In&quot;: {
+                &quot;Mutate&quot;: &quot;TriggerOnChange&quot;,
+                &quot;In&quot;: {
+                  &quot;Mutate&quot;: &quot;ResuppliesCalled&quot;
+                }
+              }
+            }
+          }
+      },
+      &quot;Enemies&quot;: [
+        &quot;ED_Spider_Exploder&quot;
+      ],
+      &quot;Difficulty&quot;: 20,
+      &quot;Interval&quot;: 1,
+      &quot;Distance&quot;: 50,
+      &quot;Locations&quot;: 3,
+      &quot;SpawnOnEnable&quot;: true
+    }
+  ]
+</code></pre>
+<p>The chain of mutators is the same, but now a <code>TriggerFixedDuration</code> has been added on top which will grant a 20 second window for the wavespawner to be active. Since its <code>Interval</code> is set to 1, this will generate 20 spawn events in total. </p>
               
             </div>
           </div><footer>
