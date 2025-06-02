@@ -142,11 +142,12 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="enemies-enemiesnosync">Enemies / EnemiesNoSync</h1>
-<p>This module contains the enemy descriptors. The difficulty can only contain either the <code>Enemies</code> module or <code>EnemiesNoSync</code>: </p>
+<p>This module contains the enemy descriptors. The name of the module can be either <code>Enemies</code> or <code>EnemiesNoSync</code>, but never both at the same time. The choice of which to use depends on if you want your difficulty to be pubbable, that is, to be played with players that do not have CD2 installed:</p>
 <ul>
-<li><code>Enemies</code> can replicate some enemy characteristics to players, such as materials and scale, but in exchange it forces the clients to use CD2 or they will suffer a disconnect upon mission start. </li>
-<li><code>EnemiesNoSync</code> doesn't do replication to clients. A difficulty with <code>EnemiesNoSync</code> is compatible with all clients, regardless of whether they use CD1, CD2 or nothing at all. </li>
+<li>Some CD2 features require being replicated to the clients, such as the <code>Scale</code> enemy control or the customization of enemy looks (materials). <code>Enemies</code> can replicate these characteristics to players, but in exchange it will force the clients to use CD2 or they will suffer a disconnect upon mission start. </li>
+<li><code>EnemiesNoSync</code> doesn't do replication to clients. A difficulty with <code>EnemiesNoSync</code> is compatible with all clients, regardless of whether they use CD1, CD2 or nothing at all. When you use <code>EnemiesNoSync</code> you are implicitly stating that you didn't use any features that require replication.</li>
 </ul>
+<p>To see which features require the <code>Enemies</code> module, please check the following guide by @Spy: <a href="https://docs.google.com/document/d/1ShytNpPJF56XojjrTofA9DCkBXCzqBH2W-aFaLgbk30/edit?tab=t.0#heading=h.ithv7n4jcboa">On Pubbing With CD2</a>.</p>
 <h2 id="descriptor-controls">Descriptor controls</h2>
 <table>
 <thead>
