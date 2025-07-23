@@ -95,6 +95,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../direct/">(Module) Direct</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../wavespawners/">(Module) WaveSpawners</a>
                 </li>
               </ul>
@@ -460,6 +464,7 @@ by CD2 can be changed with <code>Direct</code>. For example:</p>
   &quot;CanPlayerStandOn&quot;: true
 }
 </code></pre>
+<p>In the <a href="../direct/">Direct</a> page you can find a non-exhaustive but fairly complete compilation of all the known direct controls.</p>
 <h3 id="elite-variants-for-all-enemies">Elite variants for all enemies</h3>
 <p>Setting <code>Elite</code> to true or to some float number will only work directly for those enemies that have a vanilla elite variant: guards, grabbers, praetorians, bulks, menaces and trijaws. For the rest of the enemies, an elite base must be specified by setting <code>ForceEliteBase</code> to some existing ED that has an elite variant. As an example, the following snippet creates an elite septic spreader, which won't work without the <code>ForceEliteBase</code>:</p>
 <pre><code class="language-json">&quot;ED_Elite_Septic_Spreader&quot;: {
@@ -500,7 +505,7 @@ by CD2 can be changed with <code>Direct</code>. For example:</p>
      &quot;CustomVeterans&quot;: {
         &quot;ED_Spider_Grunt&quot;: 0.8,
         &quot;ED_Spider_Shooter&quot;: 0.1,
-        &quot;ED_Spider_Spitter&quot;: 0.1
+       | -------- | ------- | &quot;ED_Spider_Spitter&quot;: 0.1
       }
     }
 </code></pre>
@@ -1135,7 +1140,7 @@ If you wish to leave a slot with the default material, both <code>""</code> and 
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../modules/" class="btn btn-neutral float-left" title="Modules"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../wavespawners/" class="btn btn-neutral float-right" title="(Module) WaveSpawners">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../direct/" class="btn btn-neutral float-right" title="(Module) Direct">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -1161,7 +1166,7 @@ If you wish to leave a slot with the default material, both <code>""</code> and 
       <span><a href="../modules/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../wavespawners/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../direct/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
