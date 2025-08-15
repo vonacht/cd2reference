@@ -84,6 +84,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#pools">Pools</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#salvage">Salvage</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#usable-fields">Usable fields</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#specialencounters">SpecialEncounters</a>
     </li>
@@ -802,7 +806,94 @@ Example:</p>
     }
 }
 </code></pre>
+<p>Another example: the number of legs is randomized every mission.</p>
+<pre><code class="language-json">{
+    &quot;Salvage&quot;: {
+        &quot;MiniMules&quot;: {
+            &quot;LegsRequired&quot;: {
+                &quot;Mutate&quot;: &quot;RandomChoice&quot;,
+                &quot;Choices&quot;: [3, 4, 5, 6, 7]
+            }
+            &quot;LegsPerMule&quot;: 12
+        }
+    }
+}
+</code></pre>
 <p>Please see the <code>BySalvagePhase</code> <a href="../mutators/">mutator</a> for values that need to change during different phases of the mission. </p>
+<h3 id="usable-fields"><code>Usable</code> fields</h3>
+<p>Some of the fields in the table above are marked as <code>Usable</code>. These affect how the E key interactions work in some instances such as mule repairing. They accept the following fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CoopUse</td>
+<td>Boolean</td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>CoopUseMultiplier</td>
+<td>Float</td>
+<td>Increases or decreases the speed boost granted when multiple players are interacting. Defaults to 1.</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td>Int</td>
+<td>Sets up the priority of the E actions.</td>
+</tr>
+<tr>
+<td>ResetOnFail</td>
+<td>Boolean</td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>UseText</td>
+<td>String</td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>UseCooldown</td>
+<td>Float</td>
+<td>Cooldown before interaction can happen again.</td>
+</tr>
+<tr>
+<td>UseDuration</td>
+<td>Float</td>
+<td>Duration of the E interaction.</td>
+</tr>
+</tbody>
+</table>
+<p>Some examples of use. The following snippet makes the uplink repair faster than normal when more than 1 player is interacting:</p>
+<pre><code class="language-json">{
+    &quot;Salvage&quot;: {
+        &quot;Uplink&quot;: {
+            &quot;RepairUsable&quot;: {
+                &quot;CoopUseMultiplier&quot;: 5
+            }
+        }
+    }
+}
+</code></pre>
+<p>The following snippet changes the duration of the mule repair based on how many players are interacting, and buffs the speed boost of multiple players:</p>
+<pre><code class="language-json">{
+    &quot;Salvage&quot;: {
+        &quot;MiniMules&quot;: {
+            &quot;RepairUsable&quot;: {
+                &quot;UseDuration&quot;: {
+                    &quot;Mutate&quot;: &quot;ByPlayerCount&quot;,
+                    &quot;Values&quot;: [10, 20, 30, 40]
+                },
+                &quot;CoopUseMultiplier&quot;: 5
+            }
+        }
+    }
+}
+</code></pre>
 <h2 id="specialencounters">SpecialEncounters</h2>
 <p>This module controls the chance of some random events such as the Korlok, Bet-C, etc. Please note that this module is not 100 % functional as some of the encounters depend on the seasons system which CD2 cannot control for now. 
 Each <code>SpecialEncounter</code> accepts the following fields:</p>
