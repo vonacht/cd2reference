@@ -71,6 +71,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#maxplayers">MaxPlayers</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#messages">Messages</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#name">Name</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#nextdifficulty">NextDifficulty</a>
@@ -88,6 +90,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#usable-fields">Usable fields</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#soundcues">SoundCues</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#specialencounters">SpecialEncounters</a>
     </li>
@@ -397,6 +401,14 @@
 </thead>
 <tbody>
 <tr>
+<td>FallDamageModifier</td>
+<td>Default: 0.175</td>
+</tr>
+<tr>
+<td>FallDamageStartVelocity</td>
+<td>Default: 1000</td>
+</tr>
+<tr>
 <td>RegenHealthPerSecond</td>
 <td></td>
 </tr>
@@ -497,6 +509,94 @@
 <pre><code class="language-json">{
     &quot;MaxPlayers&quot;: 16
 }
+</code></pre>
+<h2 id="messages">Messages</h2>
+<p>A module that allows CD2 to send messages to chat in response to events happening during the mission. It has The following fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Send</td>
+<td>Boolean</td>
+<td>False</td>
+<td>Send chat message when true</td>
+</tr>
+<tr>
+<td>SendOnChange</td>
+<td>Boolean</td>
+<td>False</td>
+<td>Send chat message when another value (e.g. message) changes</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>String</td>
+<td>Game</td>
+<td>Options:  Game, Normal, Delux, Developer, Streamer, Modder</td>
+</tr>
+<tr>
+<td>Sender</td>
+<td>String</td>
+<td>CD2</td>
+<td>Name of the Sender</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>String</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<p>The following snippet sends a message on chat when the next resupply is available.</p>
+<pre><code class="language-json">...,
+&quot;Messages&quot;: [
+    {
+      &quot;Message&quot;: &quot;!!! Resupply Available !!!&quot;,
+      &quot;Send&quot;: {
+        &quot;Mutate&quot;: &quot;IfFloat&quot;,
+        &quot;Value&quot;: {
+          &quot;Mutate&quot;: &quot;DepositedResource&quot;,
+          &quot;Resource&quot;: &quot;Nitra&quot;
+        },
+        &quot;&gt;=&quot;: 60,
+        &quot;Then&quot;: true,
+        &quot;Else&quot;: false
+      }
+    }
+],
+...
+</code></pre>
+<p>The following snippet sends a message on chat when a player dies.</p>
+<pre><code class="language-json">...,
+&quot;Messages&quot;: [
+    {
+      &quot;Send&quot;: {
+        &quot;Mutate&quot;: &quot;TriggerOnChange&quot;,
+        &quot;RiseOnly&quot;: true,
+        &quot;Value&quot;: {
+          &quot;Mutate&quot;: &quot;DwarvesDown&quot;
+        }
+      },
+      &quot;Type&quot;: &quot;Delux&quot;,
+      &quot;Sender&quot;: &quot;Karl&quot;,
+      &quot;Message&quot;: {
+        &quot;Mutate&quot;: &quot;RandomChoice&quot;,
+        &quot;Choices&quot;: [
+          &quot;Stop Dying&quot;,
+          &quot;Skill Issue&quot;
+        ]
+      }
+    }
+],
+...
 </code></pre>
 <h2 id="name">Name</h2>
 <p>The name of the difficulty. This field is necessary to be able to save the file in the in-game CD2 dropdown.
@@ -894,6 +994,24 @@ Example:</p>
     }
 }
 </code></pre>
+<h2 id="soundcues">SoundCues</h2>
+<p>A module that allows CD2 to play a sound in response to events happening during the mission. It has two fields: a boolean <code>Play</code> which accepts mutators and a <code>Cue</code> which accepts the path to the sound you want to play. As an example, the following snippet plays a laughing sound when a player dies:</p>
+<pre><code class="language-json">...,
+ &quot;SoundCues&quot;: [
+    {
+      &quot;Play&quot;: {
+        &quot;Mutate&quot;: &quot;TriggerOnChange&quot;,
+        &quot;RiseOnly&quot;: true,
+        &quot;Value&quot;: {
+          &quot;Mutate&quot;: &quot;DwarvesDown&quot;
+        }
+      },
+      &quot;Cue&quot;: &quot;/Game/Audio/SFX/Environment/Pumpkin/Pumpkin_EvilLaughter_01_Cue.Pumpkin_EvilLaughter_01_Cue&quot;
+    }
+  ],
+...
+</code></pre>
+<p>The game has a lot of available sounds, but to play them outside the game you will need the game files and either Unreal Engine 4.27 or FModel.</p>
 <h2 id="specialencounters">SpecialEncounters</h2>
 <p>This module controls the chance of some random events such as the Korlok, Bet-C, etc. Please note that this module is not 100 % functional as some of the encounters depend on the seasons system which CD2 cannot control for now. 
 Each <code>SpecialEncounter</code> accepts the following fields:</p>

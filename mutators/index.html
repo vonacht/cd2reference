@@ -107,6 +107,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#clamp">Clamp</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#countdown">Countdown</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#defenseprogress">DefenseProgress</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#delta">Delta</a>
@@ -155,11 +157,15 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#enemieskilled">EnemiesKilled</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enemiesrecentlyspawned">EnemiesRecentlySpawned</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#enemycooldown">EnemyCooldown</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#enemycount">EnemyCount</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#engineercount">EngineerCount</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#float2string">Float2String</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#gunnercount">GunnerCount</a>
     </li>
@@ -172,6 +178,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#iffloat">IfFloat</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#ifonspacerig">IfOnSpaceRig</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#int2string">Int2String</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#join">Join</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#max">Max</a>
     </li>
@@ -580,6 +590,35 @@ The most typical use is specifying a varying number of resupply costs. For examp
     &quot;Max&quot;: 100
 }
 </code></pre>
+<h2 id="countdown">Countdown</h2>
+<p>A mutator that will count down from <code>Start</code> to <code>Stop</code>. It is usually used together with the <code>Int2String</code> mutator and the messages module to print messages on chat. It also has a <code>Default</code> value which is used when the countdown is not enabled. A boolean, mutable <code>Enable</code> field starts the countdown:</p>
+<pre><code class="language-json">&quot;Messages&quot;: [
+    {
+      &quot;SendOnChange&quot;: true,
+      &quot;Type&quot;: &quot;Developer&quot;,
+      &quot;Sender&quot;: &quot;My Difficulty&quot;,
+      &quot;Message&quot;: {
+        &quot;Mutate&quot;: &quot;Join&quot;,
+        &quot;Values&quot;: [
+          &quot;Something in...&quot;,
+          {
+            &quot;Mutate&quot;: &quot;Int2String&quot;,
+            &quot;Value&quot;: {
+              &quot;Mutate&quot;: &quot;Countdown&quot;,
+              &quot;Start&quot;: 16,
+              &quot;Enable&quot;: true
+            }
+          }
+        ]
+      }
+    }
+]
+</code></pre>
+<figure>
+  <img alt="CountdownMutator" src="../pictures/countdown-mutator.png" />
+  <figcaption>Chat output resulting from the snippet above.</figcaption>
+</figure>
+<p>If you want to trigger an event after a certain amount of time after something happens consider using the <code>TriggerDelay</code> and the trigger mutators instead of <code>Countdown</code>, at the bottom of the page. </p>
 <h2 id="defenseprogress">DefenseProgress</h2>
 <p>This mutator tracks the progress of a defense event such as a black box, refuel or uplink. It returns a float between [0, 1] starting at 0.3.</p>
 <h2 id="delta">Delta</h2>
@@ -719,6 +758,28 @@ Despawned enemies because of caps are likely counted. If your difficulty despawn
     }
 },
 </code></pre>
+<h2 id="enemiesrecentlyspawned">EnemiesRecentlySpawned</h2>
+<p>This mutator tracks enemies that spawned in the last <code>Seconds</code> seconds. You can track a single enemy descriptor with <code>ED</code> or multiple descriptors with <code>EDs</code>: in the last case, the mutator will return the sum of all spawned enemies that match the descriptors. If empty, the mutator will track all enemies. </p>
+<p>Example: returns how many enemies spawned in the last 60 seconds.</p>
+<pre><code class="language-json">{  
+    &quot;Mutate&quot;: &quot;EnemiesRecentlySpawned&quot;,  
+    &quot;Seconds&quot;: 60  
+}
+</code></pre>
+<p>Example: return how many exploders spawned in the last 60 seconds.</p>
+<pre><code class="language-json">{  
+    &quot;Mutate&quot;: &quot;EnemiesRecentlySpawned&quot;,  
+    &quot;Seconds&quot;: 60,
+    &quot;ED&quot;: &quot;ED_Spider_Exploder&quot;
+}
+</code></pre>
+<p>Example: return how many exploders, grunts and slashers spawned in the last 60 seconds.</p>
+<pre><code class="language-json">{  
+    &quot;Mutate&quot;: &quot;EnemiesRecentlySpawned&quot;,  
+    &quot;Seconds&quot;: 60,
+    &quot;EDs&quot;: [&quot;ED_Spider_Grunt&quot;, &quot;ED_Spider_Grunt_Guard&quot;, &quot;ED_Spider_Grunt_Attacker&quot;]
+}
+</code></pre>
 <h2 id="enemycooldown">EnemyCooldown</h2>
 <p>This mutator tracks a timer that is true after an enemy descriptor has spawned.</p>
 <pre><code class="language-json">{
@@ -772,6 +833,8 @@ Count all enemies on the map:</p>
 </code></pre>
 <h2 id="engineercount">EngineerCount</h2>
 <p>Number of engineers in the lobby. </p>
+<h2 id="float2string">Float2String</h2>
+<p>Converts an float to a string value so it can be used in the <code>Messages</code> <a href="../modules/">module</a>. For conversion from integers to strings, consider <code>Int2String</code> above.</p>
 <h2 id="gunnercount">GunnerCount</h2>
 <p>Number of gunners in the lobby.</p>
 <h2 id="heldresource">HeldResource</h2>
@@ -810,6 +873,10 @@ Valid operators are: ==, &gt;=, &gt;, &lt;=, &lt;</p>
 </code></pre>
 <h2 id="ifonspacerig">IfOnSpaceRig</h2>
 <p>Returns True on the Space Rig. </p>
+<h2 id="int2string">Int2String</h2>
+<p>Converts an integer to a string value so it can be used in the <code>Messages</code> <a href="../modules/">module</a>. For conversion from floats to strings, consider <code>Float2String</code> above.</p>
+<h2 id="join">Join</h2>
+<p>Joins two strings. Can be used together with <code>Int2String</code> and <code>Float2String</code> to pass integer and float outputs from mutators into the messages module. To see an example, check the <code>Countdown</code> module above.</p>
 <h2 id="max">Max</h2>
 <p>Returns the maximum of a value.</p>
 <h2 id="min">Min</h2>
