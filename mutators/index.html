@@ -674,7 +674,36 @@ Example:</p>
 <h2 id="duringdrillevator">DuringDrillevator</h2>
 <p>Becomes true during the elevator phase in a Deep Scan mission. </p>
 <h2 id="duringeggambush">DuringEggAmbush</h2>
-<p>Returns True during a non-announced wave after pulling an egg in Egg Hunts. </p>
+<p>Returns True during a non-announced wave after pulling an egg in Egg Hunts. As an example of use, the following snippet increases the <code>EnemyCountModifier</code> only during Egg waves, to make them more challenging. The <code>StartingAt</code> and <code>StoppingAfter</code> tries to make the increase affect only the current egg wave. </p>
+<pre><code class="language-json">{
+&quot;DifficultySetting&quot;:
+    {
+    &quot;EnemyCountModifier&quot;: {
+          &quot;Mutate&quot;: &quot;Multiply&quot;,
+          &quot;A&quot;: {
+            &quot;Mutate&quot;: &quot;ByPlayerCount&quot;,
+            &quot;Values&quot;: [
+              1.84,
+              2,
+              2.32,
+              2.8
+            ]
+          },
+          &quot;B&quot;: {
+              &quot;Mutate&quot;: &quot;If&quot;,
+              &quot;Condition&quot;: {
+                &quot;Mutate&quot;: &quot;DuringEggAmbush&quot;,
+                &quot;StartingAt&quot;: 5,
+                &quot;StoppingAfter&quot;: 10
+              },
+              &quot;Then&quot;: 4,
+              &quot;Else&quot;: 1
+            }
+        }
+    }
+} 
+
+</code></pre>
 <h2 id="duringencounters">DuringEncounters</h2>
 <p>Becomes true when Encounters are being placed in the map, that is, during mission generation. One of its uses it to change descriptor properties depending on whether they are part of an encounter or not:</p>
 <pre><code class="language-json">{
