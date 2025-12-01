@@ -192,6 +192,11 @@
 <td>Bool</td>
 <td>If true, the timer for the next spawn is paused while the wavespawner is disabled and resumes when it is enabled. If false, the timer is reset when the spawner is re-enabled. Defaults to False.</td>
 </tr>
+<tr>
+<td>Alert</td>
+<td>Bool</td>
+<td>If true, the enemies will spawn aggroed to the player. Defaults to True.</td>
+</tr>
 </tbody>
 </table>
 <p>All <code>WaveSpawner</code> fields can be mutated. The following snippet shows a popular spawner useful in Elimination missions, which spawns a bulk detonator with descriptor <code>ED_WeakBulk</code>, defined in the <code>Enemies</code> module, whenever there is a dreadnought on the map:</p>

@@ -119,6 +119,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#drillercount">DrillerCount</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#droppoddistance">DroppodDistance</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#duringdefend">DuringDefend</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#duringdread">DuringDread</a>
@@ -163,6 +165,10 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#enemycount">EnemyCount</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enemyhealth">EnemyHealth</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enemydistance">EnemyDistance</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#engineercount">EngineerCount</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#float2string">Float2String</a>
@@ -183,9 +189,15 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#join">Join</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#lockfloat-lockboolean-lockstring">LockFloat, LockBoolean, LockString</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#max">Max</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#min">Min</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#muledroppoddistance">MuleDroppodDistance</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nonzero">Nonzero</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#random">Random</a>
     </li>
@@ -199,7 +211,11 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#resupplyusesconsumed">ResupplyUsesConsumed</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#secondaryfinished">SecondaryFinished</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#scoutcount">ScoutCount</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#select">Select</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#squarewave">SquareWave</a>
     </li>
@@ -667,6 +683,13 @@ Example:</p>
 </code></pre>
 <h2 id="drillercount">DrillerCount</h2>
 <p>Number of drillers in the lobby.</p>
+<h2 id="droppoddistance">DroppodDistance</h2>
+<p>Returns an average of the distance in cm between players and drop pod during mission extraction. It accepts the following fields:</p>
+<ul>
+<li><code>Default</code>: the default value to return when there is no drop pod.</li>
+<li><code>IncludeDowned</code>: a boolean which indicates whether to include dead dwarves in the average.</li>
+</ul>
+<p>See also: <code>MuleDroppodDistance</code> mutator.</p>
 <h2 id="duringdefend">DuringDefend</h2>
 <p>Becomes true when a black box, uplink or cell refuel is active.</p>
 <h2 id="duringdread">DuringDread</h2>
@@ -860,6 +883,20 @@ Count all enemies on the map:</p>
     }
 },
 </code></pre>
+<h2 id="enemyhealth">EnemyHealth</h2>
+<p>This mutator returns the health of a descriptor or group of descriptors. The mutator can be configured to return the maximum, minimum, or average health among enemies with a descriptor. This value is a percentage between 0 and 1. A Default can (and should) be specified. It accepts the following fields:</p>
+<ul>
+<li><code>ED</code> or <code>EDs</code>: the descriptor or descriptors of the enemy or group of enemies you want to track. </li>
+<li><code>Default</code>: the value returned when there are no <code>ED</code> or <code>EDs</code> alive. Returns 0 by default.</li>
+<li><code>Type</code>: a string value which is either <code>Min</code>, <code>Max</code> or <code>Average</code>. Defaults to <code>Average</code>.</li>
+</ul>
+<h2 id="enemydistance">EnemyDistance</h2>
+<p>This mutator returns the distance of enemies of a descriptor or descriptors. The mutator can be configured to return the maximum, minimum, or average distance to the closest living player among enemies. Distance is in cm. A Default can (and should) be specified based on desired behavior. It accepts the following fields:</p>
+<ul>
+<li><code>ED</code> or <code>EDs</code>: the descriptor or descriptors of the enemy or group of enemies you want to track. </li>
+<li><code>Default</code>: the value returned when there are no <code>ED</code> or <code>EDs</code> alive. Returns 0 by default.</li>
+<li><code>Type</code>: a string value which is either <code>Min</code>, <code>Max</code> or <code>Average</code>. Defaults to <code>Min</code>.</li>
+</ul>
 <h2 id="engineercount">EngineerCount</h2>
 <p>Number of engineers in the lobby. </p>
 <h2 id="float2string">Float2String</h2>
@@ -905,11 +942,70 @@ Valid operators are: ==, &gt;=, &gt;, &lt;=, &lt;</p>
 <h2 id="int2string">Int2String</h2>
 <p>Converts an integer to a string value so it can be used in the <code>Messages</code> <a href="../modules/">module</a>. For conversion from floats to strings, consider <code>Float2String</code> above.</p>
 <h2 id="join">Join</h2>
-<p>Joins two strings. Can be used together with <code>Int2String</code> and <code>Float2String</code> to pass integer and float outputs from mutators into the messages module. To see an example, check the <code>Countdown</code> module above.</p>
+<p>Joins two strings. Can be used together with <code>Int2String</code> and <code>Float2String</code> to pass integer and float outputs from mutators into the <code>Messages</code> module. It accepts a <code>Values</code> array and a separator <code>Sep</code>. The following example shows a randomized welcome message 15 seconds into the mission:</p>
+<pre><code class="language-json">...,
+&quot;Messages&quot;: [
+    {
+        &quot;Send&quot;: {
+            &quot;Mutate&quot;: &quot;DuringMission&quot;,
+            &quot;StartingAt&quot;: 15
+        },
+        &quot;Message&quot;: {
+            &quot;Mutate&quot;: &quot;Join&quot;,
+            &quot;Values&quot;: [
+                        &quot;Welcome to my difficulty! &quot;,
+                        {
+                            &quot;Mutate&quot;: &quot;RandomChoice&quot;,
+                            &quot;Choices&quot;: [&quot;Enjoy your stay.&quot;, &quot;Thanks for playing&quot;]
+                        }
+                    ]
+        },
+        &quot;Sender&quot;: &quot;CD2&quot;,
+        &quot;Type&quot;: &quot;Developer&quot;
+    }
+],
+</code></pre>
+<p>To see a more complex, check the <code>Countdown</code> mutator above.</p>
+<h2 id="lockfloat-lockboolean-lockstring">LockFloat, LockBoolean, LockString</h2>
+<p>This mutator will selectively update its value based on a condition. You may use <code>Lock</code> condition or the "Update" condition based on desired semantics:</p>
+<ul>
+<li><code>Lock</code>: When true, this mutator's value will not change.</li>
+<li><code>Update</code>: When false, this mutator's value will not change.</li>
+<li><code>Value</code>: This will be what the mutator will update to when it is unlocked.</li>
+</ul>
+<p>The following snippet shows a mutator that will increase each time a dwarf downs until the secondary objective is finished, after which it will no longer increase and will remain the same for the rest of the mission:</p>
+<pre><code class="language-json">{
+  &quot;Mutate&quot;: &quot;LockFloat&quot;,
+  &quot;Lock&quot;: {&quot;Mutate&quot;: &quot;SecondaryFinished&quot;},
+  &quot;Value&quot;: {&quot;Mutate&quot;: &quot;DwarvesDowns&quot;}
+}
+</code></pre>
+<p>Another example: we create a mutator that will hold the value of a string until a dwarf is revived, and at that point we randomly select another one. This mutator could be followed by a <code>Select</code> mutator to react to the new string:</p>
+<pre><code class="language-json">{
+  &quot;Mutate&quot;: &quot;LockString&quot;,
+  &quot;Update&quot;: {
+    &quot;Mutate&quot;: &quot;TriggerOnChange&quot;,
+    &quot;FallOnly&quot;: true,
+    &quot;Value&quot;: { &quot;Mutate&quot;: &quot;DwarvesDown&quot; }
+  },
+  &quot;Value&quot;: {
+    &quot;Mutate&quot;: &quot;RandomChoice&quot;, 
+    &quot;Choices&quot;: [&quot;ChallengeA&quot;, &quot;ChallengeB&quot;, &quot;ChallengeC&quot;]
+  }
+}
+</code></pre>
 <h2 id="max">Max</h2>
 <p>Returns the maximum of a value.</p>
 <h2 id="min">Min</h2>
 <p>Returns the minimum of a value.</p>
+<h2 id="muledroppoddistance">MuleDroppodDistance</h2>
+<p>Returns an average of the distance in cm between the mule and the drop pod during mission extraction. It accepts the following fields:</p>
+<ul>
+<li><code>Default</code>: the default value to return when there is no drop pod or there is no mule.</li>
+</ul>
+<p>See also: <code>DroppodDistance</code> mutator.</p>
+<h2 id="nonzero">Nonzero</h2>
+<p>Accepts an integer or float <code>Value</code> and returns the boolean false if zero, true otherwise.</p>
 <h2 id="random">Random</h2>
 <p>Continuously samples a float number between <code>Min</code> and <code>Max</code>, uniformly.</p>
 <pre><code class="language-json">{
@@ -968,8 +1064,37 @@ Optionally, a second list <code>Weights</code> provides weights for weighted sam
 <p>Number of resupplies the team has called during the mission. This should increment almost immediately after a resupply is initiated, before another resupply can be called.</p>
 <h2 id="resupplyusesconsumed">ResupplyUsesConsumed</h2>
 <p>The number of uses that have been consumed from resupplies this mission.</p>
+<h2 id="secondaryfinished">SecondaryFinished</h2>
+<p>Returns a boolean which is true when all secondary objectives have been completed, or when there are no secondary objectives (like in Sandbox). </p>
 <h2 id="scoutcount">ScoutCount</h2>
 <p>Number of scouts in the lobby. </p>
+<h2 id="select">Select</h2>
+<p>Similar to a switch statement in programming languages, this mutator allows to select different options based on a string value. It is very useful when used together with global variables from the <code>Var</code> module:</p>
+<pre><code class="language-json">...,
+&quot;Vars&quot;: {
+    &quot;Pressure&quot;: {
+        &quot;Type&quot;: &quot;String&quot;,
+        &quot;Value&quot;: &quot;Easy&quot;
+    }
+},
+&quot;DifficultySetting&quot;: {
+    &quot;EnemyCountModifier&quot;: {
+        &quot;Mutate&quot;: &quot;Multiply&quot;,
+        &quot;BaseValues&quot;: {
+            &quot;Mutate&quot;: &quot;ByPlayerCount&quot;,
+            &quot;Values&quot;: [1.9, 2.1, 2.7, 3.3]
+        },
+        &quot;Multiplier&quot;: {
+            &quot;Mutate&quot;: &quot;Select&quot;,
+            &quot;Select&quot;: {&quot;Var&quot;: &quot;Pressure&quot;}
+            &quot;Default&quot;: 1,
+            &quot;Easy&quot;: 1, 
+            &quot;Hard&quot;: 1.3 
+        }
+    }
+},
+...
+</code></pre>
 <h2 id="squarewave">SquareWave</h2>
 <p>Alternates between two values with a given period.</p>
 <p>Example:

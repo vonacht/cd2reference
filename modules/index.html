@@ -97,6 +97,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#resupply">Resupply</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vars">Vars</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#warnings">Warnings</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#wavespawners">WaveSpawners</a>
@@ -555,7 +557,7 @@
 </tbody>
 </table>
 <p>Examples:</p>
-<p>The following snippet sends a message on chat when the next resupply is available.</p>
+<p>In a difficulty with 60 nitra resupplies, the following snippet sends a message on chat when the next resupply is available:</p>
 <pre><code class="language-json">...,
 &quot;Messages&quot;: [
     {
@@ -597,6 +599,43 @@
     }
 ],
 ...
+</code></pre>
+<p>The following snippet sends a welcome message 15 seconds after mission start:</p>
+<pre><code class="language-json">...,
+&quot;Messages&quot;: [
+    {
+        &quot;Send&quot;: {
+            &quot;Mutate&quot;: &quot;DuringMission&quot;,
+            &quot;StartingAt&quot;: 15
+        },
+        &quot;Message&quot;: &quot;Welcome to my difficulty! Enjoy your stay.&quot;
+        &quot;Sender&quot;: &quot;CD2&quot;,
+        &quot;Type&quot;: &quot;Developer&quot;
+    }
+],
+</code></pre>
+<p>It's possible to use the <code>Join</code> mutator to assemble strings with mutators and global variables. See the following example, where we give some randomization to the previous welcome message:</p>
+<pre><code class="language-json">...,
+&quot;Messages&quot;: [
+    {
+        &quot;Send&quot;: {
+            &quot;Mutate&quot;: &quot;DuringMission&quot;,
+            &quot;StartingAt&quot;: 15
+        },
+        &quot;Message&quot;: {
+            &quot;Mutate&quot;: &quot;Join&quot;,
+            &quot;Values&quot;: [
+                        &quot;Welcome to my difficulty! &quot;,
+                        {
+                            &quot;Mutate&quot;: &quot;RandomChoice&quot;,
+                            &quot;Choices&quot;: [&quot;Enjoy your stay.&quot;, &quot;Thanks for playing&quot;]
+                        }
+                    ]
+        },
+        &quot;Sender&quot;: &quot;CD2&quot;,
+        &quot;Type&quot;: &quot;Developer&quot;
+    }
+],
 </code></pre>
 <h2 id="name">Name</h2>
 <p>The name of the difficulty. This field is necessary to be able to save the file in the in-game CD2 dropdown.
@@ -1127,6 +1166,97 @@ Each <code>SpecialEncounter</code> accepts the following fields:</p>
     }
   }
 }
+</code></pre>
+<h2 id="vars">Vars</h2>
+<p>A module to store global variables, which allow communication between modules. <code>Vars</code> is structured as a dictionary of names and values with the following fields:</p>
+<ul>
+<li><code>Type</code>: the variable type. Can be one of the following: <code>Boolean</code>, <code>String</code>, <code>Float</code> or <code>Strings</code>, the latter used for arrays of <code>String</code>.</li>
+<li><code>Watch</code>: a boolean which will show the variable's value in the UI for debugging. </li>
+<li><code>Value</code>: the variable's value, which can be mutated.</li>
+</ul>
+<p>A variable defined in <code>Vars</code> can be later used in any place which accepts a value of the same type by using <code>{"Var": "MyVariable"}</code>. Variables are all updated at once so they will always be consistent across modules, but the implementation can cause up to 500 ms of delay between the variable state and the true game state.</p>
+<p>Example of variable definitions:</p>
+<pre><code class="language-json">...,
+&quot;Vars&quot;: {
+    &quot;Debug&quot;: {
+      &quot;Type&quot;: &quot;Boolean&quot;,
+      &quot;Value&quot;: false
+    },
+    &quot;MuleDistanceToDroppod&quot;: {
+      &quot;Type&quot;: &quot;Float&quot;,
+      &quot;Value&quot;: { &quot;Mutate&quot;: &quot;MuleDistanceToDroppod&quot; },
+      &quot;Watch&quot;: { &quot;Var&quot;: &quot;Debug&quot; }
+    },
+    &quot;PressureDifficulty&quot;: {
+      &quot;Type&quot;: &quot;String&quot;,
+      &quot;Value&quot;: &quot;Medium&quot;
+    },
+    &quot;EaseOffOnDowns&quot;: {
+      &quot;Type&quot;: &quot;Boolean&quot;,
+      &quot;Value&quot;: true
+    },
+    &quot;EDs&quot;: {
+      &quot;Type&quot;: &quot;Strings&quot;,
+      &quot;Value&quot;: [&quot;ED_1&quot;, &quot;ED_2&quot;, &quot;ED_3&quot;]
+    },
+    &quot;SecondaryUnfinishedPunishment&quot;: {
+      &quot;Type&quot;: &quot;Float&quot;,
+      &quot;Value&quot;: {
+        &quot;Mutate&quot;: &quot;LockFloat&quot;,
+        &quot;Lock&quot;: { &quot;Mutate&quot;: &quot;SecondaryFinished&quot; },
+        &quot;Value&quot;: { &quot;Mutate&quot;: &quot;ByTime&quot;, &quot;RateOfChange&quot;: 0.01 }
+      }
+    }
+},
+...,
+</code></pre>
+<p>The following snippet allows the user to have a toggle for adding or removing stingtails in a difficulty:</p>
+<pre><code class="language-json">...,
+&quot;Vars&quot;: {
+    &quot;Stingtails&quot;: {
+        &quot;Type&quot;: &quot;Boolean&quot;,
+        &quot;Value&quot;: true 
+    }
+},
+&quot;Pools&quot;: {
+    &quot;EnemyPool&quot;: {
+        &quot;Remove&quot;: [
+            {
+                &quot;Mutate&quot;: &quot;If&quot;,
+                &quot;Condition&quot;: {&quot;Var&quot;: &quot;Stingtails&quot;},
+                &quot;Then&quot;: [],
+                &quot;Else&quot;: &quot;ED_Spider_Stinger&quot;
+            }
+        ]
+    }
+}
+...
+</code></pre>
+<p>The following snippet allows the user to select an easy or a hard version of the difficulty by using a variable for the <code>EnemyCountModifier</code> and the <code>Select</code> mutator:</p>
+<pre><code class="language-json">...,
+&quot;Vars&quot;: {
+    &quot;Pressure&quot;: {
+        &quot;Type&quot;: &quot;String&quot;,
+        &quot;Value&quot;: &quot;Easy&quot;
+    }
+},
+&quot;DifficultySetting&quot;: {
+    &quot;EnemyCountModifier&quot;: {
+        &quot;Mutate&quot;: &quot;Multiply&quot;,
+        &quot;BaseValues&quot;: {
+            &quot;Mutate&quot;: &quot;ByPlayerCount&quot;,
+            &quot;Values&quot;: [1.9, 2.1, 2.7, 3.3]
+        },
+        &quot;Multiplier&quot;: {
+            &quot;Mutate&quot;: &quot;Select&quot;,
+            &quot;Select&quot;: {&quot;Var&quot;: &quot;Pressure&quot;}
+            &quot;Default&quot;: 1,
+            &quot;Easy&quot;: 1, 
+            &quot;Hard&quot;: 1.3 
+        }
+    }
+},
+...
 </code></pre>
 <h2 id="warnings">Warnings</h2>
 <p>The <code>Warnings</code> module can be used to ban mission anomalies. It accepts a single <code>Banned</code> field which is one or more from the table below. <strong>Please note that banning anomalies that affect resource generation such as Mineral Mania or Gold Rush will cause clients without CD2 to have mineral desync and they will not be able to get nitra.</strong> </p>
