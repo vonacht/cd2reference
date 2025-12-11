@@ -11,10 +11,10 @@
       
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../grouped_cooldowns/">
       
       
-        <link rel="next" href="../basics/">
+        <link rel="next" href="../resources/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>FAQ - CD2 Reference</title>
+        <title>Common edits - CD2 Reference</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cd2-faq" class="md-skip">
+        <a href="#increase-or-decrease-the-number-of-enemies" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FAQ
+              Common edits
             
           </span>
         </div>
@@ -224,19 +224,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
         
   
   
@@ -252,7 +243,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -504,10 +494,35 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../common_edits/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common edits
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -523,6 +538,46 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#increase-or-decrease-the-number-of-enemies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Increase or decrease the number of enemies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#removing-vanilla-enemies-from-a-difficulty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removing vanilla enemies from a difficulty
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -571,8 +626,36 @@
   
   
   
-    
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#increase-or-decrease-the-number-of-enemies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Increase or decrease the number of enemies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#removing-vanilla-enemies-from-a-difficulty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removing vanilla enemies from a difficulty
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -589,40 +672,103 @@
 
 
 
-<h1 id="cd2-faq">CD2 FAQ</h1>
-<ul>
-<li><strong>Q: Where can I get the mod?</strong></li>
-<li>A: The mod right now is in open beta and the .pak file can be found in the Practical DRG discord server. The mod integration loader is recommended.
-<br/></li>
-<li><strong>Q: Can I use this at the same time as CD1?</strong></li>
-<li>A: No. Only enable one CD version at a time. If you want to join CD1 lobbies while having CD2 enabled yourself and not suffer a desync in the nitra cost of resupplies,
-there is a cd1-client.pak available in PDRG that allows to do that.
-<br/></li>
-<li><strong>Q: How can I use the cd2 pak?</strong></li>
-<li>A: Drag and drop the zip file into MINT and press install mods. You do not need to extract the pak from the zip to install.
-<br/></li>
-<li><strong>Q: Do clients need CD2 to play in my CD2 lobby?</strong></li>
-<li>A: Clients only need CD2 if you use certain features. For instance, difficulties that use the Enemies module will require that all clients have CD2. If the EnemiesNoSync module is used instead, clients will no longer need CD2. 
-<a href="https://docs.google.com/document/d/1ShytNpPJF56XojjrTofA9DCkBXCzqBH2W-aFaLgbk30/edit?tab=t.0#heading=h.ithv7n4jcboa">On Pubbing With CD2</a> is a guide by @Spy detailing which CD2 features are incompatible with pubbing and is a recommended read.
-<br/></li>
-<li><strong>Q: Why aren't my original CD1 difficulties compatible with CD2?</strong></li>
-<li>A: Custom Difficulty v2 is a complete redesign and it uses top level names to denote independent modules.
-If you need to port something from CD1 to CD2, there is <a href="https://github.com/vonacht/cd2ifier/tree/main/src">a script</a> that automatically does the translation. Alternatively, you can
-post the file in the PDRG forums asking for help in running the script or making the port yourself. 
-<br/></li>
-<li><strong>Q: Does CD2 support more than 4 players?</strong></li>
-<li>A: Yes CD2 has complete support for more than 4 player lobbies. Any player-count depedent field can be extended to any number of players. Additionally, you can specify <code>MaxPlayers: 8</code> in your difficulty to set the max players count.
-<br/></li>
-<li><strong>Q: Will changing the difficulty mid mission break the game like in CD1?</strong></li>
-<li>A: No. That has not been observed in any of the testing so far.
-<br/></li>
-<li><strong>Q: Is this compatible with MEV/DEA and other similar expansion mods?</strong></li>
-<li>A: Yes, this is fully compatible with the most common enemy expansion mods!
-<br/></li>
-<li><strong>Q: Is CD2 compatible with Deep Dives?</strong></li>
-<li>A: Yes, and it doesn't need any extra mods. Just select your chosen difficulty and go into the dive. There is also the possibility of choosing a different difficulty for each stage similar to the vanilla dive, please see the <code>NextDifficulty</code> section in <a href="../modules/">Modules</a> to see how to do it. 
-<br/></li>
-</ul>
+  <h1>Common edits</h1>
+
+<h3 id="increase-or-decrease-the-number-of-enemies">Increase or decrease the number of enemies</h3>
+<p>If you enjoy a certain difficulty file but you think the number of enemies is either too small or too big, you can modify it to your taste with a very simple edit: look for the <code>EnemyCountModifier</code> (ECM) field inside <code>DifficultySettings</code>. The ECM works as a <strong>global multiplier</strong> for all spawn events in the difficulty, so you just need to increase it or decrease it however you like. As an example, the following snippet is from Hazard 6x2:</p>
+<pre><code class="language-json">...,
+&quot;DifficultySetting&quot;: {
+        &quot;EnemyCountModifier&quot;: [
+            2,
+            2.1,
+            2.7,
+            3.3
+        ]
+}
+...,
+</code></pre>
+<p>so if we wanted to create Hazard 6x4 we would double these values:</p>
+<pre><code class="language-json">...,
+&quot;DifficultySetting&quot;: {
+        &quot;EnemyCountModifier&quot;: [
+            4,
+            4.2,
+            5.4,
+            6.6
+        ]
+}
+...,
+</code></pre>
+<p>Depending on how many enemies you want to get you might have to edit also the <code>MaxActiveEnemies</code> cap in <code>Caps</code>:</p>
+<pre><code class="language-json">...,
+&quot;Caps&quot;: {
+        &quot;MaxActiveCritters&quot;: 40,
+        &quot;MaxActiveSwarmers&quot;: [
+            60,
+            120,
+            180,
+            180
+        ],
+        &quot;MaxActiveEnemies&quot;: [
+            100,
+            120,
+            180,
+            180
+        ]
+    }
+...,
+</code></pre>
+<p>When the number of enemies in a mission goes above <code>MaxActiveEnemies</code> the game will despawn some of them, although this behaviour is not completely understood. Take into account that increasing the enemy cap will negatively affect the frame rate and going above 300 is not recommended.</p>
+<h3 id="removing-vanilla-enemies-from-a-difficulty">Removing vanilla enemies from a difficulty</h3>
+<p>Are you a solo player that hates stingtails or stalkers? Or maybe you want to remove younglings from Salt Pits? This is one of the most common edits and it's really easy to do. You will need two things:</p>
+<ol>
+<li>Know the in-game name of the enemy you want to remove (the descriptor's name)</li>
+<li>Know the vanilla pool the enemy is in by default</li>
+</ol>
+<p>For the first, check the table in <a href="../resources/">Resources</a>. As an example, if you wanted to remove stalkers the name you'd need is <code>ED_Spider_Stalker</code>. For the second, locate your enemy in the following (slightly incomplete) table:</p>
+<table>
+<thead>
+<tr>
+<th>Pool</th>
+<th>Pools module field</th>
+<th>Enemies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Common Pool</td>
+<td>CommonEnemies</td>
+<td>Grunts, Praetorians</td>
+</tr>
+<tr>
+<td>Disruptor Pool</td>
+<td>DisruptiveEnemies</td>
+<td>Menaces, Wardens, Bulk Detonators, Stingtails, Shellbacks, Grabbers, Goo Bombers, Stalkers</td>
+</tr>
+<tr>
+<td>Special Pool</td>
+<td>SpecialEnemies</td>
+<td>Swarmers, Exploders, Web Spitters, Acid Spitters, Septic Spreaders, Mactera Spawns and Trijaws</td>
+</tr>
+<tr>
+<td>Stationary Pool</td>
+<td>StationaryPool</td>
+<td>Breeders, Swarmer Nexii, Spitballers, Cave Leech, Barragers, Vartok Scalebramble</td>
+</tr>
+</tbody>
+</table>
+<p>Once you know the original pool where your enemy is, just remove it. For example, removing stalkers and septics from a difficulty:</p>
+<pre><code class="language-json">...,
+&quot;Pools&quot;: {
+    &quot;DisruptiveEnemies&quot;: {
+        &quot;Remove&quot;: [&quot;ED_Spider_Stalker&quot;]
+    },
+    &quot;SpecialEnemies&quot;: {
+        &quot;Remove&quot;: [&quot;ED_Spider_Lobber&quot;]
+    }
+}
+...,
+</code></pre>
 
 
 
