@@ -1529,33 +1529,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../grouped_cooldowns/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Tutorials
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../common_edits/" class="md-nav__link">
         
   
@@ -2659,7 +2632,30 @@
 
 
 <h1 id="direct-enemy-controls"><code>Direct</code> enemy controls</h1>
-<p>The following list was compiled by @TheBrain. It is not exhaustive and it is not guaranteed for all fields to work in-game. </p>
+<p><code>Direct</code> is a special field in enemy descriptors that allows changing properties that are not directly exposed by CD2 through other modules like the <code>Breeder</code> or the <code>CaveLeech</code> subfields. <strong>When using <code>Direct</code>, remember that not all fields will work in-game.</strong> The names of the <code>Direct</code> subfields can be found by looking into the enemy properties in UE4, but structs are not supported for now. A couple of examples of use:</p>
+<pre><code class="language-json"># A bulk with no meatballs, no explosion and no carve.
+&quot;Enemies&quot;: {
+    &quot;ED_Melee_Bulk&quot;:{
+        &quot;Base&quot;: &quot;ED_Spider_ExploderTank&quot;,
+        &quot;Direct&quot;: {
+            &quot;Float:CarveDiameter&quot;: 0,
+            &quot;Int:NumClusterBombs&quot;: 0,
+            &quot;Float:DamageDeathExplosion.DamageRadius&quot;: 0,
+            &quot;Float:DamageDeathExplosion.MaxDamageRadius&quot;: 0
+        }
+    }
+}
+</code></pre>
+<pre><code class="language-json"># A patrol bot that deals no damage on bump
+&quot;Enemies&quot;: {
+    &quot;ED_PatrolBot&quot;: {
+        &quot;Direct&quot;: {
+            &quot;Float:BumpDamage.Damage&quot;: 0
+        }
+    }
+}
+</code></pre>
+<p>The following non-exhaustive list compiled by @theBrain is provided as a reference. </p>
 <h2 id="ed_pumpkinlootbug">ED_PumpkinLootBug</h2>
 <table>
 <thead>
